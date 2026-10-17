@@ -1,12 +1,24 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist",
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index" }],
-  "functions": {
-    "api/index.py": {
-      "includeFiles": "{src/chronicle/**,data/processed/**,data/annotations/**,data/output/pipeline_results.json}",
-      "maxDuration": 30
+  "services": {
+    "api": {
+      "root": ".",
+      "framework": "flask",
+      "entrypoint": "api/index.py",
+      "functions": {
+        "api/index.py": {
+          "includeFiles": "{src/chronicle/**,data/processed/**,data/annotations/**,data/output/pipeline_results.json}",
+          "maxDuration": 30
+        }
+      }
+    },
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": { "service": "api" } },
+    { "source": "/(.*)", "destination": { "service": "frontend" } }
+  ]
 }
