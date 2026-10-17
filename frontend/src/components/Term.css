@@ -1,0 +1,63 @@
+.term-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.term-trigger {
+  border-bottom: 1px dotted var(--accent-gold);
+  cursor: help;
+  color: inherit;
+}
+
+.term-popover {
+  /* top/left are plain measured pixels set directly in Term.jsx — no CSS
+     transform involved in the positioning itself, so there's no dependency
+     on the browser resolving this box's own height at the right moment. */
+  position: fixed;
+  width: min(300px, 80vw);
+  background: #15171B;
+  border: 1px solid var(--accent-gold);
+  padding: 12px 14px;
+  z-index: 500;
+  text-align: left;
+  font-family: var(--font-serif);
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+/* Arrow points down at the word when the popover sits above it (default)... */
+.term-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: var(--arrow-x, 50%);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--accent-gold);
+}
+
+/* ...and flips to point up when there's no room above, so the popover
+   renders below the word instead (set by Term.jsx when it measures too
+   little space above the trigger). */
+.term-popover.term-popover-below::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--accent-gold);
+}
+
+.term-popover-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+
+.term-popover-body {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
