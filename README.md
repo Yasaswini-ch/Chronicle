@@ -2,7 +2,7 @@
 
 **End-to-End NLP System for Greek Mythology Analysis**
 
-Chronicle reads a corpus of **125 Greek myths** and turns it into structured, explorable knowledge: cleaned text, four kinds of text representations, entity and relation extraction, a curated family tree with kinship reasoning, theme and topic analysis, and an offline chatbot ("the Oracle"). A Flask API serves a hand-built React interface with character profiles, story patterns, a quiz and a family-tree view.
+Chronicle reads a corpus of **125 Greek myths** and turns it into structured, explorable knowledge: cleaned text, four kinds of text representations, entity and relation extraction, a curated family tree with kinship reasoning, theme and topic analysis, and an offline chatbot ("the Oracle"). A Flask API serves a hand-built React interface with character profiles, story patterns and a family-tree view.
 
 The corpus is 30 hand-written retellings plus 95 passages from Bulfinch's *The Age of Fable* (public domain). Theme, character and place labels on the Bulfinch passages are **automatic and not hand-checked**; see [Evaluation](#evaluation) for what that means for the numbers.
 
@@ -38,7 +38,6 @@ Serving only (no NLP libraries, much smaller): `uv pip install -e .` then `chron
 | **Explore → Family Tree** | The pantheon as a forest of family trees, built from stories plus the curated genealogy. |
 | **Explore → Figures** | Profile of any character: Roman names, family (with half-siblings), recurring themes, stories, companions; compare any two. |
 | **Explore → Story Patterns** | 11 recurring plots (transformation, journey to the underworld, mortal defies a god, divine disguise, ...), each with the passage that shows it. |
-| **Explore → Test Yourself** | An 8-question quiz generated from the family records, Greek-Roman names and story casts. |
 | **Explore → By The Numbers, Gallery, How It Was Built** | Corpus statistics, photographs of antiquity, and the pipeline. |
 
 ### The Oracle
@@ -73,7 +72,7 @@ Intent detection is rule-based (character, family, relationship, comparison, the
       +-------------+--------------+
       v                            v
  NLP pipeline (scripts/run_pipeline.py)      Knowledge layer (chronicle.insights.knowledge)
-  preprocessing, TF-IDF, Word2Vec, SBERT,     profiles, comparisons, story patterns, quiz,
+  preprocessing, TF-IDF, Word2Vec, SBERT,     profiles, comparisons, story patterns,
   NER + relations, classifiers, BERTopic      BM25 search, kinship (chronicle.ner.kinship)
       |                                        |
       +----------------+-----------------------+
@@ -171,7 +170,6 @@ streamlit run src/chronicle/app/main.py
 | `GET /api/compare?a=&b=` | Side-by-side comparison of two characters |
 | `GET /api/motifs`, `GET /api/motifs/<id>` | Story patterns and the myths showing each |
 | `GET /api/search?q=&top_k=` | Ranked free-text search |
-| `GET /api/quiz?n=&seed=` | Quiz questions |
 | `GET /api/similar/<myth>` | Similar myths |
 | `GET /api/graph`, `GET /api/graph/path` | People graph (places listed separately) and shortest path |
 | `GET /api/analytics`, `GET /api/benchmarks` | Corpus statistics and pipeline results |
@@ -192,18 +190,26 @@ Inputs are validated strictly (types, lengths, integer ranges) and errors are re
 
 ## Deploy to Vercel
 
-The repo includes `vercel.json`, `api/index.py`, `requirements.txt` and `.vercelignore`. Vercel builds the React frontend as static files and runs the Flask API as a serverless function under `/api/*`.
+`vercel.json` defines a Vercel project with two **services**:
+
+| Service | Root | Framework | Public path |
+|---|---|---|---|
+| `frontend` | `frontend/` | Vite | `/(.*)` (everything not under `/api`) |
+| `api` | `.` (entry `api/index.py`) | Flask | `/api/(.*)` |
+
+The API service receives the original path, so `/api/chat` reaches Flask as `/api/chat` and the Flask routes need no prefix handling. The React app calls the API from the browser with relative `/api/...` URLs, so no service-to-service bindings are needed. Rewrites are ordered most specific first; the catch-all comes last.
 
 ```bash
 npm i -g vercel
+vercel dev      # runs both services locally, as in production
 vercel          # preview deployment (first run links the project)
 vercel --prod   # production deployment
 ```
 
-- Only the slim base dependencies are installed (Flask, NetworkX, Plotly, NumPy), because the full ML stack exceeds Vercel's ~250 MB function limit. Semantic search is off and the Oracle uses BM25.
+- Only the slim base dependencies are installed for the API (Flask, NetworkX, Plotly, NumPy); the ML stack exceeds Vercel's ~250 MB function limit. Search uses BM25 (Sentence-BERT is off by default).
 - Chat memory lives in the function instance. Vercel may route requests to different instances, so a follow-up can occasionally lose context.
-- The Vercel configuration has not been exercised on Vercel itself. If the API reports "Myth corpus not found", check the `includeFiles` pattern in `vercel.json`.
-- For full semantic search in production use the Docker image on a container host.
+- This configuration has not been exercised on Vercel itself. If the API reports "Myth corpus not found", check `functions.includeFiles` under the `api` service in `vercel.json`; if the API service does not start, check its `entrypoint`.
+- For a standalone frontend dev server (`npm run dev` in `frontend/`), Vite proxies `/api` to `localhost:8000`.
 
 ---
 
