@@ -1,0 +1,398 @@
+{
+  "Zeus": [
+    "Jupiter",
+    "Jove",
+    "Cloud-gatherer",
+    "Thunderer"
+  ],
+  "Hera": [
+    "Juno",
+    "Ox-eyed",
+    "Queen of the Gods"
+  ],
+  "Poseidon": [
+    "Neptune",
+    "Earth-shaker",
+    "God of the Sea"
+  ],
+  "Demeter": [
+    "Ceres",
+    "Deo",
+    "Bringer of Seasons"
+  ],
+  "Athena": [
+    "Minerva",
+    "Pallas",
+    "Pallas Athena",
+    "Grey-eyed"
+  ],
+  "Apollo": [
+    "Phoebus",
+    "Far-shooter",
+    "Loxias",
+    "Pythian Apollo",
+    "Phoebus Apollo"
+  ],
+  "Artemis": [
+    "Diana",
+    "Cynthia",
+    "Phoebe",
+    "Lady of the Beasts"
+  ],
+  "Ares": [
+    "Mars",
+    "Enyalius",
+    "Bane of Mortals"
+  ],
+  "Aphrodite": [
+    "Venus",
+    "Cytherea",
+    "Cypris",
+    "Lady of Cyprus"
+  ],
+  "Hephaestus": [
+    "Vulcan",
+    "Mulciber",
+    "The Lame God"
+  ],
+  "Hermes": [
+    "Mercury",
+    "Argeiphontes",
+    "The Wayfinder"
+  ],
+  "Dionysus": [
+    "Bacchus",
+    "Liber",
+    "Bromios",
+    "Iacchus"
+  ],
+  "Hades": [
+    "Pluto",
+    "Dis",
+    "Orcus",
+    "Lord of the Dead"
+  ],
+  "Persephone": [
+    "Proserpina",
+    "Kore",
+    "The Maiden",
+    "Proserpine"
+  ],
+  "Heracles": [
+    "Hercules",
+    "Alcides"
+  ],
+  "Odysseus": [
+    "Ulysses",
+    "Man of Many Wiles"
+  ],
+  "Achilles": [
+    "Pelides",
+    "Swift-footed"
+  ],
+  "Agamemnon": [
+    "Atrides",
+    "Lord of Men"
+  ],
+  "Menelaus": [
+    "Atrides",
+    "Red-haired"
+  ],
+  "Helen": [
+    "Helen of Troy",
+    "Helen of Sparta"
+  ],
+  "Paris": [
+    "Alexander"
+  ],
+  "Hector": [
+    "Tamer of Horses"
+  ],
+  "Aeneas": [
+    "Aeneas"
+  ],
+  "Jason": [
+    "Son of Aeson"
+  ],
+  "Medea": [
+    "Colchian Princess"
+  ],
+  "Theseus": [
+    "Son of Aegeus"
+  ],
+  "Minotaur": [
+    "Asterion",
+    "Asterius"
+  ],
+  "Perseus": [
+    "Son of Danae"
+  ],
+  "Medusa": [
+    "The Gorgon",
+    "Snake-haired"
+  ],
+  "Orpheus": [
+    "The Thracian Singer"
+  ],
+  "Eurydice": [
+    "Oak Nymph"
+  ],
+  "Prometheus": [
+    "The Titan",
+    "Forethought"
+  ],
+  "Epimetheus": [
+    "Afterthought"
+  ],
+  "Pandora": [
+    "The First Woman",
+    "All-Gifts"
+  ],
+  "Icarus": [
+    "Son of Daedalus"
+  ],
+  "Daedalus": [
+    "The Artificer",
+    "The Inventor"
+  ],
+  "Arachne": [
+    "The Weaver"
+  ],
+  "Narcissus": [
+    "The Vain Youth"
+  ],
+  "Echo": [
+    "The Oread"
+  ],
+  "Pygmalion": [
+    "The Sculptor"
+  ],
+  "Galatea": [
+    "The Statue"
+  ],
+  "Psyche": [
+    "The Soul"
+  ],
+  "Eros": [
+    "Cupid",
+    "Amor"
+  ],
+  "Cronus": [
+    "Saturn",
+    "Kronos"
+  ],
+  "Rhea": [
+    "Ops",
+    "Cybele"
+  ],
+  "Uranus": [
+    "Caelus",
+    "Father Sky",
+    "Ouranos"
+  ],
+  "Gaia": [
+    "Terra",
+    "Mother Earth",
+    "Ge",
+    "Tellus"
+  ],
+  "Leto": [
+    "Latona"
+  ],
+  "Hestia": [
+    "Vesta"
+  ],
+  "Atlas": [],
+  "Iapetus": [],
+  "Helios": [
+    "Sol"
+  ],
+  "Selene": [
+    "Luna"
+  ],
+  "Eos": [
+    "Aurora"
+  ],
+  "Hebe": [],
+  "Pan": [],
+  "Nemesis": [],
+  "Eris": [],
+  "Hecate": [],
+  "Amphitrite": [],
+  "Thetis": [],
+  "Nereus": [],
+  "Triton": [],
+  "Proteus": [],
+  "Aeolus": [],
+  "Morpheus": [],
+  "Iris": [],
+  "Maia": [],
+  "Calliope": [],
+  "Phaethon": [
+    "Phaeton"
+  ],
+  "Priam": [],
+  "Hecuba": [],
+  "Cassandra": [],
+  "Andromache": [],
+  "Ajax": [],
+  "Patroclus": [],
+  "Diomedes": [],
+  "Nestor": [],
+  "Penelope": [],
+  "Telemachus": [],
+  "Circe": [],
+  "Calypso": [],
+  "Dido": [],
+  "Ascanius": [],
+  "Anchises": [],
+  "Turnus": [],
+  "Evander": [],
+  "Daphne": [],
+  "Pyramus": [],
+  "Thisbe": [],
+  "Cephalus": [],
+  "Procris": [],
+  "Io": [],
+  "Callisto": [],
+  "Actaeon": [],
+  "Midas": [],
+  "Baucis": [],
+  "Philemon": [],
+  "Glaucus": [],
+  "Scylla": [],
+  "Charybdis": [],
+  "Adonis": [],
+  "Hyacinthus": [],
+  "Vertumnus": [],
+  "Pomona": [],
+  "Cadmus": [],
+  "Harmonia": [],
+  "Semele": [],
+  "Niobe": [],
+  "Pegasus": [],
+  "Chimaera": [
+    "Chimera"
+  ],
+  "Bellerophon": [],
+  "Andromeda": [],
+  "Cepheus": [],
+  "Cassiopeia": [],
+  "Sphinx": [],
+  "Oedipus": [],
+  "Antigone": [],
+  "Jocasta": [],
+  "Creon": [],
+  "Ariadne": [],
+  "Minos": [
+    "King Minos"
+  ],
+  "Aegeus": [],
+  "Pasiphae": [],
+  "Meleager": [],
+  "Atalanta": [],
+  "Admetus": [],
+  "Alcestis": [],
+  "Castor": [],
+  "Pollux": [
+    "Polydeuces"
+  ],
+  "Leda": [],
+  "Danae": [],
+  "Alcmene": [],
+  "Deianira": [],
+  "Clytemnestra": [],
+  "Orestes": [],
+  "Electra": [],
+  "Iphigenia": [],
+  "Aegisthus": [],
+  "Laertes": [],
+  "Polyphemus": [],
+  "Cyclops": [
+    "Cyclopes"
+  ],
+  "Argus": [],
+  "Tantalus": [],
+  "Pelops": [],
+  "Atreus": [],
+  "Aeetes": [],
+  "Aeson": [],
+  "Pelias": [],
+  "Glauce": [],
+  "Ceyx": [],
+  "Alcyone": [],
+  "Endymion": [],
+  "Tithonus": [],
+  "Acis": [],
+  "Marsyas": [],
+  "Cerberus": [],
+  "Hydra": [],
+  "Harpies": [
+    "Harpy"
+  ],
+  "Furies": [
+    "Erinyes",
+    "Eumenides"
+  ],
+  "Sibyl": [],
+  "Charon": [],
+  "Tiresias": [],
+  "Camilla": [],
+  "Euryalus": [],
+  "Nisus": [],
+  "Lavinia": [],
+  "Sisyphus": [],
+  "Ixion": [],
+  "Tityus": [],
+  "Latinus": [],
+  "Mezentius": [],
+  "Pallas": [],
+  "Hero": [],
+  "Leander": [],
+  "Clytie": [],
+  "Dryope": [],
+  "Erysichthon": [],
+  "Arion": [],
+  "Ibycus": [],
+  "Aristaeus": [],
+  "Aeacus": [],
+  "Chiron": [],
+  "Asclepius": [
+    "Aesculapius"
+  ],
+  "Orion": [],
+  "Phineus": [],
+  "Phaedra": [],
+  "Hippolytus": [],
+  "Deucalion": [],
+  "Pyrrha": [],
+  "Python": [],
+  "Achelous": [],
+  "Arethusa": [],
+  "Triptolemus": [],
+  "Hippomenes": [],
+  "Sinon": [],
+  "Laocoon": [],
+  "Ino": [],
+  "Athamas": [],
+  "Acrisius": [],
+  "Polydectes": [],
+  "Lycaon": [],
+  "Hippolyta": [],
+  "Gorgons": [
+    "Gorgon"
+  ],
+  "Graeae": [],
+  "Epaphus": [],
+  "Electryon": [],
+  "Tyndareus": [],
+  "Europa": [],
+  "Aerope": [],
+  "Ismene": [],
+  "Metis": [],
+  "Clymene": [],
+  "Perse": [],
+  "Laius": [],
+  "Oeneus": [],
+  "Peleus": []
+}

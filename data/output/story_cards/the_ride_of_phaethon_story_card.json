@@ -1,0 +1,23 @@
+{
+  "id": "myth_phaethon",
+  "title": "The Ride of Phaethon",
+  "theme": "hubris",
+  "themes": [
+    "hubris"
+  ],
+  "summary": "Reckless ambition without the necessary skill leads to catastrophic failure.",
+  "source": "Ovid's Metamorphoses",
+  "characters": [
+    "Phaethon",
+    "Helios",
+    "Zeus"
+  ],
+  "relationships": [
+    {
+      "source": "Helios",
+      "target": "Phaethon",
+      "relation": "parent_of"
+    }
+  ],
+  "relationship_snippet": "Helios (parent of) Phaethon"
+}

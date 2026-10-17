@@ -1,0 +1,28 @@
+{
+  "id": "myth_icarus",
+  "title": "The Fall of Icarus",
+  "theme": "hubris",
+  "themes": [
+    "hubris"
+  ],
+  "summary": "Do not let hubris and reckless ambition overcome wisdom and caution.",
+  "source": "Ovid's Metamorphoses",
+  "characters": [
+    "Icarus",
+    "Daedalus",
+    "Minos"
+  ],
+  "relationships": [
+    {
+      "source": "Daedalus",
+      "target": "Icarus",
+      "relation": "parent_of"
+    },
+    {
+      "source": "Icarus",
+      "target": "Daedalus",
+      "relation": "child_of"
+    }
+  ],
+  "relationship_snippet": "Daedalus (parent of) Icarus; Icarus (child of) Daedalus"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "myth_niobe",
+  "title": "The Tears of Niobe",
+  "theme": "hubris",
+  "themes": [
+    "hubris"
+  ],
+  "summary": "Pride and boasting against the divine will inevitably bring total ruin.",
+  "source": "Ovid's Metamorphoses",
+  "characters": [
+    "Niobe",
+    "Leto",
+    "Apollo",
+    "Artemis"
+  ],
+  "relationships": [
+    {
+      "source": "Niobe",
+      "target": "Apollo",
+      "relation": "enemy_of"
+    },
+    {
+      "source": "Apollo",
+      "target": "Niobe",
+      "relation": "killed_by"
+    }
+  ],
+  "relationship_snippet": "Niobe (enemy of) Apollo; Apollo (killed by) Niobe"
+}

@@ -1,0 +1,177 @@
+{
+  "most_mentioned": {
+    "character": "Zeus",
+    "count": 35
+  },
+  "most_connected": {
+    "character": "Zeus",
+    "connections": 37
+  },
+  "most_thematic_diversity": {
+    "character": "Athena",
+    "num_themes": 9,
+    "themes": [
+      "betrayal",
+      "hubris",
+      "jealousy",
+      "loss",
+      "love",
+      "quest",
+      "revenge",
+      "transformation",
+      "wisdom"
+    ]
+  },
+  "leaderboard": [
+    {
+      "character": "Zeus",
+      "mentions": 35,
+      "connections": 37,
+      "themes_count": 8,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "loss",
+        "quest",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Athena",
+      "mentions": 20,
+      "connections": 4,
+      "themes_count": 9,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "loss",
+        "love",
+        "quest",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Hera",
+      "mentions": 19,
+      "connections": 10,
+      "themes_count": 8,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "loss",
+        "love",
+        "quest",
+        "revenge",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Apollo",
+      "mentions": 16,
+      "connections": 14,
+      "themes_count": 7,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "love",
+        "quest",
+        "revenge",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Odysseus",
+      "mentions": 15,
+      "connections": 11,
+      "themes_count": 7,
+      "themes": [
+        "hubris",
+        "jealousy",
+        "love",
+        "quest",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Aphrodite",
+      "mentions": 15,
+      "connections": 7,
+      "themes_count": 7,
+      "themes": [
+        "betrayal",
+        "jealousy",
+        "love",
+        "quest",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Aeneas",
+      "mentions": 14,
+      "connections": 7,
+      "themes_count": 6,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "loss",
+        "quest",
+        "revenge"
+      ]
+    },
+    {
+      "character": "Artemis",
+      "mentions": 13,
+      "connections": 4,
+      "themes_count": 7,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "loss",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Achilles",
+      "mentions": 11,
+      "connections": 5,
+      "themes_count": 6,
+      "themes": [
+        "betrayal",
+        "jealousy",
+        "loss",
+        "revenge",
+        "transformation",
+        "wisdom"
+      ]
+    },
+    {
+      "character": "Poseidon",
+      "mentions": 9,
+      "connections": 4,
+      "themes_count": 5,
+      "themes": [
+        "betrayal",
+        "hubris",
+        "jealousy",
+        "revenge",
+        "wisdom"
+      ]
+    }
+  ]
+}

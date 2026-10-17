@@ -1,0 +1,276 @@
+{
+  "corpus_myths": 125,
+  "chatbot": {
+    "cases": 28,
+    "intent_accuracy": 1.0,
+    "answer_accuracy": 1.0,
+    "misses": []
+  },
+  "retrieval": {
+    "bm25": {
+      "queries": 25,
+      "hit_at_1": 0.84,
+      "hit_at_3": 0.96,
+      "misses": [
+        {
+          "query": "elderly couple host disguised gods and are turned into trees",
+          "top3": [
+            "Athena and Arachne",
+            "The Myrmidons",
+            "The Bear Callisto"
+          ]
+        }
+      ]
+    },
+    "baseline_file_order": {
+      "queries": 25,
+      "hit_at_1": 0.04,
+      "hit_at_3": 0.16,
+      "misses": [
+        {
+          "query": "a sculptor falls in love with a statue he carved",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "king whose touch turns everything to gold",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a boy in love with his own reflection in a pool",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "musician loses his wife as he looks back leaving the underworld",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a boy drives the chariot of the sun and falls",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "hero kills the minotaur and escapes with a thread",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a golden apple inscribed to the fairest goddess",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "snake-haired gorgon beheaded by a hero with a mirrored shield",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "elderly couple host disguised gods and are turned into trees",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a goddess searches the world for her kidnapped daughter",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "sailors sail to colchis to steal a golden fleece",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "winged horse and the fire-breathing chimaera",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "nymph turned into a laurel tree to escape a god",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "two lovers die at a tomb because of a misunderstanding",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a mortal girl, a lamp, and a forbidden look at her husband",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "hunter who saw the goddess bathing is turned into a stag",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a one-eyed giant traps sailors in his cave",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a titan steals fire from the gods for mankind",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "the riddle of the sphinx answered by oedipus",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a swift maiden loses a footrace by picking up golden apples",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "the wooden horse and the sack of the city",
+          "top3": [
+            "The Fall of Icarus",
+            "Athena and Arachne",
+            "The Tears of Niobe"
+          ]
+        }
+      ]
+    },
+    "hybrid_sbert_bm25": {
+      "queries": 25,
+      "hit_at_1": 0.8,
+      "hit_at_3": 0.92,
+      "misses": [
+        {
+          "query": "elderly couple host disguised gods and are turned into trees",
+          "top3": [
+            "The Bear Callisto",
+            "Hera and Io",
+            "Athena and Arachne"
+          ]
+        },
+        {
+          "query": "a swift maiden loses a footrace by picking up golden apples",
+          "top3": [
+            "Eris and the Golden Apple",
+            "The Trojan War (Part 1)",
+            "The Phaeacians (Part 2)"
+          ]
+        }
+      ]
+    },
+    "sbert_only": {
+      "queries": 25,
+      "hit_at_1": 0.68,
+      "hit_at_3": 0.84,
+      "misses": [
+        {
+          "query": "snake-haired gorgon beheaded by a hero with a mirrored shield",
+          "top3": [
+            "Bellerophon and Pegasus",
+            "Pegasus and the Chimaera",
+            "Pallas, Camilla, Turnus"
+          ]
+        },
+        {
+          "query": "a goddess searches the world for her kidnapped daughter",
+          "top3": [
+            "The Bear Callisto",
+            "The Jealousy of Eileithyia",
+            "The Tears of Niobe"
+          ]
+        },
+        {
+          "query": "a one-eyed giant traps sailors in his cave",
+          "top3": [
+            "Outwitting the Cyclops",
+            "Poseidon's Wrath",
+            "Hercules (Part 2)"
+          ]
+        },
+        {
+          "query": "a swift maiden loses a footrace by picking up golden apples",
+          "top3": [
+            "Eris and the Golden Apple",
+            "The Trojan War (Part 1)",
+            "The Phaeacians (Part 2)"
+          ]
+        }
+      ]
+    }
+  },
+  "themes": {
+    "gold_myths": 52,
+    "label_agreement_top1": 0.7884615384615384,
+    "label_agreement_any_of_top3": 0.9230769230769231,
+    "baseline_random": 0.19230769230769232,
+    "baseline_majority": 0.46153846153846156,
+    "majority_theme": "love",
+    "classifier": {
+      "train_myths": 73,
+      "logreg_tfidf": 0.21153846153846154,
+      "linear_svm_tfidf": 0.3076923076923077
+    }
+  }
+}

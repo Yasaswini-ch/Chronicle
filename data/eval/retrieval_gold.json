@@ -1,0 +1,30 @@
+{
+  "description": "Plain-English descriptions of a myth, and title fragments that count as a correct hit if any appears in the top 3 results.",
+  "queries": [
+    {"query": "a sculptor falls in love with a statue he carved", "expect": ["Pygmalion"]},
+    {"query": "weaver turned into a spider by a goddess", "expect": ["Arachne"]},
+    {"query": "king whose touch turns everything to gold", "expect": ["Midas"]},
+    {"query": "a boy in love with his own reflection in a pool", "expect": ["Narcissus"]},
+    {"query": "father and son escape the labyrinth on wings of wax and feathers", "expect": ["Icarus", "Daedalus"]},
+    {"query": "musician loses his wife as he looks back leaving the underworld", "expect": ["Orpheus"]},
+    {"query": "a boy drives the chariot of the sun and falls", "expect": ["Phaeton", "Phaethon"]},
+    {"query": "hero kills the minotaur and escapes with a thread", "expect": ["Theseus"]},
+    {"query": "a golden apple inscribed to the fairest goddess", "expect": ["Golden Apple", "Trojan War", "Judgment of Paris"]},
+    {"query": "snake-haired gorgon beheaded by a hero with a mirrored shield", "expect": ["Medusa"]},
+    {"query": "elderly couple host disguised gods and are turned into trees", "expect": ["Baucis"]},
+    {"query": "a goddess searches the world for her kidnapped daughter", "expect": ["Proserpine", "Persephone", "Demeter"]},
+    {"query": "a mother weeps for her slain children until she turns to stone", "expect": ["Niobe"]},
+    {"query": "sailors sail to colchis to steal a golden fleece", "expect": ["Golden Fleece"]},
+    {"query": "winged horse and the fire-breathing chimaera", "expect": ["Pegasus", "Bellerophon"]},
+    {"query": "nymph turned into a laurel tree to escape a god", "expect": ["Daphne"]},
+    {"query": "two lovers die at a tomb because of a misunderstanding", "expect": ["Pyramus"]},
+    {"query": "a mortal girl, a lamp, and a forbidden look at her husband", "expect": ["Psyche"]},
+    {"query": "hunter who saw the goddess bathing is turned into a stag", "expect": ["Actaeon"]},
+    {"query": "a one-eyed giant traps sailors in his cave", "expect": ["Ulysses", "Odysseus", "Polyphemus"]},
+    {"query": "a titan steals fire from the gods for mankind", "expect": ["Prometheus", "Fire"]},
+    {"query": "hera turns a girl into a cow", "expect": ["Io"]},
+    {"query": "the riddle of the sphinx answered by oedipus", "expect": ["Sphinx", "Oedipus"]},
+    {"query": "a swift maiden loses a footrace by picking up golden apples", "expect": ["Atalanta"]},
+    {"query": "the wooden horse and the sack of the city", "expect": ["Fall of Troy"]}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "myth_arachne",
+  "title": "Athena and Arachne",
+  "theme": "hubris",
+  "themes": [
+    "hubris"
+  ],
+  "summary": "Never boast of surpassing the gods, for mortal pride leads to divine punishment.",
+  "source": "Ovid's Metamorphoses",
+  "characters": [
+    "Arachne",
+    "Athena"
+  ],
+  "relationships": [
+    {
+      "source": "Athena",
+      "target": "Arachne",
+      "relation": "enemy_of"
+    }
+  ],
+  "relationship_snippet": "Athena (enemy of) Arachne"
+}

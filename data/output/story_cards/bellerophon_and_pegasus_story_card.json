@@ -1,0 +1,24 @@
+{
+  "id": "myth_bellerophon",
+  "title": "Bellerophon and Pegasus",
+  "theme": "hubris",
+  "themes": [
+    "hubris"
+  ],
+  "summary": "Do not attempt to elevate yourself to the status of gods, for mortals must know their place.",
+  "source": "Pindar's Olympian Odes",
+  "characters": [
+    "Bellerophon",
+    "Pegasus",
+    "Zeus",
+    "Chimera"
+  ],
+  "relationships": [
+    {
+      "source": "Bellerophon",
+      "target": "Chimera",
+      "relation": "killed_by"
+    }
+  ],
+  "relationship_snippet": "Bellerophon (killed by) Chimera"
+}

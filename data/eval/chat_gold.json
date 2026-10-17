@@ -1,0 +1,33 @@
+{
+  "description": "Questions with the intent the chatbot should detect and text its answer must contain. Family facts follow Hesiod, Apollodorus and Homer.",
+  "cases": [
+    {"query": "Who is Athena?", "intent": "character_info", "contains": ["Athena", "Minerva"]},
+    {"query": "Tell me about Poseidon", "intent": "character_info", "contains": ["Poseidon", "Neptune"]},
+    {"query": "Who was Medusa?", "intent": "character_info", "contains": ["Medusa"]},
+    {"query": "Who is Minerva?", "intent": "character_info", "contains": ["Athena"]},
+    {"query": "Tell me the story of Icarus", "intent": "myth_summary", "contains": ["Daedalus"]},
+    {"query": "Summarize the myth of Prometheus", "intent": "myth_summary", "contains": ["Prometheus"]},
+    {"query": "How are Zeus and Hera related?", "intent": "relationship", "contains": ["husband", "brother"]},
+    {"query": "How are Apollo and Artemis related?", "intent": "relationship", "contains": ["brother"]},
+    {"query": "How are Athena and Apollo related?", "intent": "relationship", "contains": ["half"]},
+    {"query": "How are Poseidon and Athena related?", "intent": "relationship", "contains": ["uncle"]},
+    {"query": "How are Hades and Persephone related?", "intent": "relationship", "contains": ["husband"]},
+    {"query": "Who are Zeus's children?", "intent": "family", "contains": ["Athena", "Apollo", "Hermes"]},
+    {"query": "Who is the mother of Perseus?", "intent": "family", "contains": ["Danae"]},
+    {"query": "Who was the father of Achilles?", "intent": "family", "contains": ["Peleus"]},
+    {"query": "Who was the wife of Odysseus?", "intent": "family", "contains": ["Penelope"]},
+    {"query": "Who is Juno's son?", "intent": "family", "contains": ["Hephaestus", "Ares"]},
+    {"query": "Who are the parents of Hector?", "intent": "family", "contains": ["Priam", "Hecuba"]},
+    {"query": "Who is the brother of Electra?", "intent": "family", "contains": ["Orestes"]},
+    {"query": "Compare Athena and Arachne", "intent": "comparison", "contains": ["Athena vs Arachne", "hubris"]},
+    {"query": "Compare Zeus and Poseidon", "intent": "comparison", "contains": ["Zeus vs Poseidon", "brother"]},
+    {"query": "Which myths are about hubris?", "intent": "theme", "contains": ["hubris"]},
+    {"query": "Show me stories of revenge", "intent": "theme", "contains": ["revenge"]},
+    {"query": "myths about jealousy", "intent": "theme", "contains": ["jealousy"]},
+    {"query": "Which myths have someone turned into a tree?", "intent": "motif", "contains": ["Transformation"]},
+    {"query": "Which stories involve a journey to the underworld?", "intent": "motif", "contains": ["Underworld"]},
+    {"query": "Which myths have a god in disguise?", "intent": "motif", "contains": ["Disguise"]},
+    {"query": "Find myths similar to Pygmalion", "intent": "similar_myths", "contains": ["Similar"]},
+    {"query": "which myths mention a golden apple", "intent": "search", "contains": ["Golden Apple"]}
+  ]
+}

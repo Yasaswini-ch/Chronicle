@@ -1,0 +1,928 @@
+{
+  "run_timestamp": "2026-10-17T16:27:05.251679+00:00",
+  "stages": {
+    "preprocessing": {
+      "num_texts": 125,
+      "avg_length": 3575.1
+    },
+    "representations": {
+      "tfidf": {
+        "num_features": 5000,
+        "num_documents": 125,
+        "sample_top_terms": {
+          "doc_0": [
+            {
+              "term": "daedalus",
+              "score": 0.2786
+            },
+            {
+              "term": "icarus",
+              "score": 0.2747
+            },
+            {
+              "term": "wax",
+              "score": 0.2345
+            },
+            {
+              "term": "higher",
+              "score": 0.2081
+            },
+            {
+              "term": "the wax",
+              "score": 0.2081
+            }
+          ],
+          "doc_1": [
+            {
+              "term": "arachne",
+              "score": 0.3875
+            },
+            {
+              "term": "tapestry",
+              "score": 0.2812
+            },
+            {
+              "term": "weaving",
+              "score": 0.2131
+            },
+            {
+              "term": "athena",
+              "score": 0.1705
+            },
+            {
+              "term": "woman",
+              "score": 0.1293
+            }
+          ],
+          "doc_2": [
+            {
+              "term": "niobe",
+              "score": 0.2987
+            },
+            {
+              "term": "leto",
+              "score": 0.2468
+            },
+            {
+              "term": "seven",
+              "score": 0.2228
+            },
+            {
+              "term": "children",
+              "score": 0.1907
+            },
+            {
+              "term": "of thebes",
+              "score": 0.1809
+            }
+          ],
+          "doc_3": [
+            {
+              "term": "pegasus",
+              "score": 0.3386
+            },
+            {
+              "term": "bellerophon",
+              "score": 0.3386
+            },
+            {
+              "term": "winged",
+              "score": 0.1687
+            },
+            {
+              "term": "horse",
+              "score": 0.1517
+            },
+            {
+              "term": "bridle",
+              "score": 0.1297
+            }
+          ],
+          "doc_4": [
+            {
+              "term": "helios",
+              "score": 0.3355
+            },
+            {
+              "term": "phaethon",
+              "score": 0.2757
+            },
+            {
+              "term": "the boy",
+              "score": 0.1684
+            },
+            {
+              "term": "horses",
+              "score": 0.1591
+            },
+            {
+              "term": "boy",
+              "score": 0.148
+            }
+          ]
+        }
+      },
+      "word2vec": {
+        "vector_size": 100,
+        "vocab_size": 12752
+      },
+      "sbert": {
+        "embedding_dim": 384,
+        "num_documents": 125
+      }
+    },
+    "classification": {
+      "majority_baseline": {
+        "accuracy": 0.152,
+        "n_docs": 125,
+        "n_classes": 9
+      },
+      "svm": {
+        "accuracy": 0.2,
+        "f1_macro": 0.09064327485380116,
+        "classification_report": {
+          "betrayal": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "hubris": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 4.0
+          },
+          "jealousy": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "loss": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "love": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "quest": {
+            "precision": 0.1875,
+            "recall": 1.0,
+            "f1-score": 0.3157894736842105,
+            "support": 3.0
+          },
+          "revenge": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "transformation": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "wisdom": {
+            "precision": 0.4,
+            "recall": 0.6666666666666666,
+            "f1-score": 0.5,
+            "support": 3.0
+          },
+          "accuracy": 0.2,
+          "macro avg": {
+            "precision": 0.06527777777777778,
+            "recall": 0.18518518518518517,
+            "f1-score": 0.09064327485380116,
+            "support": 25.0
+          },
+          "weighted avg": {
+            "precision": 0.07050000000000001,
+            "recall": 0.2,
+            "f1-score": 0.09789473684210526,
+            "support": 25.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2
+          ]
+        ],
+        "cv_folds": 5,
+        "cv_accuracy_mean": 0.17600000000000002,
+        "cv_accuracy_std": 0.04079215610874228,
+        "cv_f1_macro_mean": 0.08677757971875619,
+        "evaluation": "held-out 20% split and stratified k-fold cross-validation"
+      },
+      "naive_bayes": {
+        "accuracy": 0.24,
+        "f1_macro": 0.12181069958847737,
+        "classification_report": {
+          "betrayal": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "hubris": {
+            "precision": 0.17391304347826086,
+            "recall": 1.0,
+            "f1-score": 0.2962962962962963,
+            "support": 4.0
+          },
+          "jealousy": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "loss": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "love": {
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "f1-score": 0.8,
+            "support": 3.0
+          },
+          "quest": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "revenge": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "transformation": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "wisdom": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "accuracy": 0.24,
+          "macro avg": {
+            "precision": 0.13043478260869565,
+            "recall": 0.18518518518518517,
+            "f1-score": 0.12181069958847737,
+            "support": 25.0
+          },
+          "weighted avg": {
+            "precision": 0.14782608695652175,
+            "recall": 0.24,
+            "f1-score": 0.14340740740740743,
+            "support": 25.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "cv_folds": 5,
+        "cv_accuracy_mean": 0.16799999999999998,
+        "cv_accuracy_std": 0.039191835884530846,
+        "cv_f1_macro_mean": 0.047733787427274015,
+        "evaluation": "held-out 20% split and stratified k-fold cross-validation"
+      },
+      "neural": {
+        "accuracy": 0.28,
+        "f1_macro": 0.23421516754850083,
+        "final_loss": 0.940818749666214,
+        "final_val_loss": 3.045281171798706,
+        "epochs": 20,
+        "evaluation": "20% validation split"
+      },
+      "comparison_report": "================================================================\nCHRONICLE \u2014 Classifier Comparison Report\n================================================================\n\nModel: majority_baseline\n----------------------------------------\n  Accuracy  : 0.1520\n  F1 (macro): N/A\n  Precision : N/A\n  Recall    : N/A\n\nModel: svm\n----------------------------------------\n  Accuracy  : 0.2000\n  F1 (macro): 0.0906\n  Precision : 0.0653\n  Recall    : 0.1852\n\nModel: naive_bayes\n----------------------------------------\n  Accuracy  : 0.2400\n  F1 (macro): 0.1218\n  Precision : 0.1304\n  Recall    : 0.1852\n\nModel: neural\n----------------------------------------\n  Accuracy  : 0.2800\n  F1 (macro): 0.2342\n  Precision : N/A\n  Recall    : N/A\n\nSummary\n----------------------------------------\n  Best accuracy  : neural (0.2800)\n  Best F1 (macro): neural (0.2342)\n\n================================================================"
+    },
+    "ner": {
+      "entities": {
+        "total_entities": 2988,
+        "documents_processed": 125
+      },
+      "relations": {
+        "total_relations": 169
+      },
+      "knowledge_graph": {
+        "num_nodes": 258,
+        "num_edges": 109,
+        "density": 0.0016438934636382832,
+        "is_connected": false
+      }
+    },
+    "insights": {
+      "topics": {
+        "method": "bertopic",
+        "topics": [
+          {
+            "topic_id": 0,
+            "words": [
+              "cyclops",
+              "theseus",
+              "scylla",
+              "cadmus",
+              "prometheus",
+              "aeneas",
+              "suitors",
+              "ship",
+              "telemachus",
+              "stranger"
+            ],
+            "word_scores": {
+              "cyclops": 0.0299,
+              "theseus": 0.0279,
+              "scylla": 0.0258,
+              "cadmus": 0.0246,
+              "prometheus": 0.021,
+              "aeneas": 0.0207,
+              "suitors": 0.0196,
+              "ship": 0.018,
+              "telemachus": 0.0177,
+              "stranger": 0.0177
+            },
+            "count": 39,
+            "representative_docs": [
+              "Daedalus, a brilliant Athenian inventor, and his son Icarus were imprisoned in the Labyrinth of Crete by Minos. Desperate to escape, Daedalus crafted two pairs of wings out of feathers and wax. Before they took flight, Daedalus warned his son not to fly too close to the sea, lest the dampness clog his wings, nor too close to the sun, lest the heat melt the wax. However, upon experiencing the sheer thrill of flight, Icarus was overcome with hubris. He soared higher and higher, ignoring his father's frantic warnings. The blazing sun melted the wax holding the feathers together, and Icarus plummeted into the sea and drowned. The heartbroken Daedalus named the sea the Icarian Sea in his memory. This tragedy stands as a timeless warning against reckless ambition and the failure to heed wise counsel.",
+              "Phaethon, a proud young mortal, sought out his father, Helios the sun god, to prove his divine lineage. Helios swore an oath by the River Styx to grant the boy any wish. To Helios's horror, Phaethon demanded to drive the sun chariot for a single day. Bound by his solemn vow, Helios reluctantly agreed but warned his son of the immense danger, for the immortal horses were powerful and the path perilous. Phaethon took the reins, but the fiery horses quickly sensed his weak grip and lack of authority. They veered off course, soaring too high and freezing the earth, then plunging too low, scorching the land and creating vast deserts. As the world faced utter destruction, Zeus had no choice but to intervene. He struck Phaethon down with a thunderbolt. The boy plunged from the sky like a falling star into the River Eridanos, dead due to his own foolish ambition.",
+              "Ceyx, the king of Trachis, and his beloved wife Alcyone shared a profound and unbreakable bond. Despite Alcyone's desperate pleas and terrifying premonitions, Ceyx insisted on making a perilous sea voyage to consult an oracle. Tragically, a violent storm shattered his ship, and Ceyx drowned, praying for Alcyone with his final breath. Meanwhile, unaware of his death, Alcyone continually prayed to Hera for his safe return. Pitying her devotion, Hera sent a dream to reveal the tragic truth. The next morning, a devastated Alcyone found Ceyx's lifeless body washing ashore. Overcome with immense grief, she threw herself into the pounding waves to join him in death. Moved by their immense and undying love, the gods mercifully transformed both husband and wife into halcyon birds (kingfishers). It is said that every winter, Aeolus, the god of winds, calms the turbulent seas for seven days so Alcyone can safely lay her eggs."
+            ]
+          },
+          {
+            "topic_id": 1,
+            "words": [
+              "aeneas",
+              "hector",
+              "medea",
+              "armor",
+              "turnus",
+              "jason",
+              "ajax",
+              "wounded",
+              "priam",
+              "camp"
+            ],
+            "word_scores": {
+              "aeneas": 0.0804,
+              "hector": 0.0572,
+              "medea": 0.0407,
+              "armor": 0.0354,
+              "turnus": 0.0314,
+              "jason": 0.0298,
+              "ajax": 0.0282,
+              "wounded": 0.0261,
+              "priam": 0.0261,
+              "camp": 0.0244
+            },
+            "count": 27,
+            "representative_docs": [
+              "To win the fabled Golden Fleece, the Greek hero Jason required the dark magic of Medea, a powerful sorceress and princess of Colchis. Medea fell deeply in love with him, betraying her father and murdering her own brother to secure Jason's escape. They lived as exiles in Corinth, raising two sons. However, Jason's ambitions led him to ruthlessly betray Medea; he arranged to marry Glauce, the daughter of the Corinthian king, to secure political power. Enraged by this ultimate betrayal, Medea exacted a horrifying revenge. She sent a poisoned golden dress to the young bride, which consumed Glauce and her father in magical flames. To completely destroy Jason's lineage and inflict maximum pain, Medea then murdered her own beloved sons. As Jason watched in horror, Medea escaped on a chariot drawn by winged dragons, leaving the hero to die alone and disgraced.",
+              "Before sailing for Troy, King Agamemnon sacrificed his own daughter, Iphigenia, to appease the goddess Artemis and secure favorable winds for his massive fleet. His wife, Queen Clytemnestra, never forgave him for this horrific betrayal of their family. While Agamemnon fought the ten-year Trojan War, Clytemnestra took a lover, Aegisthus, and plotted her dark revenge. When the victorious king finally returned to Mycenae, bearing the prophetess Cassandra as his captive prize, Clytemnestra welcomed him with false warmth, laying down a purple tapestry for him to walk upon. As Agamemnon bathed, relaxing after a decade of brutal war, Clytemnestra threw a heavy net over him and brutally hacked him to death with an axe, while Aegisthus murdered Cassandra. Clytemnestra claimed the throne, arguing her act was a justified execution, thus continuing the bloody curse upon the House of Atreus.",
+              "During the brutal siege of Troy, the great Greek warrior Achilles withdrew from battle due to a petty dispute with King Agamemnon over a captured maiden. Without Achilles, the Greeks suffered heavy losses. Desperate, Achilles' beloved companion Patroclus borrowed his armor to frighten the Trojans, but he was ultimately slain by Hector, Troy's greatest champion. The news of Patroclus's death shattered Achilles. Consumed by an uncontrollable, raging thirst for revenge, Achilles set aside his anger at Agamemnon and returned to the battlefield like a demon. He slaughtered Trojans mercilessly, clogging the river Scamander with corpses, until he finally cornered Hector outside the city walls. After a brief chase, Achilles easily killed Hector. Denying the Trojan hero funeral rites, a vengeful Achilles tied Hector's mangled corpse to his chariot and brutally dragged it around the city walls for days, defiling the body in a shocking display of relentless fury."
+            ]
+          },
+          {
+            "topic_id": 2,
+            "words": [
+              "agamemnon",
+              "seven",
+              "contest",
+              "eurydice",
+              "web",
+              "children",
+              "hyacinthus",
+              "vine",
+              "menelaus",
+              "thetis"
+            ],
+            "word_scores": {
+              "agamemnon": 0.0294,
+              "seven": 0.0277,
+              "contest": 0.0256,
+              "eurydice": 0.0238,
+              "web": 0.0225,
+              "children": 0.0214,
+              "hyacinthus": 0.0198,
+              "vine": 0.0193,
+              "menelaus": 0.0179,
+              "thetis": 0.0176
+            },
+            "count": 23,
+            "representative_docs": [
+              "Arachne was a mortal woman possessing extraordinary skill in weaving, yet she was deeply flawed by her immense arrogance. She dared to boast that her weaving was superior even to that of Athena, the goddess of crafts and wisdom. Offended by this hubris, Athena disguised herself as an old woman and warned Arachne not to offend the gods. Unrepentant, Arachne challenged the goddess to a contest. Athena wove a magnificent tapestry depicting the glory of the Olympian gods and the tragic fates of mortals who defied them. Arachne, however, wove a flawless but disrespectful tapestry highlighting the gods' infidelities and flaws. Though Arachne's work was technically perfect, Athena was enraged by the mortal's disrespect. She tore the tapestry to shreds and struck Arachne. In despair, Arachne hung herself, but Athena transformed the rope into a web and Arachne into a spider, condemning her and her descendants to weave for eternity.",
+              "Niobe, the Queen of Thebes, was blessed with fourteen beautiful children: seven sons and seven daughters. Consumed by pride, she foolishly mocked Leto, the mother of only two gods, Apollo and Artemis. Niobe demanded that the people of Thebes worship her instead of Leto, claiming her fertility made her superior. Enraged by this sacrilege, Leto dispatched her twin children to punish the queen's hubris. Apollo descended and shot down all seven of Niobe's sons with his golden arrows, while Artemis struck down her seven daughters with her silver arrows. Devastated and inconsolable, Niobe fled to Mount Sipylus in Asia Minor, where she wept endlessly for her lost children. Taking pity on her eternal sorrow, the gods transformed her into a stone. Yet, even as a rock, she continued to weep, the water trickling down the stone serving as a perpetual reminder of the cost of divine retribution.",
+              "At the wedding of Peleus and Thetis, Eris, the goddess of discord, threw a golden apple inscribed 'For the Fairest' into the crowd, seeking to cause chaos because she wasn't invited. Hera, Athena, and Aphrodite all fiercely claimed the prize. To avoid making the choice himself, Zeus appointed Paris, a Trojan prince, to act as the judge. The three goddesses appeared before the young mortal, each offering him a magnificent bribe. Hera offered dominion over all of Asia; Athena offered unparalleled wisdom and absolute victory in war; but Aphrodite offered the love of the most beautiful woman in the world, Helen. Paris foolishly chose Aphrodite's bribe, betraying the trust placed in him to judge fairly. However, Helen was already married to King Menelaus. Paris's selfish choice and subsequent abduction of Helen constituted a grave betrayal of guest-friendship, sparking the devastating ten-year Trojan War."
+            ]
+          },
+          {
+            "topic_id": 3,
+            "words": [
+              "perseus",
+              "cephalus",
+              "hippomenes",
+              "rhea",
+              "eos",
+              "memnon",
+              "chimaera",
+              "scylla",
+              "cyclops",
+              "semele"
+            ],
+            "word_scores": {
+              "perseus": 0.0783,
+              "cephalus": 0.0614,
+              "hippomenes": 0.038,
+              "rhea": 0.038,
+              "eos": 0.0371,
+              "memnon": 0.0334,
+              "chimaera": 0.0286,
+              "scylla": 0.0254,
+              "cyclops": 0.0246,
+              "semele": 0.0236
+            },
+            "count": 15,
+            "representative_docs": [
+              "Bellerophon was a great hero of Corinth who managed to capture the legendary winged horse, Pegasus, using a golden bridle given to him by Athena. Riding Pegasus, Bellerophon accomplished incredible feats, most notably slaying the monstrous Chimaera\u2014a terrifying beast with the head of a lion, the body of a goat, and the tail of a serpent. With Pegasus by his side, Bellerophon defeated the fierce Amazons and thwarted numerous assassins. However, his unprecedented successes swelled his ego to dangerous proportions. Believing himself worthy of dwelling among the gods, he mounted Pegasus and attempted to fly to Mount Olympus. Zeus, angered by the hero's immense hubris, sent a gadfly to sting Pegasus. The winged horse bucked in pain, throwing Bellerophon back down to Earth. Bellerophon survived the fall but was blinded and crippled, spending the rest of his life wandering alone in misery.",
+              "Medusa was originally a mortal woman of exquisite beauty, serving as a devoted priestess in the sacred temple of Athena. Her beauty caught the attention of Poseidon, the Poseidon, who aggressively pursued her and violated her within Athena's holy sanctuary. Instead of punishing Poseidon, the furious Athena turned her wrath upon the victim. Disgusted by the desecration of her temple, the goddess transformed Medusa into a horrifying monster. Her magnificent hair was turned into a writhing nest of venomous snakes, and her face was made so terrifying that any living creature who met her gaze was instantly turned to solid stone. Banished to live in isolation, Medusa became a target for countless heroes seeking glory, ultimately facing her doom at the hands of Perseus, who used a mirrored shield to decapitate her while she slept.",
+              "King Midas of Phrygia was granted a single wish by the god Dionysus as a reward for his hospitality. Driven by foolish greed rather than wisdom, Midas wished that everything he touched would turn to solid gold. Initially overjoyed, Midas transformed rocks, twigs, and statues into priceless treasures. However, his excitement quickly turned to absolute horror when he sat down to eat. His bread, meat, and wine turned to solid gold the moment they touched his lips. Starving and terrified, the true tragedy struck when he absentmindedly hugged his beloved daughter; she instantly transformed into a lifeless, golden statue. Realizing the profound foolishness of his greed, Midas begged Dionysus to take back the cursed gift. The god instructed him to wash in the River Pactolus. Midas did so, losing the golden touch and finally gaining true wisdom: realizing that some things are far more precious than wealth."
+            ]
+          },
+          {
+            "topic_id": 4,
+            "words": [
+              "psyche",
+              "eros",
+              "ivory",
+              "box",
+              "pygmalion",
+              "demeter",
+              "veil",
+              "word",
+              "cold",
+              "alpheus"
+            ],
+            "word_scores": {
+              "psyche": 0.1734,
+              "eros": 0.0931,
+              "ivory": 0.0428,
+              "box": 0.0428,
+              "pygmalion": 0.0381,
+              "demeter": 0.0329,
+              "veil": 0.0311,
+              "word": 0.0311,
+              "cold": 0.0297,
+              "alpheus": 0.0267
+            },
+            "count": 15,
+            "representative_docs": [
+              "Orpheus, the greatest musician in the world, fell deeply in love with a beautiful nymph named Eurydice. Their happiness was abruptly shattered on their wedding day when Eurydice was fatally bitten by a venomous snake. Overwhelmed by grief, Orpheus descended into the Underworld, armed only with his lyre. He played a melody so heartbreakingly beautiful that it softened the cold hearts of Hades and Persephone. They agreed to let Eurydice return to the land of the living on one condition: Orpheus must walk ahead of her and never look back until they both reached the surface. The journey was long and silent. Just as Orpheus stepped into the sunlight, a wave of doubt washed over him. Desperate to know if she was truly there, he turned around. He saw Eurydice for a fleeting moment before she was pulled back into the shadows forever, lost to him due to his tragic lack of trust.",
+              "Pygmalion was a talented sculptor in Cyprus who had grown utterly disgusted by the flaws and vices of mortal women. Resolving to live a celibate life, he devoted all his passion to his art. He spent months carving a magnificent statue of a woman out of pure, flawless ivory. The sculpture was so exquisitely beautiful and lifelike that Pygmalion inevitably fell deeply in love with his own creation. He named her Galatea, dressing her in fine silks and bringing her gifts, treating her as if she were a living bride. During the festival of Aphrodite, Pygmalion offered a fervent prayer at the altar, begging the goddess of love for a bride just like his ivory statue. Moved by the sincerity of his devotion, Aphrodite granted his wish. When Pygmalion returned home and kissed Galatea's cold lips, he felt warmth radiating from the ivory. Galatea came to life, and the two were happily married.",
+              "Psyche was a mortal princess whose beauty was so astounding that mortals began worshipping her instead of Aphrodite. Infuriated by this jealousy, Aphrodite ordered her son, Eros (Eros), to make Psyche fall in love with a hideous monster. However, upon seeing her, Eros accidentally pricked himself with his own arrow and fell madly in love. Psyche was taken to a magnificent hidden palace where her mysterious husband visited her only under the cover of darkness, forbidding her from ever seeing his face. Manipulated by her envious sisters, Psyche lit an oil lamp one night to see him. She discovered the beautiful god of love but accidentally spilled hot oil on his shoulder, awakening him. Betrayed by her lack of trust, Eros fled. Desperate, Psyche underwent seemingly impossible, grueling trials set by a vindictive Aphrodite. Her unwavering perseverance ultimately moved the gods. Zeus granted her immortality, and Psyche and Eros were joyously reunited forever."
+            ]
+          }
+        ]
+      },
+      "summaries": [
+        {
+          "title": "The Fall of Icarus",
+          "summary": "Before they took flight, Daedalus warned his son not to fly too close to the sea, lest the dampness clog his wings, nor too close to the sun, lest the heat melt the wax. The blazing sun melted the wax holding the feathers together, and Icarus plummeted into the sea and drowned."
+        },
+        {
+          "title": "Athena and Arachne",
+          "summary": "Offended by this hubris, Athena disguised herself as an old woman and warned Arachne not to offend the gods. Arachne, however, wove a flawless but disrespectful tapestry highlighting the gods' infidelities and flaws."
+        },
+        {
+          "title": "The Tears of Niobe",
+          "summary": "Niobe, the Queen of Thebes, was blessed with fourteen beautiful children: seven sons and seven daughters. Apollo descended and shot down all seven of Niobe's sons with his golden arrows, while Artemis struck down her seven daughters with her silver arrows."
+        },
+        {
+          "title": "Bellerophon and Pegasus",
+          "summary": "Bellerophon was a great hero of Corinth who managed to capture the legendary winged horse, Pegasus, using a golden bridle given to him by Athena. The winged horse bucked in pain, throwing Bellerophon back down to Earth."
+        },
+        {
+          "title": "The Ride of Phaethon",
+          "summary": "Phaethon, a proud young mortal, sought out his father, Helios the sun god, to prove his divine lineage. To Helios's horror, Phaethon demanded to drive the sun chariot for a single day."
+        }
+      ]
+    },
+    "extra_outputs_6_to_10": {
+      "output_6_embedding_map": "C:\\Opensource\\chronicle\\data\\output\\embedding_map.html",
+      "output_7_similarity_search": {
+        "query_myth": "The Fall of Icarus",
+        "top_similar": [
+          {
+            "title": "Daedalus",
+            "theme": "jealousy",
+            "moral": "Envy poisons the one who feeds it."
+          },
+          {
+            "title": "The Labyrinth of Daedalus",
+            "theme": "wisdom",
+            "moral": "Human ingenuity and intellect can construct the greatest marvels and overcome the most daunting traps."
+          },
+          {
+            "title": "Theseus (Part 1)",
+            "theme": "quest",
+            "moral": "Great ends demand courage and endurance."
+          }
+        ]
+      },
+      "output_8_theme_distribution": "C:\\Opensource\\chronicle\\data\\output\\theme_distribution.html",
+      "output_9_character_leaderboard": {
+        "most_mentioned": {
+          "character": "Zeus",
+          "count": 35
+        },
+        "most_connected": {
+          "character": "Zeus",
+          "connections": 37
+        },
+        "most_thematic_diversity": {
+          "character": "Athena",
+          "num_themes": 9,
+          "themes": [
+            "betrayal",
+            "hubris",
+            "jealousy",
+            "loss",
+            "love",
+            "quest",
+            "revenge",
+            "transformation",
+            "wisdom"
+          ]
+        },
+        "leaderboard": [
+          {
+            "character": "Zeus",
+            "mentions": 35,
+            "connections": 37,
+            "themes_count": 8,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "loss",
+              "quest",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Athena",
+            "mentions": 20,
+            "connections": 4,
+            "themes_count": 9,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "loss",
+              "love",
+              "quest",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Hera",
+            "mentions": 19,
+            "connections": 10,
+            "themes_count": 8,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "loss",
+              "love",
+              "quest",
+              "revenge",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Apollo",
+            "mentions": 16,
+            "connections": 14,
+            "themes_count": 7,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "love",
+              "quest",
+              "revenge",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Odysseus",
+            "mentions": 15,
+            "connections": 11,
+            "themes_count": 7,
+            "themes": [
+              "hubris",
+              "jealousy",
+              "love",
+              "quest",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Aphrodite",
+            "mentions": 15,
+            "connections": 7,
+            "themes_count": 7,
+            "themes": [
+              "betrayal",
+              "jealousy",
+              "love",
+              "quest",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Aeneas",
+            "mentions": 14,
+            "connections": 7,
+            "themes_count": 6,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "loss",
+              "quest",
+              "revenge"
+            ]
+          },
+          {
+            "character": "Artemis",
+            "mentions": 13,
+            "connections": 4,
+            "themes_count": 7,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "loss",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Achilles",
+            "mentions": 11,
+            "connections": 5,
+            "themes_count": 6,
+            "themes": [
+              "betrayal",
+              "jealousy",
+              "loss",
+              "revenge",
+              "transformation",
+              "wisdom"
+            ]
+          },
+          {
+            "character": "Poseidon",
+            "mentions": 9,
+            "connections": 4,
+            "themes_count": 5,
+            "themes": [
+              "betrayal",
+              "hubris",
+              "jealousy",
+              "revenge",
+              "wisdom"
+            ]
+          }
+        ]
+      },
+      "output_10_story_cards": [
+        "C:\\Opensource\\chronicle\\data\\output\\story_cards\\the_fall_of_icarus_story_card.json",
+        "C:\\Opensource\\chronicle\\data\\output\\story_cards\\athena_and_arachne_story_card.json",
+        "C:\\Opensource\\chronicle\\data\\output\\story_cards\\the_tears_of_niobe_story_card.json",
+        "C:\\Opensource\\chronicle\\data\\output\\story_cards\\bellerophon_and_pegasus_story_card.json",
+        "C:\\Opensource\\chronicle\\data\\output\\story_cards\\the_ride_of_phaethon_story_card.json"
+      ]
+    }
+  },
+  "num_myths": 125,
+  "total_time_seconds": 211.35
+}
