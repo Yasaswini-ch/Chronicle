@@ -148,13 +148,6 @@ def test_search_endpoint(client):
     assert client.get("/api/search?q=x&top_k=abc").status_code == 400
 
 
-def test_quiz_endpoint(client):
-    q = client.get("/api/quiz?n=5&seed=3").get_json()
-    assert len(q) == 5 and q == client.get("/api/quiz?n=5&seed=3").get_json()
-    assert client.get("/api/quiz?n=0").status_code == 400
-    assert client.get("/api/quiz?seed=abc").status_code == 400
-
-
 def test_graph_separates_places_from_people(client):
     g = client.get("/api/graph").get_json()
     names = {n["id"] for n in g["nodes"]}

@@ -390,20 +390,6 @@ def search_myths():
     ])
 
 
-@app.route("/api/quiz", methods=["GET"])
-def get_quiz():
-    """Multiple-choice questions built from the curated family, Roman-name and myth data."""
-    if chat_engine is None:
-        return _error(503, "Chat engine initializing")
-    n, err = _int_arg("n", 8, 1, 20)
-    if err:
-        return err
-    seed, err = _int_arg("seed", None, 0, 2**31 - 1)
-    if err:
-        return err
-    return jsonify(chat_engine.knowledge.quiz(n=n, seed=seed))
-
-
 @app.route("/api/similar/<myth_title_or_id>", methods=["GET"])
 def get_similar_myths(myth_title_or_id: str):
     """Retrieve semantically similar myths by embedding distance."""

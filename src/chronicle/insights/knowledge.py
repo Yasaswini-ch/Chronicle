@@ -1,4 +1,4 @@
-"""Knowledge layer over the myth corpus: names, profiles, comparisons, motifs, quizzes.
+"""Knowledge layer over the myth corpus: names, profiles, comparisons and story patterns.
 
 ``MythKnowledge`` is dependency-free (standard library only) so that it runs
 unchanged on a serverless host. It combines four data sources:
@@ -13,7 +13,6 @@ unchanged on a serverless host. It combines four data sources:
 from __future__ import annotations
 
 import json
-import random
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -29,7 +28,7 @@ GENEALOGY_PATH = ROOT / "data" / "annotations" / "genealogy.json"
 # Surface forms that are ordinary words, so only a Capitalised match counts.
 _CASE_SENSITIVE = {"Hero", "Echo", "Pan", "Io", "Iris", "Sol", "Luna", "Ge", "Dis", "Pallas", "Amor", "Aurora", "Sibyl"}
 
-# Olympian Greek <-> Roman equivalents used by the quiz and glossary.
+# Olympian Greek <-> Roman equivalents shown in character profiles.
 ROMAN_NAMES = {
     "Zeus": "Jupiter", "Hera": "Juno", "Poseidon": "Neptune", "Hades": "Pluto", "Demeter": "Ceres",
     "Hestia": "Vesta", "Athena": "Minerva", "Apollo": "Apollo", "Artemis": "Diana", "Ares": "Mars",
@@ -372,59 +371,3 @@ class MythKnowledge:
         if self._motif_cache is None:
             self._motif_cache = self._compute_motifs()
         return self._motif_cache.get(motif_id)
-
-    # ------------------------------------------------------------------ quiz
-    def quiz(self, n: int = 8, seed: int | None = None) -> list[dict[str, Any]]:
-        """Multiple-choice questions built from the curated data (family, Roman names, myth casts)."""
-        rng = random.Random(seed)
-        pool: list[dict[str, Any]] = []
-        fam = self.family
-
-        def make(question: str, answer: str, distractors: list[str], kind: str, fact: str = "") -> None:
-            wrong = [d for d in dict.fromkeys(distractors) if d != answer]
-            if len(wrong) < 3:
-                return
-            opts = rng.sample(wrong, 3) + [answer]
-            rng.shuffle(opts)
-            pool.append({"kind": kind, "question": question, "options": opts, "answer": opts.index(answer), "fact": fact})
-
-        people = sorted(fam.names)
-        for child, parents in fam.parents.items():
-            for p in parents:
-                role = "mother" if p in fam.female else "father"
-                far = [x for x in people if x not in fam.ancestors(child) and x != child and (x in fam.female) == (p in fam.female)]
-                make(f"Who was the {role} of {child}?", p, far, "family", fam.describe(p, child) or "")
-        for a, spouses in fam.spouses.items():
-            for s in spouses:
-                role = "wife" if s in fam.female else "husband"
-                far = [x for x in people if x not in spouses and x != a and (x in fam.female) == (s in fam.female)]
-                make(f"Who was the {role} of {a}?", s, far, "family", fam.describe(s, a) or "")
-        greeks = list(ROMAN_NAMES)
-        for g, r in ROMAN_NAMES.items():
-            if g != r:
-                make(f"What did the Romans call {g}?", r, [v for k, v in ROMAN_NAMES.items() if v != r and k != g], "roman",
-                     f"{g} was known to the Romans as {r}.")
-                make(f"Which Greek god or hero did the Romans call {r}?", g, [x for x in greeks if x != g], "roman",
-                     f"{r} is the Roman name for {g}.")
-        curated = [m for m in self.myths if m.get("corpus") == "curated"]
-        all_names = self.character_names
-        for m in curated:
-            cast = [c["name"] for c in m.get("characters", []) if isinstance(c, dict)]
-            if cast:
-                a = rng.choice(cast)
-                make(f"Which of these characters appears in \"{m['title']}\"?", a, [x for x in all_names if x not in cast], "myth",
-                     f"{a} appears in {m['title']}.")
-            if m.get("theme") in {"hubris", "love", "betrayal", "revenge", "wisdom", "jealousy"}:
-                make(f"Which theme does \"{m['title']}\" most illustrate?", m["theme"],
-                     ["hubris", "love", "betrayal", "revenge", "wisdom", "jealousy"], "theme", m.get("moral", ""))
-
-        rng.shuffle(pool)
-        seen, out = set(), []
-        for q in pool:  # at most one question per kind-and-subject keeps the quiz varied
-            key = q["question"]
-            if key not in seen:
-                seen.add(key)
-                out.append(q)
-            if len(out) >= n:
-                break
-        return out

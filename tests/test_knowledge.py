@@ -1,4 +1,4 @@
-"""Tests for the knowledge layer: kinship, BM25, profiles, motifs, quiz, and corpus integrity."""
+"""Tests for the knowledge layer: kinship, BM25, profiles, motifs, and corpus integrity."""
 
 from __future__ import annotations
 
@@ -122,24 +122,6 @@ def test_transformation_motif_finds_niobe(knowledge):
     titles = [r["title"] for r in knowledge.motif_myths("transformation")]
     assert any("Niobe" in t for t in titles)
     assert all(r["snippet"] for r in knowledge.motif_myths("transformation"))
-
-
-# ------------------------------------------------------------------ quiz
-def test_quiz_is_wellformed_and_deterministic(knowledge):
-    q1, q2 = knowledge.quiz(10, seed=7), knowledge.quiz(10, seed=7)
-    assert q1 == q2 and len(q1) == 10
-    for q in q1:
-        assert len(q["options"]) == 4 and len(set(q["options"])) == 4
-        assert 0 <= q["answer"] < 4
-
-
-def test_quiz_answers_are_true_family_facts(knowledge, tree):
-    for q in knowledge.quiz(20, seed=1):
-        if q["kind"] != "family":
-            continue
-        answer = q["options"][q["answer"]]
-        subject = q["question"].rsplit(" of ", 1)[1].rstrip("?")
-        assert tree.describe(answer, subject), q["question"]
 
 
 # ------------------------------------------------------------ chat intents
