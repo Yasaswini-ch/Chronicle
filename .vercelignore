@@ -1,0 +1,12 @@
+.venv
+**/__pycache__
+.pytest_cache
+node_modules
+frontend/dist
+tests
+scripts
+Sample_Report.docx
+Chronicle_Report.docx
+data/output/*.pkl
+data/output/*.bin
+data/output/*.html
