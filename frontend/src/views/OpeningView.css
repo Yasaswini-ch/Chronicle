@@ -299,7 +299,7 @@
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 58% 54% at 50% 46%,
+    ellipse closest-side at 50% 50%,
     rgba(251, 244, 228, 0.94) 0%,
     rgba(251, 244, 228, 0.88) 55%,
     rgba(251, 244, 228, 0) 100%
@@ -356,7 +356,7 @@
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 62% 56% at 50% 40%,
+    ellipse closest-side at 50% 50%,
     rgba(251, 244, 228, 0.94) 0%,
     rgba(251, 244, 228, 0.86) 58%,
     rgba(251, 244, 228, 0) 100%
@@ -425,3 +425,82 @@
   .closing-band-inner { padding: 72px 20px 190px; }
   .closing-band-inner::before { inset: 0 -4%; }
 }
+
+/* =====================================================================
+   Seamless transitions between the stacked illustrations
+   ---------------------------------------------------------------------
+   Hero -> "Four Steps": the hero art dissolves out while the next band
+   slides up under it and dissolves in over the same stretch (--blend).
+   "Four Steps" -> Kleos: the band's scenery sinks into the dark colour the
+   Kleos section starts with. No hard edges, nothing stretched.
+   ===================================================================== */
+.opening-page { --blend: clamp(110px, 13vw, 210px); }
+
+/* 1. hero art fades out at the bottom; extra bottom padding keeps content clear of the overlap */
+.opening-hero-vista-photo {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 70%, transparent 100%);
+}
+.opening-hero-content { padding-bottom: calc(72px + var(--blend)); }
+
+/* 2. the band overlaps the hero's faded bottom and fades in from transparent */
+.steps-band {
+  margin-top: calc(var(--blend) * -1);
+  background: transparent;
+}
+.steps-band-art {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend), #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend), #000 100%);
+}
+.steps-band-inner { padding-top: calc(clamp(64px, 8vw, 110px) + var(--blend)); }
+
+/* 3. the band's lower scenery sinks into the dark Kleos section below it */
+.steps-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(220px, 26vw, 380px);
+  z-index: -1;
+  pointer-events: none;
+  /* fully opaque for the last stretch, so the band meets the Kleos section with no visible edge */
+  background: linear-gradient(to bottom, rgba(28, 20, 13, 0) 0%, rgba(28, 20, 13, 0.5) 40%, #1c140d 80%, #1c140d 100%);
+}
+
+/* =====================================================================
+   Kleos -> closing panel: the dark section ends in the same colour the
+   closing band opens with, then lightens into the sunrise, so there is no
+   visible join. The content is pushed down by the same distance so it
+   always sits on the clear sky, not on the dark part of the dissolve.
+   ===================================================================== */
+.closing-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(200px, 25vw, 380px);
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #1c140d 0%, rgba(28, 20, 13, 0.85) 30%, rgba(28, 20, 13, 0.4) 65%, rgba(28, 20, 13, 0) 100%);
+}
+.closing-band-inner { padding-top: calc(clamp(96px, 13vw, 190px) + clamp(110px, 14vw, 210px)); }
+@media (max-width: 700px) {
+  .closing-band-inner { padding-top: calc(72px + 110px); }
+}
+
+/* ---- final polish on the washes and seams ---- */
+/* closing panel: confine the wash to the text, below the dark dissolve */
+.closing-band-inner::before {
+  inset: clamp(110px, 14vw, 210px) -16% clamp(120px, 17vw, 260px) -16%;
+  background: radial-gradient(
+    ellipse closest-side at 50% 50%,
+    rgba(255, 249, 238, 0.86) 0%,
+    rgba(255, 249, 238, 0.62) 55%,
+    rgba(255, 249, 238, 0) 100%
+  );
+}
+/* sections overlap by one pixel so no sub-pixel gap of page background shows at the seams */
+.world,
+.closing-band { margin-top: -1px; }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PantheonView from './PantheonView';
 import FiguresView from './FiguresView';
 import MotifsView from './MotifsView';
-import QuizView from './QuizView';
 import ThemesView from './ThemesView';
 import ArchitectureView from './ArchitectureView';
 import GalleryView from './GalleryView';
@@ -11,7 +10,6 @@ const SUB_TABS = [
   { key: 'pantheon', label: 'Family Tree' },
   { key: 'figures', label: 'Figures' },
   { key: 'motifs', label: 'Story Patterns' },
-  { key: 'quiz', label: 'Test Yourself' },
   { key: 'gallery', label: 'Gallery of Antiquity' },
   { key: 'themes', label: 'By The Numbers' },
   { key: 'architecture', label: 'How It Was Built' },
@@ -57,7 +55,6 @@ export default function ExploreView({ onSelectMyth }) {
       {sub === 'pantheon' && <PantheonView onSelectMyth={onSelectMyth} />}
       {sub === 'figures' && <FiguresView onSelectMyth={onSelectMyth} initialName={arg} />}
       {sub === 'motifs' && <MotifsView onSelectMyth={onSelectMyth} />}
-      {sub === 'quiz' && <QuizView />}
       {sub === 'gallery' && <GalleryView />}
       {sub === 'themes' && <ThemesView />}
       {sub === 'architecture' && <ArchitectureView />}

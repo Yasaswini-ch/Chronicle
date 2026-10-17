@@ -51,7 +51,7 @@ export default function OpeningView({ onNavigate, onAskOracle, totalMyths, total
 
       <div className="opening-hero">
       <img
-        src="/images/hero/mythic-ruins.jpg"
+        src="/images/hero/hero-scholar.jpg"
         alt=""
         aria-hidden="true"
         width="1672"
@@ -131,7 +131,7 @@ export default function OpeningView({ onNavigate, onAskOracle, totalMyths, total
       </div>
       </div>
 
-      <LandingSections onNavigate={onNavigate} />
+      <LandingSections onNavigate={onNavigate} totalMyths={totalMyths} />
     </div>
   );
 }
