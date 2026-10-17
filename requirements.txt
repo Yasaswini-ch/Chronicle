@@ -1,0 +1,7 @@
+# Slim runtime for serverless hosting (Vercel). Mirrors [project.dependencies]
+# in pyproject.toml; the heavy NLP stack lives in the optional "ml" extra.
+flask>=3.0.0
+flask-cors>=4.0.0
+networkx>=3.2.0
+plotly>=5.19.0
+numpy>=1.26.0

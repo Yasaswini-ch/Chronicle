@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chronicle"
+version = "0.1.0"
+description = "End-to-end NLP system for Greek mythology analysis"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Chronicle Team" },
+]
+# Runtime needed to *serve* the app (API + frontend). Deliberately small so it
+# fits serverless hosts such as Vercel.
+dependencies = [
+    "flask>=3.0.0",
+    "flask-cors>=4.0.0",
+    "waitress>=3.0.0",
+    "networkx>=3.2.0",
+    "plotly>=5.19.0",
+    "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+# NLP / ML stack for running the pipeline, notebooks, semantic search and the
+# Streamlit dashboard:  pip install -e ".[ml]"
+ml = [
+    "spacy>=3.7.0",
+    "scikit-learn>=1.4.0",
+    "sentence-transformers>=2.5.0",
+    "gensim>=4.3.0",
+    "streamlit>=1.32.0",
+    "nltk>=3.8.1",
+    "pandas>=2.2.0",
+    "torch>=2.2.0",
+    "transformers>=4.38.0",
+    "bertopic>=0.16.0",
+    "umap-learn>=0.5.5",
+    "pyvis>=0.3.2",
+    "hdbscan>=0.8.33",
+    "rouge-score>=0.1.2",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.3.0",
+    "mypy>=1.9.0",
+]
+
+[project.scripts]
+chronicle = "chronicle.app.main:main"
+chronicle-api = "chronicle.api.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chronicle"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
