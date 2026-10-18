@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { typeColor } from '../utils/colors';
+import { portraitFor } from '../data/portraits';
 
 /**
  * Renders one full connected cluster of the pantheon as a multi-generation
@@ -65,6 +66,7 @@ export default function ClusterTree({ cluster, onSelect }) {
         <div key={li} className="forest-level">
           {level.map((node) => {
             const isRoot = node.type === 'root';
+            const portrait = !isRoot ? portraitFor(node.label || node.id) : null;
             return (
               <button
                 key={node.id}
@@ -75,6 +77,22 @@ export default function ClusterTree({ cluster, onSelect }) {
                 disabled={isRoot}
                 title={isRoot ? 'An organizing node — not a mythological figure' : undefined}
               >
+                {portrait && (
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}>
+                    <img
+                      src={portrait}
+                      alt=""
+                      aria-hidden="true"
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        border: `1.5px solid ${typeColor(node.type)}`,
+                      }}
+                    />
+                  </div>
+                )}
                 <div className="tree-node-name">{node.label}</div>
                 {node.type && !isRoot && (
                   <div className="tree-node-type" style={{ color: typeColor(node.type) }}>{node.type}</div>

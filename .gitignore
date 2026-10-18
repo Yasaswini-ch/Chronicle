@@ -25,3 +25,4 @@ data/output/*.html
 .idea/
 .vscode/
 Thumbs.db
+*.zip
