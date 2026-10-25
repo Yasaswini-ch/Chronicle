@@ -75,3 +75,146 @@ body {
     url('/images/theme/footer-bg.png') center bottom / cover no-repeat;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* ───────── Section surfaces ───────── */
+
+/* Night (Places / Artifacts): twilight sky with gold haze and star dust */
+.section-night {
+  background-color: #0B1226;
+  background-image:
+    radial-gradient(700px 360px at 85% 0%, rgba(217, 164, 65, 0.20), transparent 70%),
+    radial-gradient(800px 420px at 8% 100%, rgba(232, 166, 160, 0.10), transparent 70%),
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 233, 180, 0.8), transparent 60%),
+    radial-gradient(1px 1px at 38% 62%, rgba(255, 233, 180, 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 66% 28%, rgba(255, 233, 180, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 84% 74%, rgba(255, 233, 180, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 52% 90%, rgba(255, 233, 180, 0.5), transparent 60%),
+    linear-gradient(180deg, #0E1730 0%, #0B1226 55%, #120F1C 100%);
+  background-size: auto, auto, 340px 340px, 420px 420px, 380px 380px, 460px 460px, 300px 300px, auto;
+}
+
+/* Dark (Themes / Architecture / Oracle): warm umber with an ember glow */
+.section-dark {
+  background-image:
+    radial-gradient(800px 380px at 50% 0%, rgba(217, 164, 65, 0.14), transparent 70%),
+    radial-gradient(700px 500px at 100% 100%, rgba(150, 70, 40, 0.16), transparent 70%),
+    linear-gradient(180deg, #1A140E 0%, #14100C 100%);
+}
+
+/* Parchment: sunlit corners over the grain */
+.section-parchment {
+  background-image:
+    radial-gradient(700px 420px at 100% 0%, rgba(240, 175, 115, 0.20), transparent 70%),
+    radial-gradient(700px 480px at 0% 100%, rgba(232, 166, 160, 0.16), transparent 70%);
+}
+
+/* Ornamental spacing below the hero edge */
+.page-surface { position: relative; }
+
+/* ───────── Dark cards: gold-edged, glow on hover ───────── */
+.gv-card,
+.section-dark .panel,
+.section-dark .card {
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.gv-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 217, 138, 0.7);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.5), 0 0 26px rgba(217, 164, 65, 0.22);
+}
+.gv-card-img { transition: transform 0.6s ease; }
+.gv-card:hover .gv-card-img { transform: scale(1.06); }
+.gv-card-img-wrap { overflow: hidden; position: relative; }
+.gv-card-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 40%;
+  background: linear-gradient(to top, #19140f, transparent);
+  pointer-events: none;
+}
+.gv-section-h,
+.section-dark h2,
+.section-night h2 { text-shadow: 0 2px 18px rgba(217, 164, 65, 0.25); }
+
+/* ───────── Sidebars & lists on parchment ───────── */
+.pantheon-directory,
+.figures-sidebar {
+  background: linear-gradient(180deg, rgba(255, 250, 238, 0.88), rgba(247, 235, 210, 0.82));
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  box-shadow: 0 8px 26px rgba(90, 60, 20, 0.10);
+  backdrop-filter: blur(4px);
+}
+.story-index-list,
+.storybook-list { scrollbar-color: rgba(217, 164, 65, 0.6) transparent; }
+.storybook-list > *:hover { background: rgba(217, 164, 65, 0.10); }
+
+/* Figure and character chips */
+.figures-portrait-chip,
+.figures-family-chip,
+.storybook-character-chip,
+.storybook-connection-item,
+.tree-other-chip {
+  background: linear-gradient(180deg, rgba(255, 252, 244, 0.95), rgba(251, 243, 226, 0.9));
+  border-color: rgba(217, 164, 65, 0.45);
+  box-shadow: 0 2px 8px rgba(90, 60, 20, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.figures-portrait-chip:hover,
+.storybook-character-chip:hover,
+.tree-other-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold, #D9A441);
+  box-shadow: 0 8px 18px rgba(138, 100, 32, 0.2);
+}
+
+/* Story hero image: framed like a plate */
+.storybook-artwork-img,
+.storybook-image,
+.story-panel img {
+  border: 6px solid rgba(255, 250, 238, 0.9);
+  outline: 1px solid rgba(217, 164, 65, 0.55);
+  box-shadow: 0 18px 44px rgba(60, 38, 12, 0.28);
+}
+
+/* Drop cap and pull quote warmth in the story text */
+.story-text blockquote,
+.storybook-pullquote {
+  background: linear-gradient(90deg, rgba(217, 164, 65, 0.12), transparent 70%);
+}
+
+/* Theme bars / progress tracks glow slightly */
+.figures-theme-bars,
+.themes-bars-none { filter: drop-shadow(0 0 6px rgba(217, 164, 65, 0.25)); }
+
+/* Figure profile: soft halo behind the portrait */
+.figures-profile-avatar,
+.figure-profile-avatar-halo {
+  box-shadow: 0 0 0 4px rgba(255, 250, 238, 0.9), 0 0 0 5px rgba(217, 164, 65, 0.6), 0 0 38px rgba(217, 164, 65, 0.4);
+}
+
+/* Reveal-on-scroll: fade sections in softly */
+@media (prefers-reduced-motion: no-preference) {
+  .content-area .page-surface > section,
+  .content-area .page-surface > div:not(.page-header) { animation: atmo-rise 0.7s ease both; }
+  @keyframes atmo-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* Buttons on parchment: warmer primary */
+.btn-primary {
+  background: linear-gradient(180deg, #2A1D14, #14100C);
+  border: 1px solid var(--gold, #D9A441);
+  color: var(--cream, #FBF3E2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(217, 164, 65, 0.3);
+}
