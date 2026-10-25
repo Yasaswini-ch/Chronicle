@@ -1,8 +1,6 @@
-// Builds a forest of BFS spanning trees from the full pantheon graph — one
-// tree per connected cluster of figures, each laid out in generations
-// (levels) from a chosen root, plus a list of figures with no recorded ties
-// at all. This is the "whole pantheon at once" view, as opposed to a single
-// figure's immediate neighborhood.
+// Builds a forest of family graphs from the full pantheon graph. Parent/child
+// direction determines the top of each family; non-genealogical relations are
+// retained as connections without making their targets look like children.
 
 function find(parent, x) {
   while (parent[x] !== x) {
@@ -54,7 +52,18 @@ export function buildForest(nodes, edges) {
       return;
     }
 
-    const root = [...members].sort((a, b) => (b.degree || 0) - (a.degree || 0))[0];
+    const memberIds = new Set(members.map((member) => member.id));
+    const hasParent = new Set(
+      edges
+        .filter((edge) => edge.relation === 'parent_of' && memberIds.has(edge.source) && memberIds.has(edge.target))
+        .map((edge) => edge.target)
+    );
+    const roots = members.filter((member) => !hasParent.has(member.id));
+    const root = [...(roots.length ? roots : members)].sort((a, b) => {
+      if (a.id === 'Chaos') return -1;
+      if (b.id === 'Chaos') return 1;
+      return (b.degree || 0) - (a.degree || 0);
+    })[0];
     const visited = new Set([root.id]);
     const levels = [[root]];
     const treeEdges = [];

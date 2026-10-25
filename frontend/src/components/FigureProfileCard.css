@@ -1,0 +1,190 @@
+/* FigureProfileCard Styles */
+.figure-profile-card {
+  position: sticky;
+  top: calc(var(--nav-height, 57px) + 20px);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.figure-profile-empty {
+  padding: 32px 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.figure-profile-empty-text {
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* Portrait on Top */
+.figure-profile-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #0B1226;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(217, 164, 65, 0.3);
+}
+
+.figure-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.figure-profile-medallion {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  background: rgba(251, 243, 226, 0.05);
+}
+
+.figure-profile-content {
+  padding: 18px 20px 22px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.figure-profile-name {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--text-primary, #2A1D14);
+  text-align: center;
+  margin: 0 0 4px 0;
+}
+
+.figure-profile-type-badge {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.figure-profile-type-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.figure-profile-definition {
+  font-size: 1rem;
+  color: var(--text-secondary, rgba(42, 29, 20, 0.7));
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+/* Stats Row */
+.figure-profile-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid rgba(217, 164, 65, 0.25);
+  border-bottom: 1px solid rgba(217, 164, 65, 0.25);
+  padding: 10px 0;
+  margin-bottom: 16px;
+}
+
+.figure-profile-stat-box {
+  text-align: center;
+  flex: 1;
+}
+
+.figure-profile-stat-val {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary, #2A1D14);
+  line-height: 1;
+}
+
+.figure-profile-stat-label {
+  font-size: 0.82rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  margin-top: 2px;
+}
+
+.figure-profile-stat-divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(217, 164, 65, 0.25);
+}
+
+/* Myths List */
+.figure-profile-myths-wrap {
+  margin-bottom: 16px;
+}
+
+.figure-profile-subheading {
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.figure-profile-myths-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.figure-profile-myth-btn {
+  text-align: left;
+  background: rgba(217, 164, 65, 0.08);
+  border: 1px solid rgba(217, 164, 65, 0.25);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary, #2A1D14);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.figure-profile-myth-btn:hover {
+  background: rgba(217, 164, 65, 0.18);
+  border-color: var(--gold, #D9A441);
+  transform: translateX(2px);
+}
+
+.figure-profile-myth-arrow {
+  color: var(--accent-gold, #8A6420);
+  font-size: 0.85rem;
+}
+
+.figure-profile-dossier-btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .figure-profile-card {
+    position: static;
+  }
+}

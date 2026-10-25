@@ -48,16 +48,17 @@
 
 .term-popover-title {
   display: block;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--accent-gold);
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--gold, #D9A441);
   margin-bottom: 6px;
 }
 
 .term-popover-body {
   display: block;
-  font-size: 0.9rem;
-  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-on-dark, rgba(251, 243, 226, 0.9));
 }

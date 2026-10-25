@@ -2,20 +2,18 @@ import React from 'react';
 import { typeColor } from '../utils/colors';
 import { portraitFor } from '../data/portraits';
 import { lookupTerm } from '../data/glossary';
+import './FigureProfileCard.css';
 
 /**
- * A compact "profile" panel for whichever figure was last clicked in the
- * pantheon tree — a portrait (real artifact photo where one genuinely
- * matches, otherwise a generated medallion), their type, how many ties and
- * myths the data actually records for them, and quick links into the rest
- * of the app.
+ * A compact profile panel for whichever figure was last clicked in the
+ * pantheon tree — cream card with the portrait on top.
  */
 export default function FigureProfileCard({ figure, edges, onSelectMyth, onOpenDossier }) {
   if (!figure) {
     return (
-      <div className="panel figure-card figure-card-empty">
-        <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center', padding: '20px 14px' }}>
-          Click any name in the tree to see who they are.
+      <div className="card figure-profile-card figure-profile-empty">
+        <div className="figure-profile-empty-text">
+          Click any figure in the tree to explore their lineage.
         </div>
       </div>
     );
@@ -24,56 +22,81 @@ export default function FigureProfileCard({ figure, edges, onSelectMyth, onOpenD
   const portrait = portraitFor(figure.label || figure.id);
   const typeInfo = lookupTerm(figure.type);
   const ties = edges.filter((e) => e.source === figure.id || e.target === figure.id);
+  const color = typeColor(figure.type);
 
   return (
-    <div className="panel figure-card" style={{ borderTop: `4px solid ${typeColor(figure.type)}` }}>
-      <div className="figure-card-portrait">
+    <div
+      className="card figure-profile-card"
+      style={{ borderTopColor: color, borderTopWidth: '4px', borderTopStyle: 'solid' }}
+    >
+      {/* Portrait on Top */}
+      <div className="figure-profile-media">
         {portrait ? (
-          <>
-            <img src={portrait} alt={figure.label} />
-            <img src="/images/decor/greek-key-frame.png" alt="" aria-hidden="true" className="figure-card-frame-overlay" />
-          </>
+          <img
+            src={portrait}
+            alt={figure.label}
+            className="figure-profile-img"
+            loading="lazy"
+          />
         ) : (
-          <div className="figure-card-medallion" style={{ borderColor: typeColor(figure.type), color: typeColor(figure.type) }}>
-            {(figure.label || '?').charAt(0)}
+          <div
+            className="figure-profile-medallion"
+            style={{ borderColor: color, color }}
+          >
+            {(figure.label || '?').charAt(0).toUpperCase()}
           </div>
         )}
       </div>
 
-      <div style={{ padding: '14px 16px 18px 16px' }}>
-        <h3 style={{ fontSize: '1.2rem', marginBottom: '2px', textAlign: 'center' }}>{figure.label}</h3>
-        <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-          <span style={{ fontSize: '0.72rem', letterSpacing: '1px', textTransform: 'uppercase', color: typeColor(figure.type), fontWeight: 700 }}>
+      <div className="figure-profile-content">
+        <h3 className="figure-profile-name">{figure.label}</h3>
+
+        <div className="figure-profile-type-badge">
+          <span
+            className="figure-profile-type-text"
+            style={{ color }}
+          >
             {figure.type}
           </span>
         </div>
 
         {typeInfo && (
-          <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '12px' }}>
+          <p className="figure-profile-definition">
             {typeInfo.definition}
           </p>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'space-around', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', padding: '8px 0', marginBottom: '12px' }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--text-primary)' }}>{figure.degree ?? ties.length}</div>
-            <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Ties</div>
+        {/* Stats Row */}
+        <div className="figure-profile-stats">
+          <div className="figure-profile-stat-box">
+            <div className="figure-profile-stat-val">
+              {figure.degree ?? ties.length}
+            </div>
+            <div className="figure-profile-stat-label">Ties</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--text-primary)' }}>{(figure.myths || []).length}</div>
-            <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Myths</div>
+          <div className="figure-profile-stat-divider" />
+          <div className="figure-profile-stat-box">
+            <div className="figure-profile-stat-val">
+              {(figure.myths || []).length}
+            </div>
+            <div className="figure-profile-stat-label">Myths</div>
           </div>
         </div>
 
+        {/* Narratives featured in */}
         {figure.myths && figure.myths.length > 0 && (
-          <div style={{ marginBottom: '12px' }}>
-            <div style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-muted)', marginBottom: '6px' }}>
-              Appears In
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <div className="figure-profile-myths-wrap">
+            <div className="figure-profile-subheading">Appears In</div>
+            <div className="figure-profile-myths-list">
               {figure.myths.slice(0, 4).map((m) => (
-                <button key={m} className="figure-card-myth-link" onClick={() => onSelectMyth && onSelectMyth(m)}>
-                  {m}
+                <button
+                  key={m}
+                  type="button"
+                  className="figure-profile-myth-btn"
+                  onClick={() => onSelectMyth && onSelectMyth(m)}
+                >
+                  <span>{m}</span>
+                  <span className="figure-profile-myth-arrow">→</span>
                 </button>
               ))}
             </div>
@@ -81,8 +104,12 @@ export default function FigureProfileCard({ figure, edges, onSelectMyth, onOpenD
         )}
 
         {onOpenDossier && (
-          <button className="btn-secondary" style={{ width: '100%', fontSize: '0.72rem' }} onClick={() => onOpenDossier(figure)}>
-            Full Dossier &amp; Path Tracer &rarr;
+          <button
+            type="button"
+            className="btn-ghost figure-profile-dossier-btn"
+            onClick={() => onOpenDossier(figure)}
+          >
+            Full Dossier &amp; Path Tracer →
           </button>
         )}
       </div>
