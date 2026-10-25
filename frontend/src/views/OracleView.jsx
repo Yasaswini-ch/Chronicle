@@ -134,14 +134,8 @@ export default function OracleView({ onSelectMyth, initialQuery, onInitialQueryC
         </div>
 
         {/* The Chat Parchment Card — torn-edge mask */}
-        <Reveal className="oracle-chat-card">
-          <div className="oracle-chat-header">
-            <img src={THEME.oracleSun} alt="" className="oracle-chat-header-sun" aria-hidden="true" />
-            <div>
-              <div className="oracle-chat-header-name">The Oracle of Chronicle</div>
-              <div className="oracle-chat-header-sub">Keeper of the myths, answers drawn from the archive</div>
-            </div>
-          </div>
+        <Reveal className="oracle-chat-wrap">
+          <div className="oracle-chat-card">
           <div
             className="oracle-messages-area"
             role="log"
@@ -156,7 +150,7 @@ export default function OracleView({ onSelectMyth, initialQuery, onInitialQueryC
                   className={`oracle-msg-row ${isUser ? 'user' : 'assistant'}`}
                 >
                   <div className="oracle-msg-sender">
-                    {isUser ? 'You' : 'Oracle'}
+                    {isUser ? 'Seeker' : 'Oracle of Chronicle'}
                   </div>
 
                   {isUser ? (
@@ -259,6 +253,7 @@ export default function OracleView({ onSelectMyth, initialQuery, onInitialQueryC
               </span>
             </button>
           </form>
+          </div>
         </Reveal>
       </div>
     </section>
