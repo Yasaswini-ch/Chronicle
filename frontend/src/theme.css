@@ -1,0 +1,366 @@
+/* Chronicle Theme System */
+
+:root {
+  /* Redefined existing palette variables */
+  --bg-primary: #F3E6CC;
+  --bg-surface: #FBF3E2;
+  --bg-dark: #14100C;
+  --text-primary: #2A1D14;
+  --ink: #2A1D14;
+  --accent-gold: #8A6420;
+  --text-muted: rgba(42, 29, 20, 0.7);
+  --text-secondary: rgba(42, 29, 20, 0.7);
+  --text-on-dark: rgba(251, 243, 226, 0.9);
+
+  /* New palette variables */
+  --night: #0B1226;
+  --gold: #D9A441;
+  --glow: #FFD98A;
+  --rose: #E8A6A0;
+  --cream: #FBF3E2;
+  --parchment: rgba(251, 246, 234, 0.94);
+  --nav-h: 57px;
+  --nav-height: var(--nav-h);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+  --font-heading: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', -apple-system, 'Segoe UI', sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+h3 {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+h4 {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Reusable Theme Utilities */
+
+/* Small uppercase label with tracked letter spacing */
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Dark brown rectangle button with uppercase text, arrow, thin gold border, lift on hover */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--bg-dark);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  padding: 10px 20px;
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-dark::after {
+  content: '→';
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(11, 18, 38, 0.25);
+  background-color: #221a14;
+  border-color: var(--glow);
+}
+
+.btn-dark:hover::after {
+  transform: translateX(3px);
+}
+
+/* Torn top and bottom edges using an SVG mask, plus a grain overlay */
+.section-parchment {
+  position: relative;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 48px 24px;
+  -webkit-mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,16 L25,12 L50,18 L75,13 L100,20 L130,11 L160,19 L190,14 L220,22 L250,13 L280,18 L310,12 L340,21 L370,14 L400,19 L430,11 L460,20 L490,13 L520,22 L550,14 L580,19 L610,12 L640,21 L670,13 L700,18 L730,11 L760,22 L790,14 L820,19 L850,12 L880,21 L910,13 L940,20 L970,12 L1000,22 L1030,14 L1060,19 L1090,12 L1120,20 L1150,13 L1180,18 L1200,14 L1200,30 L0,30 Z' fill='%23000'/%3E%3C/svg%3E"),
+    linear-gradient(#000, #000),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,30 L0,14 L25,18 L50,12 L75,17 L100,10 L130,19 L160,11 L190,16 L220,8 L250,17 L280,12 L310,18 L340,9 L370,16 L400,11 L430,19 L460,10 L490,17 L520,8 L550,16 L580,11 L610,18 L640,9 L670,17 L700,12 L730,19 L760,8 L790,16 L820,11 L850,18 L880,9 L910,17 L940,10 L970,18 L1000,8 L1030,16 L1060,11 L1090,18 L1120,10 L1150,17 L1180,12 L1200,16 L1200,0 L0,0 Z' fill='%23000'/%3E%3C/svg%3E");
+  -webkit-mask-position: top left, center, bottom left;
+  -webkit-mask-size: 100% 24px, 100% calc(100% - 46px), 100% 24px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-composite: source-over;
+  mask-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,16 L25,12 L50,18 L75,13 L100,20 L130,11 L160,19 L190,14 L220,22 L250,13 L280,18 L310,12 L340,21 L370,14 L400,19 L430,11 L460,20 L490,13 L520,22 L550,14 L580,19 L610,12 L640,21 L670,13 L700,18 L730,11 L760,22 L790,14 L820,19 L850,12 L880,21 L910,13 L940,20 L970,12 L1000,22 L1030,14 L1060,19 L1090,12 L1120,20 L1150,13 L1180,18 L1200,14 L1200,30 L0,30 Z' fill='%23000'/%3E%3C/svg%3E"),
+    linear-gradient(#000, #000),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,30 L0,14 L25,18 L50,12 L75,17 L100,10 L130,19 L160,11 L190,16 L220,8 L250,17 L280,12 L310,18 L340,9 L370,16 L400,11 L430,19 L460,10 L490,17 L520,8 L550,16 L580,11 L610,18 L640,9 L670,17 L700,12 L730,19 L760,8 L790,16 L820,11 L850,18 L880,9 L910,17 L940,10 L970,18 L1000,8 L1030,16 L1060,11 L1090,18 L1120,10 L1150,17 L1180,12 L1200,16 L1200,0 L0,0 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-position: top left, center, bottom left;
+  mask-size: 100% 24px, 100% calc(100% - 46px), 100% 24px;
+  mask-repeat: no-repeat;
+  mask-composite: add;
+}
+
+.section-parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3  0 0 0 0 0.24  0 0 0 0 0.14  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.section-parchment > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* When .section-parchment sits below a PageHeader hero band */
+.page-surface .section-parchment,
+.section-parchment.section-parchment--overlap {
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  padding-top: 64px;
+}
+
+/* Deep night section */
+.section-night {
+  position: relative;
+  background-color: var(--night);
+  color: var(--text-on-dark, #F3EDE3);
+  padding: 48px 24px;
+}
+
+/* Nyx / dark section */
+.section-dark {
+  position: relative;
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark, #F3EDE3);
+  padding: 48px 24px;
+}
+
+/* Dark sections below hero band: negative margin with a smooth gradient fade */
+.section-night.section-night--overlap,
+.section-dark.section-dark--overlap,
+.page-surface .section-night,
+.page-surface .section-dark {
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  padding-top: 64px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 24px, #000 48px);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 24px, #000 48px);
+}
+
+/* Circular gold ring with soft glow */
+.ring-gold {
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  box-shadow: 0 0 12px var(--glow), inset 0 0 8px rgba(255, 217, 138, 0.2);
+}
+
+/* Page Surface: full-bleed page canvas with paper grain overlay (no box, no border, no shadow) */
+.page-surface {
+  position: relative;
+  width: 100%;
+  background-color: var(--parchment, rgba(251, 246, 234, 0.94));
+  color: var(--text-primary, #2A1D14);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.page-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3  0 0 0 0 0.24  0 0 0 0 0.14  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Full-width sections inside .page-surface with centered 1200px content */
+.page-surface > .section-parchment,
+.page-surface > .section-night,
+.page-surface > .section-dark {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.page-surface .section-parchment > *,
+.page-surface .section-night > *,
+.page-surface .section-dark > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .page-surface > .section-parchment,
+  .page-surface > .section-night,
+  .page-surface > .section-dark {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Fallback for any other direct children of .page-surface */
+.page-surface > :not(.page-header):not(.section-parchment):not(.section-night):not(.section-dark) {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* Restyled Global .card and .panel */
+.card,
+.panel {
+  position: relative;
+  background: var(--cream, #FBF3E2);
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-radius: 4px;
+  padding: 20px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.panel:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold, #D9A441);
+  box-shadow: 0 4px 16px rgba(42, 29, 20, 0.08);
+}
+
+/* Thread Divider: thin gold line with a small star in the middle */
+.thread-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 48px auto;
+  width: 100%;
+  max-width: 920px;
+}
+
+.thread-divider::before,
+.thread-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(217, 164, 65, 0.45), transparent);
+}
+
+.thread-divider-star {
+  color: var(--gold, #D9A441);
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.85;
+  user-select: none;
+}
+
+/* Subtle outlined ghost button with thin gold border */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(217, 164, 65, 0.08);
+  color: var(--text-primary, #2A1D14);
+  border-color: var(--gold, #D9A441);
+  transform: translateY(-1px);
+}
+
+/* Controls over night sections must remain readable against the dark surface. */
+.section-night button,
+.section-dark button {
+  color: var(--cream);
+  border: 1px solid var(--gold);
+}
+
+.section-night input,
+.section-night select,
+.section-dark input,
+.section-dark select {
+  color: var(--cream);
+  border-color: var(--gold);
+}
+
+.section-night input::placeholder,
+.section-dark input::placeholder {
+  color: rgba(251, 243, 226, 0.7);
+}

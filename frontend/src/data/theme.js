@@ -1,0 +1,40 @@
+const V = '2';
+
+export const THEME = {
+  heroBg: `/images/theme/hero-bg.png?v=${V}`,
+  heroComposition: `/images/theme/hero-composition.jpg?v=${V}`,
+  heroGoddess: `/images/theme/hero-goddess.png?v=${V}`,
+  vineLeft: `/images/theme/vine-left.png?v=${V}`,
+  column: `/images/theme/column.png?v=${V}`,
+  persephone: `/images/theme/persephone.png?v=${V}`,
+  athena: `/images/theme/athena.png?v=${V}`,
+  orpheus: `/images/theme/orpheus.png?v=${V}`,
+  treeBg: `/images/theme/tree-bg.png?v=${V}`,
+  oracleBg: `/images/theme/oracle-bg.jpg?v=${V}`,
+  oracleSun: `/images/theme/oracle-sun.png?v=${V}`,
+  placesIsland: `/images/theme/places-island.jpg?v=${V}`,
+  delphi: `/images/theme/delphi.jpg?v=${V}`,
+  athens: `/images/theme/athens.jpg?v=${V}`,
+  crete: `/images/theme/crete.jpg?v=${V}`,
+  footerBg: `/images/theme/footer-bg.png?v=${V}`,
+  footerGoddess: `/images/theme/footer-goddess.png?v=${V}`,
+  vineRight: `/images/theme/vine-right.png?v=${V}`,
+  paperGrain: `/images/theme/paper-grain.jpg?v=${V}`,
+  statue: `/images/theme/statue.jpg?v=${V}`,
+  pottery: `/images/theme/pottery.jpg?v=${V}`,
+  coin: `/images/theme/coin.jpg?v=${V}`,
+  fragment: `/images/theme/fragment.jpg?v=${V}`,
+  busts: {
+    zeus: `/images/theme/zeus.png?v=${V}`,
+    hera: `/images/theme/hera.png?v=${V}`,
+    poseidon: `/images/portraits/poseidon.jpg?v=${V}`,
+    demeter: `/images/theme/demeter.png?v=${V}`,
+    athena: `/images/theme/athena-bust.png?v=${V}`,
+    apollo: `/images/theme/apollo.png?v=${V}`,
+    artemis: `/images/theme/artemis.png?v=${V}`,
+    ares: `/images/theme/ares.png?v=${V}`,
+    aphrodite: `/images/theme/aphrodite.png?v=${V}`,
+  },
+};
+
+export default THEME;
