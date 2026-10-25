@@ -8,6 +8,7 @@
       "functions": {
         "api/index.py": {
           "includeFiles": "{src/chronicle/**,data/processed/**,data/annotations/**,data/output/pipeline_results.json}",
+          "excludeFiles": "{frontend/**,*.png,*.jpg,*.zip,*.docx,.venv/**,tests/**,scripts/**,data/raw/**,data/output/story_cards/**}",
           "maxDuration": 30
         }
       }

@@ -10,3 +10,6 @@ Chronicle_Report.docx
 data/output/*.pkl
 data/output/*.bin
 data/output/*.html
+*.zip
+/*.png
+/*.jpg
