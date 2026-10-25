@@ -1,0 +1,77 @@
+/* Inner-page atmosphere: carries the opening page's golden-hour warmth
+   into the flat parchment body of every other view. */
+
+body {
+  background-color: #F3E6CC;
+  background-image:
+    radial-gradient(900px 520px at 92% 0%, rgba(240, 170, 110, 0.22), transparent 70%),
+    radial-gradient(800px 600px at 0% 38%, rgba(232, 166, 160, 0.16), transparent 70%),
+    radial-gradient(900px 600px at 100% 78%, rgba(217, 164, 65, 0.14), transparent 70%),
+    url('/images/theme/paper-grain.jpg');
+  background-size: auto, auto, auto, 520px;
+  background-attachment: scroll, scroll, scroll, scroll;
+}
+
+/* Soft vines framing the page edges, never over the reading column */
+.content-area::before,
+.content-area::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: min(14vw, 220px);
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.22;
+}
+.content-area::before {
+  left: 0;
+  background-image: url('/images/theme/vine-left.png');
+  background-position: left bottom;
+}
+.content-area::after {
+  right: 0;
+  background-image: url('/images/theme/vine-right.png');
+  background-position: right bottom;
+}
+@media (max-width: 1100px) {
+  .content-area::before,
+  .content-area::after { display: none; }
+}
+.content-area > * { position: relative; z-index: 1; }
+
+/* Cards: warm parchment with a gold hairline and a soft lifted shadow */
+.card,
+.panel {
+  background: linear-gradient(180deg, rgba(255, 250, 238, 0.96), rgba(251, 243, 226, 0.92));
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 6px 22px rgba(90, 60, 20, 0.08);
+}
+.card:hover,
+.panel:hover {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 12px 30px rgba(138, 100, 32, 0.18);
+}
+
+/* Section headings get a small gold rule */
+.content-area h2::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin-top: 10px;
+  background: linear-gradient(to right, var(--gold, #D9A441), transparent);
+}
+
+/* Footer: golden-hour band instead of a flat strip */
+.chronicle-footer:not(.chronicle-footer--dark) {
+  position: relative;
+  padding: 56px 16px 28px;
+  border-top: none;
+  color: #F7E9CC;
+  background:
+    linear-gradient(to bottom, #F3E6CC 0%, rgba(20, 16, 12, 0.35) 28%, rgba(20, 16, 12, 0.82) 100%),
+    url('/images/theme/footer-bg.png') center bottom / cover no-repeat;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
