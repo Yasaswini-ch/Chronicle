@@ -509,10 +509,13 @@ def main() -> None:
     host = os.environ.get("CHRONICLE_HOST", "127.0.0.1")
     port = int(os.environ.get("CHRONICLE_PORT", "8000"))
 
-    from waitress import serve
-
-    logger.info("Serving Chronicle on http://%s:%d", host, port)
-    serve(app, host=host, port=port, threads=8)
+    try:
+        from waitress import serve
+        logger.info("Serving Chronicle on http://%s:%d", host, port)
+        serve(app, host=host, port=port, threads=8)
+    except ImportError:
+        logger.info("Serving Chronicle with Flask dev server on http://%s:%d", host, port)
+        app.run(host=host, port=port)
 
 
 if __name__ == "__main__":
