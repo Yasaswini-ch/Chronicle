@@ -1,0 +1,738 @@
+/* Storybook Reading Room Styles */
+
+/* =========================================
+   Theme & Character Type Variable Classes
+   ========================================= */
+.theme-hubris { --theme-color: var(--theme-hubris, #C25946); }
+.theme-love { --theme-color: var(--theme-love, #D16A82); }
+.theme-betrayal { --theme-color: var(--theme-betrayal, #8C538C); }
+.theme-revenge { --theme-color: var(--theme-revenge, #9E4738); }
+.theme-wisdom { --theme-color: var(--theme-wisdom, #4E7B96); }
+.theme-jealousy { --theme-color: var(--theme-jealousy, #5B8266); }
+.theme-transformation { --theme-color: var(--theme-transformation, #7C6898); }
+.theme-quest { --theme-color: var(--theme-quest, #8A6420); }
+.theme-loss { --theme-color: var(--theme-loss, #6E6875); }
+.theme-default { --theme-color: var(--accent-gold, #8A6420); }
+
+.type-god { --type-color: var(--type-god, #C99738); }
+.type-titan { --type-color: var(--type-titan, #9E5A3C); }
+.type-mortal { --type-color: var(--type-mortal, #5B7B88); }
+.type-creature { --type-color: var(--type-creature, #6A8D5F); }
+.type-location { --type-color: var(--type-location, #8A6420); }
+.type-artifact { --type-color: var(--type-artifact, #C25946); }
+.type-figure { --type-color: var(--accent-gold, #8A6420); }
+
+/* =========================================
+   Two-Column Layout
+   ========================================= */
+.storybook-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(32px, 4vw, 56px);
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 36px 20px 72px;
+}
+
+/* Mobile trigger button (hidden on desktop) */
+.storybook-mobile-choose-btn {
+  display: none;
+}
+
+/* =========================================
+   Left Column: 340px Sticky List Panel
+   ========================================= */
+.storybook-sidebar {
+  position: sticky;
+  top: 96px;
+  width: 340px;
+  min-width: 340px;
+  max-width: 340px;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(217, 164, 65, 0.35);
+  padding-right: 24px;
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0;
+  box-shadow: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 164, 65, 0.35) transparent;
+}
+
+.storybook-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.storybook-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(217, 164, 65, 0.35);
+  border-radius: 4px;
+}
+
+.storybook-sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Filters & Search: Stay at top of list */
+.storybook-list-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg-surface, #FBF3E2);
+  z-index: 5;
+  padding-bottom: 8px;
+}
+
+.storybook-list-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary, #2A1D14);
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.storybook-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.storybook-select,
+.storybook-search {
+  width: 100%;
+  padding: 8px 12px;
+  background: #FFFDF9;
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-radius: 4px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.88rem;
+  color: var(--text-primary, #2A1D14);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Gold focus rings */
+.storybook-select:focus,
+.storybook-search:focus {
+  outline: none;
+  border-color: var(--gold, #D9A441);
+  box-shadow: 0 0 0 2px rgba(217, 164, 65, 0.35);
+}
+
+.storybook-count {
+  font-size: 0.8rem;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  margin-top: 4px;
+}
+
+/* List Rows */
+.storybook-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.storybook-row {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: background 0.18s ease, border-left-color 0.18s ease, padding-left 0.18s ease;
+}
+
+.storybook-row:hover {
+  background: rgba(217, 164, 65, 0.08);
+  padding-left: 15px;
+}
+
+/* Active row: 3px gold left bar and slightly darker parchment */
+.storybook-row.active {
+  background: rgba(217, 164, 65, 0.18);
+  border-left-color: var(--gold, #D9A441);
+  padding-left: 15px;
+}
+
+.storybook-row-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-primary, #2A1D14);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.storybook-row.active .storybook-row-title {
+  font-weight: 600;
+}
+
+.storybook-row-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.storybook-row-theme {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.storybook-theme-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--theme-color, var(--accent-gold, #8A6420));
+}
+
+.storybook-theme-name {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.8rem;
+  color: var(--text-secondary, rgba(42, 29, 20, 0.7));
+  text-transform: lowercase;
+}
+
+.storybook-row-words {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.78rem;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   Right Column: Story Reader (Max-width 720px)
+   ========================================= */
+.storybook-reader {
+  max-width: 720px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.storybook-reader-header {
+  border-bottom: 1px solid rgba(217, 164, 65, 0.3);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+.storybook-story-eyebrow {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-gold, #8A6420);
+  margin-bottom: 4px;
+}
+
+.storybook-header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+/* Story Title: Cormorant 2.6rem */
+.storybook-story-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--text-primary, #2A1D14);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+/* Export buttons: small ghost buttons at the top right */
+.storybook-export-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.storybook-btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  color: var(--text-primary, #2A1D14);
+  padding: 6px 12px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.storybook-btn-ghost:hover {
+  background: rgba(217, 164, 65, 0.12);
+  border-color: var(--accent-gold, #8A6420);
+  color: var(--accent-gold, #8A6420);
+}
+
+/* Meta line with theme chip and source */
+.storybook-meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.storybook-theme-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--theme-color, var(--accent-gold, #8A6420));
+  color: var(--theme-color, var(--accent-gold, #8A6420));
+  line-height: 1.3;
+}
+
+.storybook-source-label {
+  font-size: 0.88rem;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  font-style: italic;
+}
+
+/* Full-width classical artwork: 4px radius, no heavy frame, soft shadow */
+.storybook-artwork-wrap {
+  width: 100%;
+  margin: 0 0 28px 0;
+}
+
+.storybook-artwork-img {
+  width: 100%;
+  display: block;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 8px 24px rgba(42, 29, 20, 0.12);
+}
+
+.storybook-artwork-credit {
+  font-size: 0.76rem;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  font-style: italic;
+  margin-top: 6px;
+  text-align: right;
+}
+
+/* Moral as a pull quote: large Cormorant italic with a gold rule */
+.storybook-moral-pullquote {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink, #2A1D14);
+  border-left: 2px solid var(--accent-gold, #8A6420);
+  padding: 8px 0 8px 22px;
+  margin: 28px 0;
+  background: transparent;
+}
+
+/* Story text: Cormorant 1.3rem, line-height 1.85, gold drop cap */
+.storybook-story-text {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.3rem;
+  line-height: 1.85;
+  color: var(--text-primary, #2A1D14);
+  margin-bottom: 36px;
+  white-space: pre-line;
+}
+
+.storybook-drop-cap {
+  float: left;
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 3.8rem;
+  line-height: 0.8;
+  font-weight: 500;
+  color: var(--accent-gold, #8A6420);
+  padding: 6px 12px 0 0;
+  text-shadow: 0 1px 2px rgba(217, 164, 65, 0.25);
+}
+
+/* "Who's in this story" as chips with a small round portrait from PORTRAITS */
+.storybook-characters-section {
+  margin-bottom: 28px;
+}
+
+.storybook-section-label {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-primary, #2A1D14);
+  margin: 0 0 12px 0;
+}
+
+.storybook-character-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.storybook-character-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFDF9;
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: var(--type-color, var(--accent-gold, #8A6420));
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  color: var(--text-primary, #2A1D14);
+}
+
+.storybook-char-portrait {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(217, 164, 65, 0.5);
+  flex-shrink: 0;
+}
+
+.storybook-char-name {
+  font-weight: 500;
+}
+
+.storybook-character-type {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--type-color, var(--accent-gold, #8A6420));
+}
+
+/* Connections as one simple row */
+.storybook-connections-section {
+  border-top: 1px solid rgba(217, 164, 65, 0.25);
+  padding-top: 24px;
+  margin-bottom: 28px;
+}
+
+.storybook-connections-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-primary, #2A1D14);
+  margin: 0 0 12px 0;
+}
+
+.storybook-connections-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.storybook-connection-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFDF9;
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.88rem;
+  color: var(--text-primary, #2A1D14);
+}
+
+.storybook-connection-node {
+  font-weight: 600;
+}
+
+.storybook-connection-arrow {
+  color: var(--accent-gold, #8A6420);
+  font-size: 0.82rem;
+}
+
+.storybook-connection-rel {
+  color: var(--text-secondary, rgba(42, 29, 20, 0.7));
+  font-style: italic;
+}
+
+/* "If you liked this" as a horizontal row of 3 cards, with image from MYTH_IMAGES */
+.storybook-similar-section {
+  border-top: 1px solid rgba(217, 164, 65, 0.25);
+  padding-top: 24px;
+}
+
+.storybook-similar-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-primary, #2A1D14);
+  margin: 0 0 16px 0;
+}
+
+.storybook-similar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.storybook-similar-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: #FFFDF9;
+  border: 1px solid rgba(217, 164, 65, 0.3);
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-top-color: var(--theme-color, var(--accent-gold, #8A6420));
+  border-radius: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.storybook-similar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(42, 29, 20, 0.1);
+  border-color: rgba(217, 164, 65, 0.7);
+}
+
+.storybook-similar-img-box {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(42, 29, 20, 0.05);
+}
+
+.storybook-similar-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.storybook-similar-card:hover .storybook-similar-card-img {
+  transform: scale(1.05);
+}
+
+.storybook-similar-content {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.storybook-similar-card-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-primary, #2A1D14);
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.storybook-similar-meta {
+  margin-bottom: 8px;
+}
+
+.storybook-theme-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 12px;
+  background: transparent;
+  border: 1px solid var(--theme-color, var(--accent-gold, #8A6420));
+  color: var(--theme-color, var(--accent-gold, #8A6420));
+  line-height: 1.3;
+}
+
+.storybook-similar-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary, rgba(42, 29, 20, 0.7));
+  margin: 0;
+}
+
+.storybook-empty {
+  padding: 60px 24px;
+  text-align: center;
+  color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* =========================================
+   Mobile Drawer & Responsiveness
+   ========================================= */
+@media (max-width: 900px) {
+  .storybook-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 24px 16px 56px;
+  }
+
+  /* Desktop sidebar hides on mobile */
+  .storybook-sidebar {
+    display: none;
+  }
+
+  /* Button appears above story */
+  .storybook-mobile-choose-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 18px;
+    background: #FFFDF9;
+    border: 1px solid rgba(217, 164, 65, 0.45);
+    border-radius: 4px;
+    color: var(--text-primary, #2A1D14);
+    font-family: var(--font-body, 'Jost', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(42, 29, 20, 0.05);
+    transition: all 0.2s ease;
+  }
+
+  .storybook-mobile-choose-btn:hover {
+    border-color: var(--gold, #D9A441);
+    background: rgba(217, 164, 65, 0.08);
+  }
+
+  .storybook-mobile-choose-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-gold, #8A6420);
+  }
+
+  .storybook-mobile-choose-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted, rgba(42, 29, 20, 0.7));
+  }
+
+  .storybook-header-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .storybook-story-title {
+    font-size: 2.2rem;
+  }
+
+  .storybook-export-btns {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .storybook-similar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Drawer Overlay */
+.storybook-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 12, 9, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.storybook-drawer-panel {
+  width: min(340px, 88vw);
+  height: 100%;
+  background: var(--bg-surface, #FBF3E2);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: drawerSlideIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.storybook-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(217, 164, 65, 0.3);
+  background: #FFFDF9;
+}
+
+.storybook-drawer-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-primary, #2A1D14);
+}
+
+.storybook-drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-primary, #2A1D14);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.storybook-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

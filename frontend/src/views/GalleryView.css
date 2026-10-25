@@ -1,0 +1,384 @@
+/* GalleryView.css — dark-surface gallery on .section-night */
+
+/* ── Container ─────────────────────────────────────────────── */
+.gv-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Top action bar ─────────────────────────────────────────── */
+.gv-actions-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.gv-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--gold, #D9A441);
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.gv-btn-ghost:hover {
+  background: rgba(217, 164, 65, 0.1);
+  border-color: var(--gold, #D9A441);
+  transform: translateY(-1px);
+}
+
+/* ── Section layout ─────────────────────────────────────────── */
+.gv-section {
+  scroll-margin-top: 80px;
+  margin-bottom: 64px;
+}
+
+/* Section header: label + h2 + one-line intro */
+.gv-section-header {
+  margin-bottom: 28px;
+}
+
+.gv-section-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #D9A441);
+  margin-bottom: 8px;
+}
+
+.gv-section-h2 {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.gv-section-intro {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(251, 243, 226, 0.55);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Card grid ──────────────────────────────────────────────── */
+.gv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.gv-card {
+  display: flex;
+  flex-direction: column;
+  background: #19140f;
+  border: 1px solid rgba(217, 164, 65, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+
+.gv-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 164, 65, 0.72);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.45),
+    0 0 16px rgba(217, 164, 65, 0.14);
+}
+
+/* Image at 4:3 with slow zoom on hover */
+.gv-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #100c09;
+  flex-shrink: 0;
+}
+
+.gv-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.18) saturate(0.9);
+  /* slow zoom — 1.4 s ease so it feels monumental */
+  transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.35s ease;
+}
+
+.gv-card:hover .gv-card-img {
+  transform: scale(1.07);
+  filter: sepia(0) saturate(1.05);
+}
+
+/* Card text */
+.gv-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.gv-card-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 2px 0;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+/* Kind + date in --gold */
+.gv-card-kind {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold, #D9A441);
+  letter-spacing: 0;
+}
+
+/* Location muted */
+.gv-card-location {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(251, 243, 226, 0.45);
+  margin-bottom: 6px;
+}
+
+/* Blurb clamped to 3 lines */
+.gv-card-blurb {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(251, 243, 226, 0.72);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Credits footer ─────────────────────────────────────────── */
+.gv-credits {
+  margin-top: 16px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(217, 164, 65, 0.18);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(251, 243, 226, 0.4);
+}
+
+.gv-credits strong {
+  color: rgba(251, 243, 226, 0.65);
+}
+
+/* ── Lightbox ───────────────────────────────────────────────── */
+.gv-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 6, 4, 0.9);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.gv-lightbox-dialog {
+  position: relative;
+  background: #181410;
+  border: 1px solid rgba(217, 164, 65, 0.55);
+  border-radius: 4px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.65),
+    0 0 36px rgba(217, 164, 65, 0.14);
+}
+
+.gv-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 20, 16, 0.85);
+  color: var(--cream, #FBF3E2);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.gv-lightbox-close:hover {
+  background: var(--gold, #D9A441);
+  color: #181410;
+  border-color: var(--gold, #D9A441);
+}
+
+.gv-lightbox-img-wrap {
+  width: 100%;
+  max-height: 56vh;
+  background: #0d0a07;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gv-lightbox-img {
+  max-width: 100%;
+  max-height: 56vh;
+  object-fit: contain;
+  display: block;
+}
+
+.gv-lightbox-body {
+  padding: 28px 32px 32px;
+}
+
+.gv-lightbox-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.gv-lightbox-meta {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--gold, #D9A441);
+  margin: 0 0 4px 0;
+}
+
+.gv-lightbox-location {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(251, 243, 226, 0.5);
+  margin: 0 0 16px 0;
+}
+
+/* Lightbox specs table / dl */
+.gv-lightbox-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  background: rgba(217, 164, 65, 0.05);
+  border: 1px solid rgba(217, 164, 65, 0.2);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 0 0 18px 0;
+}
+
+.gv-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gv-spec-key {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold, #D9A441);
+}
+
+.gv-spec-val {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(251, 243, 226, 0.85);
+  margin: 0;
+}
+
+.gv-lightbox-blurb {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.72;
+  color: rgba(251, 243, 226, 0.85);
+  margin: 0 0 20px 0;
+}
+
+.gv-lightbox-myth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(217, 164, 65, 0.08);
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-radius: 9999px;
+  padding: 4px 14px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--glow, #FFD98A);
+  margin-bottom: 20px;
+}
+
+.gv-lightbox-myth-name {
+  font-weight: 600;
+  color: var(--cream, #FBF3E2);
+}
+
+.gv-lightbox-credit {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(251, 243, 226, 0.4);
+  border-top: 1px solid rgba(217, 164, 65, 0.18);
+  padding-top: 14px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gv-lightbox-body {
+    padding: 20px 18px 24px;
+  }
+  .gv-lightbox-title {
+    font-size: 1.5rem;
+  }
+  .gv-section-h2 {
+    font-size: 1.6rem;
+  }
+  .gv-credits {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

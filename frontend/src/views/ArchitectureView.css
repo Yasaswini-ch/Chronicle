@@ -1,0 +1,372 @@
+/* ArchitectureView.css — dark-surface pipeline reskin */
+
+/* ── Container ─────────────────────────────────────────────── */
+.av-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Vertical pipeline ──────────────────────────────────────── */
+.av-pipeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin: 48px 0 56px;
+  padding-left: 36px;
+}
+
+/* The vertical gold line */
+.av-pipeline::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 10px; /* centred behind the 20px star */
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(217, 164, 65, 0.1),
+    rgba(217, 164, 65, 0.6) 12%,
+    rgba(217, 164, 65, 0.6) 88%,
+    rgba(217, 164, 65, 0.1)
+  );
+  z-index: 1;
+}
+
+/* Each step wrapper */
+.av-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  z-index: 2;
+}
+
+/* Star node on the gold line */
+.av-star-node {
+  position: absolute;
+  left: -36px;
+  top: 20px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--glow, #FFD98A);
+  background: var(--bg-dark, #14100C);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--bg-dark, #14100C), 0 0 8px rgba(255, 217, 138, 0.3);
+  user-select: none;
+  z-index: 3;
+}
+
+/* Step card */
+.av-step-card {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.025);
+  transition: border-color 0.25s ease;
+}
+
+.av-step-card:hover {
+  border-color: rgba(217, 164, 65, 0.5);
+}
+
+@media (max-width: 680px) {
+  .av-step-card {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* Large outlined numeral in Cormorant */
+.av-step-numeral {
+  flex-shrink: 0;
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(217, 164, 65, 0.55);
+  letter-spacing: 0;
+  user-select: none;
+  min-width: 56px;
+  text-align: center;
+  padding-top: 2px;
+}
+
+.av-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Sentence-case title */
+.av-step-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 10px 0;
+  line-height: 1.25;
+}
+
+.av-step-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(251, 243, 226, 0.6);
+  line-height: 1.7;
+  margin: 0 0 14px 0;
+}
+
+/* Three tag chips */
+.av-step-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.av-tag-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--glow, #FFD98A);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 9999px;
+  background: rgba(217, 164, 65, 0.06);
+  white-space: nowrap;
+}
+
+/* Spec rows */
+.av-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  border-top: 1px solid rgba(217, 164, 65, 0.15);
+  padding-top: 14px;
+}
+
+.av-spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.av-spec-key {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(217, 164, 65, 0.85);
+}
+
+.av-spec-val {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(251, 243, 226, 0.7);
+  line-height: 1.55;
+}
+
+/* ── Evaluation section ──────────────────────────────────────── */
+.av-eval-card {
+  padding: 32px;
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.025);
+  margin-bottom: 28px;
+}
+
+.av-section-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.av-section-intro {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(251, 243, 226, 0.6);
+  line-height: 1.7;
+  margin: 0 0 24px 0;
+}
+
+.av-eval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .av-eval-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-sub-panel {
+  border: 1px solid rgba(217, 164, 65, 0.2);
+  border-radius: 4px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.av-sub-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 14px 0;
+  line-height: 1.25;
+}
+
+/* Dark evaluation table */
+.av-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-family: var(--font-body);
+}
+
+.av-th {
+  text-align: left;
+  padding: 8px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(217, 164, 65, 0.85);
+  border-bottom: 1px solid rgba(217, 164, 65, 0.35);
+  white-space: nowrap;
+}
+
+.av-tr {
+  border-bottom: 1px solid rgba(217, 164, 65, 0.1);
+  transition: background 0.15s ease;
+}
+
+.av-tr:last-child {
+  border-bottom: none;
+}
+
+.av-tr:hover {
+  background: rgba(217, 164, 65, 0.06);
+}
+
+.av-td {
+  padding: 8px 6px;
+  color: rgba(251, 243, 226, 0.65);
+  vertical-align: middle;
+}
+
+/* Best row highlight in --glow */
+.av-tr--best {
+  background: rgba(255, 217, 138, 0.05);
+}
+
+.av-tr--best .av-td {
+  color: rgba(251, 243, 226, 0.85);
+}
+
+.av-td--glow {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--glow, #FFD98A);
+}
+
+/* ── Telemetry card ──────────────────────────────────────────── */
+.av-telemetry-card {
+  padding: 32px;
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.025);
+  margin-top: 0;
+}
+
+.av-telemetry-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 20px 0;
+  line-height: 1.25;
+}
+
+/* Four telemetry tiles */
+.av-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.av-telem-tile {
+  border: 1px solid rgba(217, 164, 65, 0.32);
+  border-radius: 4px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 0 12px rgba(255, 217, 138, 0.04);
+}
+
+.av-telem-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(251, 243, 226, 0.45);
+}
+
+.av-telem-value {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--glow, #FFD98A);
+  line-height: 1.2;
+}
+
+/* Artifacts line */
+.av-artifacts {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(251, 243, 226, 0.5);
+  border-top: 1px solid rgba(217, 164, 65, 0.15);
+  padding-top: 16px;
+}
+
+/* Monospace file-name chips */
+.av-file-chip {
+  display: inline-block;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 0.8rem;
+  color: var(--glow, #FFD98A);
+  background: rgba(255, 217, 138, 0.08);
+  border: 1px solid rgba(217, 164, 65, 0.3);
+  border-radius: 3px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+
+.av-telem-fallback {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(251, 243, 226, 0.5);
+  line-height: 1.7;
+}

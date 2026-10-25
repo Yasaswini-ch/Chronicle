@@ -1,92 +1,240 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
-import SectionIcon from '../components/SectionIcon';
 import { GALLERY } from '../data/gallery';
+import { THEME } from '../data/theme';
+import './GalleryView.css';
 
-export default function GalleryView() {
+const PLACE_KINDS = [
+  'temple',
+  'fortification entrance',
+  'tholos tomb',
+  'tholos (beehive) tomb',
+  'sanctuary',
+  'theatre',
+  'theater',
+  'palace',
+  'gateway',
+  'treasury (building)',
+];
+
+function isPlace(item) {
+  const k = (item.kind || '').toLowerCase();
+  return PLACE_KINDS.some(p => k.includes(p));
+}
+
+const placesItems    = GALLERY.filter(item =>  isPlace(item));
+const artifactsItems = GALLERY.filter(item => !isPlace(item));
+
+export default function GalleryView({ initialSection, subTabs }) {
   const [active, setActive] = useState(null);
-  const thumbs = GALLERY.slice(0, 9);
-  const scrollToGrid = () => document.getElementById('gallery-full-grid')?.scrollIntoView({ behavior: 'smooth' });
+  const showPlaces = !initialSection || initialSection === 'places';
+  const showArtifacts = !initialSection || initialSection === 'artifacts';
+  const pageTitle = showPlaces && !showArtifacts
+    ? 'Walk where the legends lived'
+    : showArtifacts && !showPlaces
+      ? 'What time could not erase'
+      : 'Surviving Works of the Ancient World';
+  const pageLabel = showPlaces && !showArtifacts
+    ? 'PLACES'
+    : showArtifacts && !showPlaces
+      ? 'ARTIFACTS'
+      : 'GALLERY OF ANTIQUITY';
+  const pageIntro = showPlaces && !showArtifacts
+    ? 'Temples, theatres, palaces, and royal tombs — places still standing where the myths unfolded.'
+    : showArtifacts && !showPlaces
+      ? 'Sculpture, bronze, and gold unearthed from sanctuaries, shipwrecks, and royal graves.'
+      : 'The myths you\'ve been reading weren\'t only written down — they were carved, cast in bronze, and built into mountainsides. These are real surviving sculptures, temples, and tombs, photographed where they stand today.';
+
+  // Close on Escape
+  useEffect(() => {
+    if (!active) return;
+    const onKey = e => { if (e.key === 'Escape') setActive(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [active]);
+
+  const openRandom = useCallback(() => {
+    const items = showPlaces && showArtifacts ? GALLERY : showPlaces ? placesItems : artifactsItems;
+    setActive(items[Math.floor(Math.random() * items.length)]);
+  }, [showPlaces, showArtifacts]);
 
   return (
-    <div>
-      <Reveal className="card gallery-hero" style={{ marginBottom: '32px', padding: 0, overflow: 'hidden' }}>
-        <div className="gallery-hero-text gallery-hero-text-vista">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-            <SectionIcon name="column" />
-            <h2 style={{ fontSize: '1.6rem', margin: 0 }}>Gallery of Antiquity</h2>
-          </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-            The myths you&apos;ve been reading weren&apos;t only written down — they were carved, cast in
-            bronze, and built into mountainsides. These are real surviving sculptures, temples, and tombs,
-            photographed where they stand today.
-          </p>
-          <div style={{ display: 'flex', gap: '10px', marginTop: '18px', flexWrap: 'wrap' }}>
-            <button className="btn-primary" onClick={scrollToGrid}>Browse All {GALLERY.length}</button>
-            <button
-              className="btn-secondary"
-              onClick={() => setActive(GALLERY[Math.floor(Math.random() * GALLERY.length)])}
-            >
-              Surprise Me
-            </button>
-          </div>
-        </div>
-        <div className="gallery-hero-grid">
-          {thumbs.map((item) => (
-            <button
-              key={item.id}
-              className="gallery-hero-thumb"
-              onClick={() => setActive(item)}
-              aria-label={item.title}
-            >
-              <img src={item.image} alt={item.title} loading="lazy" />
-            </button>
-          ))}
-        </div>
-      </Reveal>
+    <div className="page-surface">
+      <PageHeader
+        label={pageLabel}
+        title={pageTitle}
+        intro={pageIntro}
+        image={THEME.delphi}
+        light={true}
+      >
+        {subTabs}
+      </PageHeader>
 
-      <div id="gallery-full-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '18px' }}>
-        {GALLERY.map((item, i) => (
-          <Reveal
-            key={item.id}
-            delay={(i % 4) * 70}
-            className="card gallery-card"
-            style={{ padding: 0, cursor: 'pointer', overflow: 'hidden' }}
-            onClick={() => setActive(item)}
-          >
-            <div className="gallery-card-image-wrap">
-              <img src={item.image} alt={item.title} loading="lazy" className="gallery-card-image" />
+      <div className="section-night">
+        <div className="gv-container">
+
+          {/* Top action bar — Surprise Me */}
+          <div className="gv-actions-bar">
+            <button type="button" className="gv-btn-ghost" onClick={openRandom}>
+              ✦ Surprise me
+            </button>
+          </div>
+
+          {/* ── PLACES ──────────────────────────────────────────── */}
+          {showPlaces && <section id="places" className="gv-section">
+            <div className="gv-section-header">
+              <span className="gv-section-label label">Places</span>
+              <h2 className="gv-section-h2">Walk where the legends lived</h2>
+              <p className="gv-section-intro">
+                Temples, theatres, palaces, and royal tombs — places still standing where the myths unfolded.
+              </p>
             </div>
-            <div style={{ padding: '14px 16px' }}>
-              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '2px' }}>
-                {item.title}
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontStyle: 'italic' }}>{item.kind}</div>
+
+            <div className="gv-grid">
+              {placesItems.map((item, i) => (
+                <GalleryCard key={item.id} item={item} delay={(i % 4) * 60} onOpen={setActive} />
+              ))}
             </div>
-          </Reveal>
-        ))}
+          </section>}
+
+          {/* ── ARTIFACTS ────────────────────────────────────────── */}
+          {showArtifacts && <section id="artifacts" className="gv-section">
+            <div className="gv-section-header">
+              <span className="gv-section-label label">Artifacts</span>
+              <h2 className="gv-section-h2">What time could not erase</h2>
+              <p className="gv-section-intro">
+                Sculpture, bronze, and gold unearthed from sanctuaries, shipwrecks, and royal graves.
+              </p>
+            </div>
+
+            <div className="gv-grid">
+              {artifactsItems.map((item, i) => (
+                <GalleryCard key={item.id} item={item} delay={(i % 4) * 60} onOpen={setActive} />
+              ))}
+            </div>
+          </section>}
+
+          {/* ── Credits footer ──────────────────────────────────── */}
+          <footer className="gv-credits">
+            <span>
+              Photography &amp; images courtesy of <strong>Wikimedia Commons</strong>, public domain &amp; Creative Commons contributors.
+            </span>
+            <span>
+              Collections preserved at the Musée du Louvre, National Archaeological Museum Athens, Delphi Museum, and Vatican Museums.
+            </span>
+          </footer>
+
+        </div>
       </div>
 
+      {/* ── Lightbox ─────────────────────────────────────────────── */}
       {active && (
-        <div className="gallery-lightbox" onClick={() => setActive(null)}>
-          <div className="gallery-lightbox-panel" onClick={(e) => e.stopPropagation()}>
-            <button className="gallery-lightbox-close" onClick={() => setActive(null)} aria-label="Close">
+        <div
+          className="gv-lightbox-overlay"
+          onClick={() => setActive(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={active.title}
+        >
+          <div
+            className="gv-lightbox-dialog"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="gv-lightbox-close"
+              onClick={() => setActive(null)}
+              aria-label="Close"
+            >
               &times;
             </button>
-            <img src={active.image} alt={active.title} className="gallery-lightbox-image" />
-            <div className="gallery-lightbox-info">
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '2px' }}>{active.title}</h3>
-              <div style={{ fontSize: '0.85rem', color: 'var(--accent-gold)', fontStyle: 'italic', marginBottom: '2px' }}>
-                {active.greek} &bull; {active.kind}
+
+            <div className="gv-lightbox-img-wrap">
+              <img
+                src={active.image}
+                alt={active.title}
+                className="gv-lightbox-img"
+              />
+            </div>
+
+            <div className="gv-lightbox-body">
+              <h3 className="gv-lightbox-title">{active.title}</h3>
+
+              <div className="gv-lightbox-meta">
+                {active.greek && <span>{active.greek} &bull; </span>}
+                <span>{active.kind}</span>
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
-                {active.location}
+              <div className="gv-lightbox-location">{active.location}</div>
+
+              {/* Extended place fields */}
+              {(active.date || active.architect || active.material) && (
+                <dl className="gv-lightbox-specs">
+                  {active.date && (
+                    <div className="gv-spec-item">
+                      <dt className="gv-spec-key">Date</dt>
+                      <dd className="gv-spec-val">{active.date}</dd>
+                    </div>
+                  )}
+                  {active.architect && (
+                    <div className="gv-spec-item">
+                      <dt className="gv-spec-key">Architect</dt>
+                      <dd className="gv-spec-val">{active.architect}</dd>
+                    </div>
+                  )}
+                  {active.material && (
+                    <div className="gv-spec-item">
+                      <dt className="gv-spec-key">Material</dt>
+                      <dd className="gv-spec-val">{active.material}</dd>
+                    </div>
+                  )}
+                </dl>
+              )}
+
+              <p className="gv-lightbox-blurb">{active.blurb}</p>
+
+              {active.mythLink && (
+                <div className="gv-lightbox-myth-link">
+                  ✦ Connected myth: <span className="gv-lightbox-myth-name">{active.mythLink}</span>
+                </div>
+              )}
+
+              <div className="gv-lightbox-credit">
+                Photograph licensed under CC / Public Domain via Wikimedia Commons &bull; {active.location}
               </div>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>{active.blurb}</p>
             </div>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+/* ── Card sub-component ────────────────────────────────────────── */
+function GalleryCard({ item, delay, onOpen }) {
+  return (
+    <Reveal
+      delay={delay}
+      className="gv-card"
+      onClick={() => onOpen(item)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(item);
+        }
+      }}
+    >
+      <div className="gv-card-img-wrap">
+        <img src={item.image} alt={item.title} loading="lazy" className="gv-card-img" />
+      </div>
+      <div className="gv-card-body">
+        <h3 className="gv-card-title">{item.title}</h3>
+        <div className="gv-card-kind">{item.kind}</div>
+        <div className="gv-card-location">{item.location}</div>
+        <p className="gv-card-blurb">{item.blurb}</p>
+      </div>
+    </Reveal>
   );
 }
