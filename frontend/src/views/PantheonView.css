@@ -1,0 +1,19 @@
+.pantheon-page-surface { min-height: 0; }
+
+.pantheon-parchment { padding-top: 48px; padding-bottom: 56px; }
+.pantheon-parchment-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); max-width: 1260px; margin: 0 auto; }
+.pantheon-core-column { min-width: 0; }
+.pantheon-section-heading { margin-bottom: 28px; }
+.pantheon-section-heading .label { color: var(--accent-gold); margin-bottom: 8px; }
+.pantheon-section-heading p { max-width: 680px; margin: 0; color: var(--text-secondary); }
+.pantheon-directory { align-self: start; position: sticky; top: calc(var(--nav-h) + 24px); max-height: calc(100vh - var(--nav-h) - 48px); overflow: hidden; padding: 18px; background: rgba(251, 243, 226, 0.72); border: 1px solid rgba(138, 100, 32, 0.24); }
+.pantheon-directory-kicker { margin-bottom: 16px; color: var(--accent-gold); font: 600 0.72rem var(--font-heading); letter-spacing: 0.12em; text-transform: uppercase; }
+.pantheon-directory-list { max-height: calc(100vh - var(--nav-h) - 120px); overflow-y: auto; display: grid; gap: 2px; }
+.pantheon-directory-list button { display: flex; justify-content: space-between; gap: 8px; padding: 8px 4px; border: 0; border-left: 2px solid transparent; background: transparent; color: var(--text-primary); cursor: pointer; text-align: left; font: 1rem var(--font-display); }
+.pantheon-directory-list button:hover, .pantheon-directory-list button.active { padding-left: 10px; border-left-color: var(--gold); background: rgba(217, 164, 65, 0.1); }
+.pantheon-directory-list small { color: var(--text-muted); font: 0.68rem var(--font-body); text-transform: capitalize; }
+
+@media (max-width: 900px) {
+  .pantheon-parchment-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .pantheon-directory { position: static; max-height: 300px; }
+}
