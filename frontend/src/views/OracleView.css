@@ -391,3 +391,132 @@
 @media (max-width: 899px) {
   .oracle-view-sun { display: none; }
 }
+
+/* ═══════════ Chat redesign: temple-glass panel ═══════════ */
+.oracle-view-section.section-dark { background-image: none; }
+
+.oracle-chat-card {
+  padding: 0;
+  overflow: hidden;
+  color: var(--cream, #FBF3E2);
+  background:
+    radial-gradient(600px 260px at 50% 0%, rgba(217, 164, 65, 0.16), transparent 70%),
+    linear-gradient(180deg, rgba(30, 22, 14, 0.80), rgba(16, 12, 8, 0.88));
+  backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 217, 138, 0.25), 0 0 40px rgba(217, 164, 65, 0.08);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.oracle-chat-card::before { display: none; }
+
+.oracle-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(217, 164, 65, 0.25);
+  background: linear-gradient(90deg, rgba(217, 164, 65, 0.14), transparent);
+}
+.oracle-chat-header-sun {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.7));
+  animation: rotateOracleViewSun 60s linear infinite;
+}
+.oracle-chat-header-name {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--glow, #FFD98A);
+}
+.oracle-chat-header-sub {
+  font-size: 0.78rem;
+  color: rgba(251, 243, 226, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oracle-chat-header-sub::before {
+  content: '';
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #8FD18F;
+  box-shadow: 0 0 8px #8FD18F;
+}
+
+.oracle-messages-area {
+  padding: 24px 24px 8px;
+  margin: 0;
+  min-height: 300px;
+  max-height: 560px;
+}
+
+.oracle-msg-sender { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.9; }
+.oracle-msg-row.user .oracle-msg-sender { color: rgba(251, 243, 226, 0.5); }
+.oracle-msg-row.assistant .oracle-msg-sender { color: var(--gold, #D9A441); }
+
+.oracle-bubble-user {
+  background: linear-gradient(135deg, #E3B85A, #C08A2B);
+  color: #1B130B;
+  border: none;
+  border-radius: 18px 18px 4px 18px;
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(217, 164, 65, 0.25);
+}
+
+.oracle-bubble-assistant,
+.oracle-typing-indicator {
+  background: rgba(251, 243, 226, 0.07);
+  color: rgba(251, 243, 226, 0.94);
+  border: 1px solid rgba(217, 164, 65, 0.22);
+  border-left: 3px solid var(--gold, #D9A441);
+  border-radius: 4px 18px 18px 18px;
+  font-family: var(--font-display, 'Cormorant Garamond', serif);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.oracle-bubble-assistant strong { color: var(--glow, #FFD98A); font-weight: 600; }
+.oracle-bubble-assistant a { color: var(--glow, #FFD98A); }
+.oracle-typing-dot { background: var(--glow, #FFD98A); }
+
+.oracle-story-card.card {
+  background: linear-gradient(180deg, rgba(251, 243, 226, 0.96), rgba(243, 230, 204, 0.94));
+  color: var(--text-primary, #2A1D14);
+  font-family: var(--font-body, 'Jost', sans-serif);
+}
+
+.oracle-suggestion-chip {
+  background: rgba(217, 164, 65, 0.10);
+  color: var(--cream, #FBF3E2);
+  border-color: rgba(217, 164, 65, 0.45);
+}
+
+.oracle-input-bar {
+  margin: 8px 24px 24px;
+  background: rgba(8, 6, 4, 0.55);
+  border: 1px solid rgba(217, 164, 65, 0.5);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.oracle-input-bar:focus-within {
+  border-color: var(--glow, #FFD98A);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.22), 0 0 24px rgba(217, 164, 65, 0.2);
+}
+.oracle-text-input { color: var(--cream, #FBF3E2); }
+.oracle-text-input::placeholder { color: rgba(251, 243, 226, 0.45); }
+.oracle-submit-button {
+  background: linear-gradient(135deg, #E3B85A, #B8801F);
+  color: #1B130B;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .oracle-chat-header, .oracle-messages-area { padding-left: 16px; padding-right: 16px; }
+  .oracle-input-bar { margin: 8px 12px 16px; }
+}
+
+/* Fill the viewport so the dark band meets the footer */
+.oracle-view-section { min-height: calc(100vh - 80px); }

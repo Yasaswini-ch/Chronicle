@@ -7,9 +7,10 @@ body {
     radial-gradient(900px 520px at 92% 0%, rgba(240, 170, 110, 0.22), transparent 70%),
     radial-gradient(800px 600px at 0% 38%, rgba(232, 166, 160, 0.16), transparent 70%),
     radial-gradient(900px 600px at 100% 78%, rgba(217, 164, 65, 0.14), transparent 70%),
+    linear-gradient(rgba(243, 230, 204, 0.78), rgba(243, 230, 204, 0.78)),
     url('/images/theme/paper-grain.jpg');
-  background-size: auto, auto, auto, 520px;
-  background-attachment: scroll, scroll, scroll, scroll;
+  background-size: auto, auto, auto, auto, 520px;
+  background-attachment: scroll, scroll, scroll, scroll, scroll;
 }
 
 /* Soft vines framing the page edges, never over the reading column */
