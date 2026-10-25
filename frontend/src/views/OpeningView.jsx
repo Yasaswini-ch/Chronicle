@@ -1,137 +1,296 @@
-import React, { useState } from 'react';
-import LandingSections from '../components/LandingSections';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Hero from '../components/home/Hero';
+import Stories from '../components/home/Stories';
+import FamilyTreeBand from '../components/home/FamilyTreeBand';
+import OracleBand from '../components/home/OracleBand';
+import Places from '../components/home/Places';
+import Artifacts from '../components/home/Artifacts';
+import KleosBand from '../components/home/KleosBand';
+import FooterCta from '../components/home/FooterCta';
+import CursorSparkles from '../components/home/CursorSparkles';
 import './OpeningView.css';
+import '../components/home/SceneMorph.css';
 
-const PROMPT_IDEAS = [
-  'Who is Medusa, and why could no one look at her?',
-  'What happened to Icarus?',
-  'Tell me about Zeus and his family',
-  'Why do echoes repeat what you say?',
-];
+gsap.registerPlugin(ScrollTrigger);
 
-export default function OpeningView({ onNavigate, onAskOracle, totalMyths, totalWords, themeCount, characterCount }) {
-  const [query, setQuery] = useState('');
+export default function OpeningView({
+  onNavigate,
+  onAskOracle,
+  totalMyths,
+  totalWords,
+  themeCount,
+  characterCount,
+  myths,
+  onSelectMyth,
+}) {
+  const containerRef = useRef(null);
+  const heroRef = useRef(null);
+  const storiesRef = useRef(null);
+  const familyRef = useRef(null);
+  const oracleRef = useRef(null);
+  const placesRef = useRef(null);
+  const artifactsRef = useRef(null);
+  const kleosRef = useRef(null);
+  const footerCtaRef = useRef(null);
 
-  const submit = (text) => {
-    const q = (text ?? query).trim();
-    if (!q) {
-      onNavigate('primer');
-      return;
-    }
-    onAskOracle(q);
-  };
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      // 1. Hero -> Stories Cinematic Camera & Cloud Drift
+      // Moves camera toward the goddess hand and drifts clouds / petals downward
+      const heroBg = heroRef.current?.querySelector('.hero-section--exact');
+      const clouds = heroRef.current?.querySelector('.morph-hero-clouds');
+
+      if (heroRef.current && heroBg) {
+        gsap.to(heroBg, {
+          backgroundPosition: 'center 42%',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+        });
+      }
+
+      if (clouds) {
+        gsap.to(clouds, {
+          y: -60,
+          opacity: 0.2,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'center top',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // 2. Stories -> Family Tree: Parchment melts into celestial star field
+      if (storiesRef.current && familyRef.current) {
+        const storyCards = storiesRef.current.querySelectorAll('.story-portrait-card');
+        gsap.fromTo(
+          storyCards,
+          { y: 0 },
+          {
+            y: -25,
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: storiesRef.current,
+              start: 'bottom 85%',
+              end: 'bottom 20%',
+              scrub: 0.7,
+            },
+          }
+        );
+      }
+
+      // 3. Family Tree -> Oracle: Stars converge into Oracle Sun, temple columns emerge
+      if (familyRef.current && oracleRef.current) {
+        const oracleSun = oracleRef.current.querySelector('.oracle-sun-wrap');
+        if (oracleSun) {
+          gsap.fromTo(
+            oracleSun,
+            { scale: 0.85, opacity: 0.6, rotation: -20 },
+            {
+              scale: 1,
+              opacity: 1,
+              rotation: 0,
+              scrollTrigger: {
+                trigger: oracleRef.current,
+                start: 'top 85%',
+                end: 'top 30%',
+                scrub: 0.8,
+              },
+            }
+          );
+        }
+      }
+
+      // 4. Oracle -> Places: Temple incense dissolves into Aegean sea mist & distant island
+      if (oracleRef.current && placesRef.current) {
+        const islandBg = placesRef.current.querySelector('.places-island-bg');
+        if (islandBg) {
+          gsap.fromTo(
+            islandBg,
+            { opacity: 0.3, x: 40 },
+            {
+              opacity: 0.9,
+              x: 0,
+              scrollTrigger: {
+                trigger: placesRef.current,
+                start: 'top 85%',
+                end: 'top 35%',
+                scrub: 0.8,
+              },
+            }
+          );
+        }
+      }
+
+      // 5. Places -> Artifacts: Sunlit landscape transforms into carved sculpture shadows
+      if (placesRef.current && artifactsRef.current) {
+        const artifactCards = artifactsRef.current.querySelectorAll('.artifact-card');
+        gsap.fromTo(
+          artifactCards,
+          { opacity: 0.8, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.06,
+            scrollTrigger: {
+              trigger: artifactsRef.current,
+              start: 'top 85%',
+              end: 'top 40%',
+              scrub: 0.8,
+            },
+          }
+        );
+      }
+
+      // 6. Kleos & Artifacts -> Footer CTA: Horizon return & goddess welcoming
+      if (footerCtaRef.current) {
+        const footerGoddess = footerCtaRef.current.querySelector('.footer-cta-goddess-wrap');
+        const footerStar = footerCtaRef.current.querySelector('.footer-cta-star');
+
+        if (footerGoddess) {
+          gsap.fromTo(
+            footerGoddess,
+            { y: 50, opacity: 0.7 },
+            {
+              y: 0,
+              opacity: 1,
+              scrollTrigger: {
+                trigger: footerCtaRef.current,
+                start: 'top 80%',
+                end: 'center center',
+                scrub: 0.8,
+              },
+            }
+          );
+        }
+
+        if (footerStar) {
+          gsap.fromTo(
+            footerStar,
+            { scale: 0.6, rotation: -45 },
+            {
+              scale: 1.1,
+              rotation: 0,
+              scrollTrigger: {
+                trigger: footerCtaRef.current,
+                start: 'top 75%',
+                end: 'center center',
+                scrub: 0.6,
+              },
+            }
+          );
+        }
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="opening-page">
-      {/* Self-contained light nav, matching a landing page rather than the app chrome */}
-      <nav className="opening-nav">
-        <div className="opening-nav-brand" onClick={() => onNavigate('opening')}>
-          <span className="opening-logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <path
-                d="M12 2 L14.2 8.2 L21 9 L15.8 13.4 L17.4 20 L12 16.4 L6.6 20 L8.2 13.4 L3 9 L9.8 8.2 Z"
-                fill="none"
-                stroke="#7C6A3F"
-                strokeWidth="1.3"
-              />
-            </svg>
-          </span>
-          CHRONICLE
-        </div>
-        <div className="opening-nav-links">
-          <button onClick={() => onNavigate('primer')}>New Here?</button>
-          <button onClick={() => onNavigate('storybook')}>Myths</button>
-          <button onClick={() => onNavigate('oracle')}>Oracle</button>
-          <button onClick={() => onNavigate('explore')}>Explore</button>
-        </div>
-        <button className="opening-nav-cta" onClick={() => onNavigate('primer')}>
-          Begin Reading <span aria-hidden="true">&#8599;</span>
-        </button>
-      </nav>
+    <div ref={containerRef} className="opening-page">
+      {/* Delicate Cursor Movement Sparkles */}
+      <CursorSparkles />
 
-      <div className="opening-hero">
-      <img
-        src="/images/hero/hero-scholar.jpg"
-        alt=""
-        aria-hidden="true"
-        width="1672"
-        height="941"
-        fetchpriority="high"
-        className="opening-hero-vista-photo"
-      />
+      {/* 1. Hero Section with Clouds & Golden Particles */}
+      <div ref={heroRef} className="scene-morph-wrap">
+        <Hero
+          onNavigate={onNavigate}
+          totalMyths={totalMyths}
+          characterCount={characterCount}
+          themeCount={themeCount}
+          totalWords={totalWords}
+        />
 
-      <div className="opening-hero-content">
-        <div className="opening-eyebrow">Greek Mythology, Told For Everyone</div>
+        {/* Ambient drift clouds transitioning to Stories */}
+        <div className="morph-hero-clouds" aria-hidden="true" />
 
-        <h1 className="opening-title">
-          Timeless myths, <em>told plainly</em>
-          <br />
-          for readers who&apos;ve never met a Titan.
-        </h1>
-
-        <p className="opening-subtitle">
-          {totalMyths ? `${totalMyths} ` : ''}Greek myths — gods, mortals, and monsters — retold in full, with every
-          unfamiliar name quietly explained as you go. No homework required.
-        </p>
-
-        {/* The Oracle quick-ask bar, styled after a search / command box */}
-        <form
-          className="oracle-bar"
-          onSubmit={(e) => {
-            e.preventDefault();
-            submit();
-          }}
-        >
-          <div className="oracle-bar-label">Ask the Oracle</div>
-          <div className="oracle-bar-row">
-            <button
-              type="button"
-              className="oracle-bar-icon"
-              title="See a few things you could ask"
-              onClick={() => setQuery(PROMPT_IDEAS[Math.floor(Math.random() * PROMPT_IDEAS.length)])}
-            >
-              +
-            </button>
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ask about any god, hero, or myth…"
+        {/* Golden floating particles in the atmosphere */}
+        <div className="morph-particles-emitter" aria-hidden="true">
+          {Array.from({ length: 14 }, (_, i) => (
+            <span
+              key={i}
+              className="morph-particle"
+              style={{
+                width: `${4 + (i % 4) * 2}px`,
+                height: `${4 + (i % 4) * 2}px`,
+                top: `${15 + (i * 6)}%`,
+                left: `${10 + ((i * 17) % 80)}%`,
+                animationDelay: `${(i * 0.45).toFixed(2)}s`,
+                animationDuration: `${6 + (i % 3) * 2}s`,
+              }}
             />
-            <span className="oracle-bar-mode">Classic Telling &#9662;</span>
-            <button type="submit" className="oracle-bar-submit" aria-label="Ask">
-              &#8599;
-            </button>
-          </div>
-        </form>
-
-        <div className="oracle-bar-ideas">
-          {PROMPT_IDEAS.slice(0, 3).map((p) => (
-            <button key={p} onClick={() => submit(p)}>
-              {p}
-            </button>
           ))}
         </div>
-
-        <div className="opening-stats-panel">
-          <div className="opening-stats">
-          {[
-            { value: totalMyths || '—', label: 'Complete Myths' },
-            { value: characterCount || '—', label: 'Gods, Heroes & Monsters' },
-            { value: themeCount || '—', label: 'Universal Themes' },
-            { value: (totalWords || 4381).toLocaleString(), label: 'Words, Unabridged' },
-          ].map(({ value, label }) => (
-            <div key={label} className="opening-stat">
-              <div className="opening-stat-value">{value}</div>
-              <div className="opening-stat-label">{label}</div>
-            </div>
-          ))}
-          </div>
-        </div>
-      </div>
       </div>
 
-      <LandingSections onNavigate={onNavigate} totalMyths={totalMyths} />
+      {/* 2. Stories Section */}
+      <div ref={storiesRef} className="scene-morph-wrap">
+        <Stories
+          myths={myths}
+          onSelectMyth={onSelectMyth}
+          onNavigate={onNavigate}
+        />
+
+        {/* Dissolve into Celestial Starry Navy */}
+        <div className="morph-parchment-to-stars" aria-hidden="true" />
+      </div>
+
+      {/* 3. Family Tree Section */}
+      <div ref={familyRef} className="scene-morph-wrap">
+        <FamilyTreeBand onNavigate={onNavigate} />
+
+        {/* Transition into Oracle temple twilight */}
+        <div className="morph-stars-to-temple" aria-hidden="true" />
+      </div>
+
+      {/* 4. Oracle Section */}
+      <div ref={oracleRef} className="scene-morph-wrap">
+        <div className="morph-temple-smoke" aria-hidden="true" />
+        <OracleBand
+          onAskOracle={onAskOracle}
+          onNavigate={onNavigate}
+        />
+
+        {/* Temple dissolves into Aegean Sea mist */}
+        <div className="morph-oracle-to-places" aria-hidden="true" />
+      </div>
+
+      {/* 5. Places Section */}
+      <div ref={placesRef} className="scene-morph-wrap">
+        <div className="morph-sea-mist" aria-hidden="true" />
+        <Places onNavigate={onNavigate} />
+
+        {/* Sunlit coastline dissolves into museum artifacts */}
+        <div className="morph-places-to-artifacts" aria-hidden="true" />
+      </div>
+
+      {/* 6. Artifacts Section */}
+      <div ref={artifactsRef} className="scene-morph-wrap">
+        <Artifacts onNavigate={onNavigate} />
+      </div>
+
+      {/* 7. Kleos Band */}
+      <div ref={kleosRef} className="scene-morph-wrap">
+        <KleosBand />
+
+        {/* Artifacts & Kleos dissolve into Sunset Coastline */}
+        <div className="morph-artifacts-to-footer" aria-hidden="true" />
+      </div>
+
+      {/* 8. Footer CTA: Horizon return */}
+      <div ref={footerCtaRef} className="scene-morph-wrap">
+        <FooterCta onNavigate={onNavigate} />
+      </div>
     </div>
   );
 }

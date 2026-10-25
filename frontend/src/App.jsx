@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DoricFrieze from './components/DoricFrieze';
-import ColumnFrame from './components/ColumnFrame';
+import Navbar from './components/Navbar';
 import OpeningView from './views/OpeningView';
 import PrimerView from './views/PrimerView';
 import StorybookView from './views/StorybookView';
@@ -36,8 +35,13 @@ export default function App() {
   const [pendingOracleQuery, setPendingOracleQuery] = useState(null);
 
   // Tabs live in the URL hash so the back button, refresh and deep links work.
-  const setActiveTab = (key) => {
-    if (window.location.hash !== `#/${key}`) window.location.hash = `/${key}`;
+  const setActiveTab = (pathOrKey) => {
+    const clean = pathOrKey.replace(/^#\/?/, '');
+    const key = clean.split('/')[0];
+    const newHash = `/${clean}`;
+    if (window.location.hash !== `#${newHash}`) {
+      window.location.hash = newHash;
+    }
     setActiveTabState(key);
     window.scrollTo({ top: 0 });
   };
@@ -99,48 +103,13 @@ export default function App() {
       >
         Skip to content
       </a>
-      {/* Header */}
-      {activeTab !== 'opening' && (
-      <header className="site-header">
-        <ColumnFrame height={44} color="var(--accent-gold)">
-          <div
-            role="button"
-            tabIndex={0}
-            style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '14px', cursor: 'pointer' }}
-            onClick={() => setActiveTab('opening')}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveTab('opening'); } }}
-            title="Return to Opening Screen"
-          >
-            <span className="brand-title">CHRONICLE</span>
-            <span className="brand-tagline">Greek Mythology, Told For Everyone</span>
-          </div>
-        </ColumnFrame>
-        <div className="telemetry-badge" style={{ textAlign: 'center', marginTop: '6px' }}>
-          {myths.length} Narratives &bull; {totalWords.toLocaleString()} Words &bull; {uniqueThemes} Themes
-        </div>
-      </header>
-      )}
-
-      {activeTab !== 'opening' && <DoricFrieze />}
-
-      {activeTab !== 'opening' && (
-      <nav className="nav-tab-bar" aria-label="Main">
-        {TABS.map(t => (
-          <button
-            key={t.key}
-            className={`nav-tab-btn ${activeTab === t.key ? 'active' : ''}`}
-            aria-current={activeTab === t.key ? 'page' : undefined}
-            onClick={() => setActiveTab(t.key)}
-          >
-            {t.label}
-          </button>
-        ))}
-      </nav>
-      )}
+      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Active View Container */}
       <main id="main-content" tabIndex={-1} className={activeTab === 'opening' ? '' : 'content-area'}>
-        {loading ? (
+        {activeTab === 'primer' ? (
+          <PrimerView onNavigate={setActiveTab} />
+        ) : loading ? (
           <div className="state-box" role="status">Retrieving ancient Greek lore archive...</div>
         ) : loadError ? (
           <div className="state-box" role="alert">
@@ -157,10 +126,9 @@ export default function App() {
                 totalWords={totalWords}
                 themeCount={uniqueThemes}
                 characterCount={characterCount}
+                myths={myths}
+                onSelectMyth={handleSelectMyth}
               />
-            )}
-            {activeTab === 'primer' && (
-              <PrimerView onNavigate={setActiveTab} />
             )}
             {activeTab === 'storybook' && (
               <StorybookView
@@ -182,6 +150,10 @@ export default function App() {
           </>
         )}
       </main>
+
+      <footer className={`chronicle-footer ${activeTab === 'opening' ? 'chronicle-footer--dark' : ''}`}>
+        {myths.length} narratives &bull; {totalWords.toLocaleString()} words &bull; {uniqueThemes} themes
+      </footer>
     </div>
   );
 }
