@@ -1,0 +1,513 @@
+/* =========================================================================
+   Hero Section — Layered Background & Centered Marble Statue
+   ========================================================================= */
+
+.hero-section--layered {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text-primary, #2A1D14);
+}
+
+/* Background image layer (z-index 1, below thread z-index 2) */
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-position: center 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Atmospheric warm gradient overlay matching the sunset light */
+.hero-scrim--layered {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 25% 45%, rgba(246, 236, 218, 0.45) 0%, rgba(246, 236, 218, 0.15) 50%, rgba(246, 236, 218, 0) 100%),
+              linear-gradient(to bottom, rgba(20, 16, 12, 0.1) 0%, transparent 25%, transparent 75%, rgba(246, 236, 218, 0.4) 100%);
+  z-index: 1;
+}
+
+/* =========================================================================
+   Marble Goddess Statue — Center-Right Position matching the reference
+   ========================================================================= */
+
+.hero-figure-wrap--centered {
+  position: absolute;
+  left: 56%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 94vh;
+  max-height: 980px;
+  aspect-ratio: 1122 / 1402;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-goddess--centered {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.28)) drop-shadow(0 0 40px rgba(255, 230, 180, 0.18));
+}
+
+/* Astrolabe Halo perfectly centered behind goddess head */
+.hero-astrolabe-wrap--centered {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  width: clamp(380px, 42vw, 560px);
+  height: clamp(380px, 42vw, 560px);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-astrolabe-svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: rotateAstrolabe 120s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(217, 164, 65, 0.5));
+}
+
+@keyframes rotateAstrolabe {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating Rose Petals drifting down */
+.hero-rose-petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.hero-rose-petal {
+  position: absolute;
+  top: -30px;
+  background: radial-gradient(ellipse at 35% 35%, #FBE1DE 0%, var(--rose, #E8A6A0) 65%, #C77771 100%);
+  border-radius: 65% 35% 70% 30% / 50% 65% 35% 50%;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.12));
+  animation: driftPetal linear infinite;
+}
+
+@keyframes driftPetal {
+  0% {
+    transform: translateY(-25px) translateX(0) rotate(0deg) scale(0.85);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(110px) rotate(380deg) scale(1);
+    opacity: 0;
+  }
+}
+
+.hero-petal-1 { left: 34%; width: 14px; height: 18px; animation-duration: 11s; animation-delay: 0.5s; }
+.hero-petal-2 { left: 42%; width: 18px; height: 23px; animation-duration: 9.5s; animation-delay: 2.5s; }
+.hero-petal-3 { left: 28%; width: 13px; height: 16px; animation-duration: 13s; animation-delay: 4.8s; }
+.hero-petal-4 { left: 58%; width: 16px; height: 21px; animation-duration: 10s; animation-delay: 1.2s; }
+.hero-petal-5 { left: 48%; width: 12px; height: 15px; animation-duration: 12s; animation-delay: 6s; }
+.hero-petal-6 { left: 68%; width: 15px; height: 19px; animation-duration: 11.5s; animation-delay: 3.5s; }
+.hero-petal-7 { left: 38%; width: 17px; height: 22px; animation-duration: 10.5s; animation-delay: 7.2s; }
+.hero-petal-8 { left: 52%; width: 14px; height: 17px; animation-duration: 14s; animation-delay: 5s; }
+
+
+
+/* Right Quotation Ornament from the master artwork */
+.hero-right-quote {
+  position: absolute;
+  top: 31%;
+  right: clamp(16px, 11vw, 190px);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-quote-compass {
+  color: var(--gold, #D9A441);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 8px rgba(217, 164, 65, 0.6));
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.hero-quote-text {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: clamp(0.7rem, 0.9vw, 0.84rem);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0.18em;
+  color: #24160B;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 248, 235, 0.9);
+}
+
+/* Main Stage Container */
+.hero-stage--layered {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  margin: 0;
+  padding: clamp(96px, 13vh, 150px) 4% 0 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Left Content Column with subtle warm luminous backing for perfect legibility */
+.hero-left-col--layered {
+  max-width: 580px;
+  position: relative;
+  z-index: 4;
+  padding-left: clamp(20px, 7vw, 110px);
+  box-sizing: border-box;
+}
+
+.hero-left-col--layered::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -30px;
+  right: -60px;
+  bottom: -30px;
+  background: radial-gradient(ellipse 85% 75% at 35% 45%, rgba(255, 250, 240, 0.72) 0%, rgba(255, 247, 232, 0.45) 50%, rgba(255, 247, 232, 0) 85%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(16px);
+}
+
+/* Pill label above headline */
+.hero-label--exact {
+  display: inline-block;
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: clamp(0.72rem, 0.88vw, 0.84rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #24160B;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 10px rgba(255, 250, 238, 0.9);
+}
+
+/* The Grand Typography: LEGENDS STILL ✦ LIVE HERE */
+.hero-title--exact {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-weight: 600;
+  font-size: clamp(3.6rem, 6.5vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #120904;
+  margin: 0 0 28px 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 14px rgba(255, 248, 235, 0.85);
+}
+
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-title-word--still {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* Celestial Compass Rose inline in "STILL" */
+.hero-title-compass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #A67C2E;
+  vertical-align: middle;
+  margin-left: 0.2em;
+  margin-right: 0.05em;
+  filter: drop-shadow(0 0 8px rgba(217, 164, 65, 0.65));
+}
+
+.hero-title-compass svg {
+  display: block;
+}
+
+/* Body description: Editorial Classical Serif with high contrast and clarity */
+.hero-description--exact {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: clamp(1.22rem, 1.52vw, 1.48rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #1A1008;
+  max-width: 480px;
+  margin: 0 0 32px 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.98), 0 0 16px rgba(255, 250, 240, 0.95);
+}
+
+/* Elegant Outlined Classical Button matching master artwork */
+.hero-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 250, 240, 0.75);
+  border: 1.5px solid rgba(138, 98, 30, 0.75);
+  border-radius: 2px;
+  padding: 11px 24px;
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #180E07;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08), 0 0 16px rgba(255, 248, 235, 0.75);
+  transition: all 0.25s ease;
+}
+
+.hero-outline-btn:hover {
+  background: rgba(255, 252, 246, 0.96);
+  border-color: #8A6420;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 100, 32, 0.25);
+}
+
+.hero-btn-arrow {
+  color: #7A5318;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.hero-outline-btn:hover .hero-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================================================
+   Bottom Anchors: 01 STORIES · 02 FAMILY TREE · 03 THE ORACLE · 04 PLACES · 05 ARTIFACTS
+   Delicate horizontal golden axis matching master artwork bottom line
+   ========================================================================= */
+
+.hero-anchors-exact {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3.8vw, 56px);
+  padding: 16px 24px 22px;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-anchors-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(168, 128, 64, 0.45));
+}
+
+.hero-anchors-line--right {
+  background: linear-gradient(to left, transparent, rgba(168, 128, 64, 0.45));
+}
+
+.hero-anchor-exact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hero-anchor-exact:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.hero-anchor-num-exact {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #724C16;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.hero-anchor-title-exact {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: clamp(0.7rem, 0.84vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #24160B;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 248, 235, 0.85);
+}
+
+/* Center Oracle anchor with subtle sunburst marker above it */
+.hero-anchor-exact--center {
+  position: relative;
+}
+
+.hero-center-sunburst {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #A88040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================================
+   Slim Stats Strip below Hero
+   ========================================================================= */
+
+.hero-stats-strip {
+  position: relative;
+  z-index: 4;
+  background: #F4E8D3;
+  border-top: 1px solid rgba(217, 164, 65, 0.35);
+  border-bottom: 1px solid rgba(217, 164, 65, 0.2);
+  padding: 16px 24px;
+}
+
+.hero-stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.hero-stat-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.hero-stat-number {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 600;
+  color: var(--ink, #221D18);
+  line-height: 1.1;
+}
+
+.hero-stat-title {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-gold, #7D5A1F);
+}
+
+/* =========================================================================
+   Responsive Adjustments
+   ========================================================================= */
+
+@media (max-width: 1200px) {
+  .hero-figure-wrap--centered {
+    left: 60%;
+    height: 85vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-right-quote {
+    display: none;
+  }
+
+  .hero-figure-wrap--centered {
+    left: 65%;
+    opacity: 0.75;
+  }
+
+  .hero-left-col--layered {
+    padding-left: 5%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section--layered {
+    background-position: 65% center;
+  }
+
+  .hero-figure-wrap--centered {
+    left: 50%;
+    height: 70vh;
+    opacity: 0.45;
+  }
+
+  .hero-left-col--layered {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 100%;
+  }
+
+  .hero-anchors-exact {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hero-anchors-line {
+    display: none;
+  }
+
+  .hero-stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}

@@ -1,0 +1,44 @@
+/* ThreadDivider — Golden Thread Line & Compass Star Divider */
+.thread-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 860px;
+  margin: 48px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.thread-divider-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(to right, transparent, var(--gold, #D9A441));
+  opacity: 0.65;
+}
+
+.thread-divider-line--right {
+  background: linear-gradient(to left, transparent, var(--gold, #D9A441));
+}
+
+.thread-divider-star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold, #D9A441);
+  filter: drop-shadow(0 0 8px rgba(217, 164, 65, 0.55));
+  flex-shrink: 0;
+  animation: threadStarPulse 4s ease-in-out infinite;
+}
+
+@keyframes threadStarPulse {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}

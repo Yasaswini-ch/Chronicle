@@ -1,0 +1,248 @@
+/* =========================================================================
+   Cinematic Scene Morphs & Scroll Transitions
+   ========================================================================= */
+
+/* Continuous Page Canvas */
+.opening-page {
+  position: relative;
+  background-color: var(--bg-primary, #F3EDE3);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Base Morph Section Wrapper */
+.scene-morph-wrap {
+  position: relative;
+  width: 100%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* -------------------------------------------------------------------------
+   1. Hero -> Stories: Atmospheric Clouds & Floral Drift
+   ------------------------------------------------------------------------- */
+.morph-hero-clouds {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  height: 220px;
+  pointer-events: none;
+  z-index: 4;
+  background: radial-gradient(ellipse 65% 50% at 50% 90%, rgba(251, 243, 226, 0.95) 0%, rgba(251, 243, 226, 0.65) 55%, transparent 100%),
+              radial-gradient(ellipse 45% 40% at 20% 95%, rgba(243, 230, 204, 0.9) 0%, transparent 70%),
+              radial-gradient(ellipse 45% 40% at 80% 95%, rgba(243, 230, 204, 0.9) 0%, transparent 70%);
+  filter: blur(14px);
+  opacity: 0.95;
+  transform: translateY(0);
+  will-change: transform, opacity;
+}
+
+/* Floating Golden Dust Particles in Hero & Stories */
+.morph-particles-emitter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.morph-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, #FFD98A 55%, rgba(217, 164, 65, 0) 100%);
+  box-shadow: 0 0 6px rgba(255, 217, 138, 0.7);
+  animation: particleDrift 8s ease-in-out infinite alternate;
+}
+
+@keyframes particleDrift {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.85);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(-24px) translateX(12px) scale(1.15);
+  }
+  100% {
+    transform: translateY(-48px) translateX(-8px) scale(0.9);
+    opacity: 0.3;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   2. Stories -> Family Tree: Parchment Melts into Celestial Night
+   ------------------------------------------------------------------------- */
+.morph-parchment-to-stars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(251, 243, 226, 0.4) 20%,
+    rgba(11, 18, 38, 0.65) 70%,
+    #0B1226 100%
+  );
+  -webkit-mask-image: radial-gradient(ellipse at 50% 100%, #000 30%, transparent 90%);
+  mask-image: radial-gradient(ellipse at 50% 100%, #000 30%, transparent 90%);
+}
+
+.morph-rising-stars {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* -------------------------------------------------------------------------
+   3. Family Tree -> Oracle: Constellation Points into Temple Columns & Smoke
+   ------------------------------------------------------------------------- */
+.morph-stars-to-temple {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(20, 16, 12, 0.95) 0%, rgba(11, 18, 38, 0.7) 60%, transparent 100%);
+}
+
+.morph-temple-smoke {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 35% 50%, rgba(255, 217, 138, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 65% 50%, rgba(201, 164, 94, 0.06) 0%, transparent 50%);
+  mix-blend-mode: screen;
+  filter: blur(20px);
+}
+
+/* -------------------------------------------------------------------------
+   4. Oracle -> Places: Temple Incense into Aegean Sea Mist
+   ------------------------------------------------------------------------- */
+.morph-oracle-to-places {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(20, 16, 12, 0.4) 20%,
+    rgba(243, 230, 204, 0.75) 80%,
+    var(--bg-surface, #FBF3E2) 100%
+  );
+}
+
+.morph-sea-mist {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 50vw;
+  height: 160px;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(ellipse at 80% 40%, rgba(220, 238, 245, 0.45) 0%, rgba(251, 243, 226, 0.3) 50%, transparent 80%);
+  filter: blur(18px);
+}
+
+/* -------------------------------------------------------------------------
+   5. Places -> Artifacts: Sunlit Stone into Carved Museum Shadows
+   ------------------------------------------------------------------------- */
+.morph-places-to-artifacts {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(251, 243, 226, 0.2) 20%,
+    rgba(20, 16, 12, 0.8) 75%,
+    var(--bg-dark, #14100C) 100%
+  );
+}
+
+/* -------------------------------------------------------------------------
+   6. Artifacts & Kleos -> Footer: Sunset Coastline & Horizon Return
+   ------------------------------------------------------------------------- */
+.morph-artifacts-to-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(11, 18, 38, 0.5) 30%,
+    rgba(20, 16, 12, 0.85) 80%,
+    rgba(14, 10, 8, 0.95) 100%
+  );
+}
+
+
+
+/* -------------------------------------------------------------------------
+   Interactive Depth & Subtle Parallax
+   ------------------------------------------------------------------------- */
+.parallax-bg {
+  will-change: transform;
+}
+
+.scene-halo-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(255, 217, 138, 0.14) 0%, transparent 70%);
+  filter: blur(28px);
+}
+
+/* Hover pulses on cards & interactive elements */
+.story-portrait-card,
+.family-node,
+.place-landscape-card,
+.artifact-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease !important;
+}
+
+.story-portrait-card:hover,
+.place-landscape-card:hover,
+.artifact-card:hover {
+  filter: drop-shadow(0 0 14px rgba(217, 164, 65, 0.3));
+}
+
+/* Graceful Fallback for Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .scene-morph-wrap,
+  .morph-hero-clouds,
+  .morph-particle,
+  .parallax-bg {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

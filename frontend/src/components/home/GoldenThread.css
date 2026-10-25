@@ -1,0 +1,43 @@
+/* =========================================================================
+   Golden Thread Canvas — Plain React Scroll-Driven Luminous Thread
+   ========================================================================= */
+
+.golden-thread-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* 5 Compass-Star Glyphs placed along the thread */
+.thread-compass-star {
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.thread-compass-star--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Under 768px: Hide the thread */
+@media (max-width: 768px) {
+  .golden-thread-canvas {
+    display: none !important;
+  }
+}
+
+/* prefers-reduced-motion: full path statically visible without animation transitions */
+@media (prefers-reduced-motion: reduce) {
+  .thread-compass-star {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+}

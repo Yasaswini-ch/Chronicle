@@ -1,0 +1,308 @@
+/* Places Section - Ancient Greek Travel Journal Spread */
+
+.places-section {
+  position: relative;
+  padding: 80px 32px 100px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+
+
+
+.places-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* -------------------------------------------------------------------------
+   1. Editorial Spread Anchor & Panorama
+   ------------------------------------------------------------------------- */
+.places-spread-anchor {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+/* Panorama Background: softly fading into the ivory parchment */
+.places-island-bg.places-panorama-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  /* Double feathering: fades gently on top, bottom, and left to blend into parchment */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0.95) 60%, rgba(0, 0, 0, 0.85) 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0.95) 60%, rgba(0, 0, 0, 0.85) 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+}
+
+.places-island-img.places-panorama-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
+  opacity: 0.88;
+  filter: sepia(0.12) saturate(0.95) contrast(1.02);
+  transition: opacity 0.5s ease;
+}
+
+/* Soft warm glow overlay to merge seamlessly with parchment */
+.places-panorama-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 80% at 20% 50%,
+    rgba(251, 243, 226, 0.92) 0%,
+    rgba(251, 243, 226, 0.65) 45%,
+    transparent 85%
+  );
+  pointer-events: none;
+}
+
+/* Editorial Journal Header */
+.places-journal-header {
+  position: relative;
+  z-index: 3;
+  max-width: 580px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.places-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent-gold, #8A6420);
+  margin-bottom: 16px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.places-label::before,
+.places-label::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background-color: var(--gold, #D9A441);
+  opacity: 0.6;
+}
+
+.places-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 3.8vw, 3.4rem);
+  line-height: 1.1;
+  color: var(--text-primary, #2A1D14);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.places-description {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #4A3B2C;
+  margin: 0 0 28px 0;
+  text-shadow: 0 1px 2px rgba(251, 243, 226, 0.6);
+}
+
+.places-header-action {
+  display: flex;
+}
+
+/* -------------------------------------------------------------------------
+   2. Destination Cards Grid (Delphi, Athens, Crete)
+   ------------------------------------------------------------------------- */
+.places-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 3;
+}
+
+.place-card-wrapper {
+  height: 100%;
+}
+
+.place-landscape-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cream, #FBF3E2);
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  border-radius: 4px;
+  padding: 14px 14px 20px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 16px rgba(42, 29, 20, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  user-select: none;
+}
+
+.place-landscape-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(42, 29, 20, 0.1), 0 0 12px rgba(217, 164, 65, 0.15);
+  border-color: var(--gold, #D9A441);
+}
+
+/* Image container with 4:3 ratio and thin antique inner gold frame */
+.place-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #E6DCB8;
+  margin-bottom: 16px;
+  border: 1px solid rgba(217, 164, 65, 0.3);
+}
+
+.place-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.1) saturate(0.95);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.place-landscape-card:hover .place-card-img {
+  transform: scale(1.05);
+  filter: sepia(0) saturate(1.02);
+}
+
+/* Delicate antique badge indicating region */
+.place-card-media-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(26, 21, 16, 0.78);
+  backdrop-filter: blur(4px);
+  color: var(--gold, #D9A441);
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(217, 164, 65, 0.35);
+  pointer-events: none;
+}
+
+/* Card Content & Typography */
+.place-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 4px;
+}
+
+.place-card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.place-card-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary, #2A1D14);
+  line-height: 1.2;
+}
+
+.place-card-arrow {
+  color: var(--gold, #D9A441);
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.6;
+  transform: translateX(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.place-landscape-card:hover .place-card-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.place-card-tagline {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #5C5440);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   3. Responsive Breakpoints
+   ------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .places-spread-anchor {
+    min-height: 380px;
+  }
+  .places-journal-header {
+    max-width: 500px;
+    padding: 32px 24px;
+  }
+  .places-cards-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 860px) {
+  .places-section {
+    padding: 60px 20px 80px;
+  }
+  .places-spread-anchor {
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .places-island-bg.places-panorama-frame {
+    position: relative;
+    height: 220px;
+    margin-bottom: -40px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, transparent 100%);
+  }
+  .places-journal-header {
+    max-width: 100%;
+    padding: 20px 8px 10px;
+  }
+  .places-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

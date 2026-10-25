@@ -1,0 +1,103 @@
+/* Kleos Band: Slim .section-night band */
+.kleos-band {
+  position: relative;
+  background-color: var(--night, #0B1226);
+  color: var(--text-on-dark, #F3EDE3);
+  padding: clamp(44px, 5vw, 68px) 32px;
+  overflow: hidden;
+  border-top: 1px solid rgba(217, 164, 65, 0.2);
+  border-bottom: 1px solid rgba(217, 164, 65, 0.2);
+}
+
+.kleos-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+/* Classical Arch Frame for Nike of Samothrace */
+.kleos-arch {
+  position: relative;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.kleos-arch::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(255, 217, 138, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.kleos-arch-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  border: 1px solid var(--gold, #D9A441);
+  border-radius: 999px 999px 8px 8px / 160px 160px 8px 8px;
+  box-shadow: 0 0 0 5px rgba(217, 164, 65, 0.15), 0 16px 36px rgba(0, 0, 0, 0.6);
+  filter: sepia(0.15) contrast(1.05);
+}
+
+/* Content */
+.kleos-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.kleos-word {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 5.5vw, 4.4rem);
+  line-height: 1;
+  color: var(--glow, #FFD98A);
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 20px rgba(255, 217, 138, 0.3);
+}
+
+.kleos-gloss {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: clamp(0.76rem, 1vw, 0.86rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--gold, #D9A441);
+  margin: 0 0 18px 0;
+}
+
+.kleos-body {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  line-height: 1.75;
+  color: rgba(243, 237, 227, 0.9);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kleos-container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .kleos-arch-img {
+    max-width: 180px;
+  }
+
+  .kleos-content {
+    align-items: center;
+  }
+}

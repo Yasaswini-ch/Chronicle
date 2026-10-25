@@ -1,0 +1,139 @@
+/* PageHeader component styles - Full-bleed hero band */
+.page-header {
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: calc(var(--nav-h) + 40px) 0 28px 0;
+}
+
+/* Gradient overlay: rgba(20,16,12,0.65) at bottom, rgba(20,16,12,0.25) at top */
+.page-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 16, 12, 0.25) 0%,
+    rgba(20, 16, 12, 0.45) 50%,
+    rgba(20, 16, 12, 0.65) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Vine on the right edge at 35% opacity, aria-hidden, never overlapping text */
+.page-header-vine-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 85%;
+  width: auto;
+  opacity: 0.45;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+/* Centered 1200px container */
+.page-header-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+
+/* .label in --gold */
+.page-header-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold, #D9A441);
+  margin-bottom: 12px;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.page-header-label::before,
+.page-header-label::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background-color: var(--gold, #D9A441);
+  opacity: 0.65;
+}
+
+/* h1 in cream Cormorant light at clamp(2.4rem, 5vw, 4rem) */
+.page-header-title {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.08;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Intro in cream at 90% opacity, max-width 620px */
+.page-header-intro {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(251, 243, 226, 0.9);
+  max-width: 620px;
+  margin: 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.page-header-extras {
+  width: 100%;
+}
+
+/* Mobile responsive styling: 260px tall */
+@media (max-width: 768px) {
+  .page-header {
+    min-height: 260px;
+    padding: calc(var(--nav-h) + 40px) 0 16px 0;
+  }
+
+  .page-header-container {
+    padding: 0 20px;
+  }
+
+  .page-header-title {
+    font-size: clamp(2rem, 6.5vw, 2.8rem);
+    margin-bottom: 8px;
+  }
+
+  .page-header-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .page-header-vine-right {
+    height: 70%;
+    opacity: 0.2;
+  }
+}

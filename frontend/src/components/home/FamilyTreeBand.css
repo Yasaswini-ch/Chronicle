@@ -1,0 +1,331 @@
+.family-tree-band {
+  position: relative;
+  padding: 100px 32px 110px;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Background image layer (z-index 1, below thread z-index 2) */
+.family-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Dark celestial overlay to ensure high contrast for nodes & text against treeBg */
+.family-tree-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(11, 18, 38, 0.7) 0%,
+    rgba(11, 18, 38, 0.88) 65%,
+    rgba(8, 12, 26, 0.96) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.family-tree-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+/* Left Content Block */
+.family-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.family-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold, #D9A441);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.family-label::before,
+.family-label::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background-color: var(--gold, #D9A441);
+  opacity: 0.6;
+}
+
+.family-title {
+  font-family: 'Cormorant Garamond', var(--font-serif, serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+  line-height: 1.08;
+  color: var(--text-on-dark, #F3EDE3);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+.family-description {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: rgba(243, 237, 227, 0.85);
+  margin: 0 0 32px 0;
+  max-width: 340px;
+}
+
+.family-cta-btn {
+  text-decoration: none;
+}
+
+/* Right Content: Diagram Container */
+.family-tree-diagram {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 520;
+}
+
+/* Connectors SVG */
+.family-connectors-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.family-connector-path {
+  fill: none;
+  stroke: var(--gold, #D9A441);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#familySoftGlow);
+  opacity: 0.88;
+}
+
+.family-constellation-vertex {
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+
+/* Twinkling star sparkles */
+.family-star-sparkle {
+  animation: familySparkleTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes familySparkleTwinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.65);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 5px var(--glow, #FFD98A));
+  }
+}
+
+/* Nodes styling */
+.family-node {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1);
+  user-select: none;
+}
+
+.family-node-avatar {
+  background-color: #0B1226;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.family-node-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.family-node-name {
+  font-family: var(--font-heading, 'Cinzel', serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-dark, #F3EDE3);
+  margin-top: 8px;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Node sizes on desktop */
+.family-node--large .family-node-avatar {
+  width: 90px;
+  height: 90px;
+}
+.family-node--large .family-node-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+}
+
+.family-node--medium .family-node-avatar {
+  width: 72px;
+  height: 72px;
+}
+
+.family-node--small .family-node-avatar {
+  width: 58px;
+  height: 58px;
+}
+.family-node--small .family-node-name {
+  font-size: 0.68rem;
+}
+
+/* Hover effects */
+.family-node:hover .ring-gold {
+  box-shadow: 0 0 24px var(--glow, #FFD98A), 0 0 10px var(--gold, #D9A441), inset 0 0 10px rgba(255, 217, 138, 0.45);
+  border-color: #FFF2C6;
+}
+
+.family-node:hover .family-node-name {
+  color: var(--glow, #FFD98A);
+  text-shadow: 0 0 10px rgba(255, 217, 138, 0.7);
+}
+
+/* Desktop layout (> 700px) */
+@media (min-width: 701px) {
+  .family-tier {
+    display: contents;
+  }
+
+  .family-node {
+    position: absolute;
+    left: var(--node-x);
+    top: var(--node-y);
+    transform: translate(-50%, -50%);
+  }
+
+  .family-node:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Responsive: 701px to 1024px */
+@media (max-width: 1024px) {
+  .family-tree-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .family-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .family-description {
+    max-width: 580px;
+  }
+}
+
+/* Under 700px: drop connectors, Zeus alone, Hera & Poseidon, six in 3x2 grid */
+@media (max-width: 700px) {
+  .family-tree-band {
+    padding: 70px 20px 80px;
+  }
+
+  .family-connectors-svg {
+    display: none !important;
+  }
+
+  .family-tree-diagram {
+    aspect-ratio: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .family-tier {
+    width: 100%;
+  }
+
+  /* Zeus alone */
+  .family-tier--1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Hera and Poseidon */
+  .family-tier--2 {
+    display: flex;
+    justify-content: center;
+    gap: clamp(28px, 10vw, 56px);
+  }
+
+  /* Six in a 3x2 grid */
+  .family-tier--3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px 12px;
+    max-width: 380px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+
+  .family-node {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+
+  .family-node:hover {
+    transform: scale(1.08);
+  }
+
+  .family-node--large .family-node-avatar {
+    width: 78px;
+    height: 78px;
+  }
+
+  .family-node--medium .family-node-avatar {
+    width: 66px;
+    height: 66px;
+  }
+
+  .family-node--small .family-node-avatar {
+    width: 54px;
+    height: 54px;
+  }
+
+  .family-node-name {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+  }
+}
