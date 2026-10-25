@@ -1,0 +1,261 @@
+/* ThemesView.css — dark-surface analytics reskin */
+
+/* ── Container ─────────────────────────────────────────────── */
+.tv-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tv-loading {
+  padding: 60px 20px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--accent-aurum, #C9A45E);
+}
+
+/* ── Stat tiles (2 × 2) ─────────────────────────────────────── */
+.tv-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+/* Thin gold border, faint glow */
+.tv-stat-tile {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 22px;
+  border: 1px solid rgba(217, 164, 65, 0.45);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 0 0 1px rgba(255, 217, 138, 0.08),
+    0 0 18px rgba(255, 217, 138, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tv-stat-tile:hover {
+  border-color: rgba(217, 164, 65, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(255, 217, 138, 0.14),
+    0 0 28px rgba(255, 217, 138, 0.12);
+}
+
+/* Large Cormorant number in --glow */
+.tv-stat-number {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--glow, #FFD98A);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+/* Cream label below the number */
+.tv-stat-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cream, #FBF3E2);
+  opacity: 0.65;
+  margin-bottom: 14px;
+}
+
+.tv-stat-name {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.tv-stat-detail {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(251, 243, 226, 0.5);
+  line-height: 1.6;
+}
+
+/* ── Two-column layout ──────────────────────────────────────── */
+.tv-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  .tv-columns-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark panel (no white card background) */
+.tv-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid rgba(217, 164, 65, 0.28);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tv-panel-title {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--cream, #FBF3E2);
+  margin: 0 0 20px 0;
+  line-height: 1.25;
+}
+
+/* ── Horizontal theme bars ───────────────────────────────────── */
+.tv-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tv-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tv-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.tv-bar-name {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--cream, #FBF3E2);
+  /* sentence case applied in JSX */
+}
+
+.tv-bar-count {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--glow, #FFD98A);
+}
+
+/* Dark track */
+.tv-bar-track {
+  height: 7px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.tv-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Table ───────────────────────────────────────────────────── */
+.tv-table-scroll {
+  overflow-y: auto;
+  max-height: 420px;
+  /* Sticky header needs a scroll container */
+}
+
+.tv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+}
+
+/* Sticky header */
+.tv-thead-row {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.tv-th {
+  padding: 9px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--glow, #FFD98A);
+  background: #1e1812; /* dark track colour for sticky header */
+  border-bottom: 1px solid rgba(217, 164, 65, 0.45);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Hairline gold dividers */
+.tv-tr {
+  border-bottom: 1px solid rgba(217, 164, 65, 0.14);
+  transition: background 0.16s ease;
+}
+
+.tv-tr:last-child {
+  border-bottom: none;
+}
+
+/* Hover tint */
+.tv-tr:hover {
+  background: rgba(217, 164, 65, 0.06);
+}
+
+.tv-td {
+  padding: 9px 8px;
+  vertical-align: middle;
+  color: rgba(251, 243, 226, 0.82);
+}
+
+.tv-td--name {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--cream, #FBF3E2);
+  white-space: nowrap;
+}
+
+.tv-td--num {
+  font-family: 'Cormorant Garamond', var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--glow, #FFD98A);
+  text-align: center;
+}
+
+.tv-td--themes {
+  min-width: 120px;
+}
+
+/* Theme chips */
+.tv-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tv-theme-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  border: 1px solid;         /* color set inline from themeColor() */
+  background: transparent;
+  white-space: nowrap;
+  line-height: 1.6;
+  /* color set inline from themeColor() */
+}

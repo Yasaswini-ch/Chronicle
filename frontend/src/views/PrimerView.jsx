@@ -1,11 +1,12 @@
 import React from 'react';
+import PageHeader from '../components/PageHeader';
 import Term from '../components/Term';
 import Reveal from '../components/Reveal';
-import GreekKeyDivider from '../components/GreekKeyDivider';
-import SectionIcon from '../components/SectionIcon';
-import ColumnFrame from '../components/ColumnFrame';
-import { typeColor } from '../utils/colors';
+import { typeColor, themeColor } from '../utils/colors';
+import { THEME } from '../data/theme';
 import { THEME_GUIDE } from '../data/glossary';
+import ThreadDivider from '../components/ThreadDivider';
+import './PrimerView.css';
 
 const WHO = [
   {
@@ -38,177 +39,214 @@ const WHO = [
   },
 ];
 
+const SHAPE_STEPS = [
+  'A character wants something',
+  'They cross a line a god or fate has drawn',
+  'There are consequences — often severe',
+  'Something about the world is permanently explained',
+];
+
+const EXPLORE_CARDS = [
+  {
+    tab: 'storybook',
+    title: 'Read a story',
+    desc: 'Full, unabridged myths with every unfamiliar name explained as you go.',
+  },
+  {
+    tab: 'oracle',
+    title: 'Just ask',
+    desc: 'Type a question in plain English — "who is Medusa?" — and get a direct answer.',
+  },
+  {
+    tab: 'explore',
+    title: 'See the family tree',
+    desc: 'A map of how every god, hero, and monster connects to the others — plus real photos of the sculptures, temples, and tombs behind these stories.',
+  },
+];
+
+
+
 export default function PrimerView({ onNavigate }) {
+  const introText = (
+    <>
+      Greek mythology can look like a wall of unfamiliar names and family trees. It isn&apos;t.
+      It&apos;s a set of stories people told each other around 3,000 years ago to make sense of love,
+      death, pride, and power — and most of them still make perfect sense today. This page gives you
+      everything you need in five minutes. Anywhere you see a{' '}
+      <Term word="hubris">dotted underline</Term> like that one, hover or tap it for a quick definition.
+    </>
+  );
+
   return (
-    <div className="primer-vista-bg" style={{ maxWidth: '920px', margin: '0 auto' }}>
-      <Reveal className="primer-gateway">
-        <img src="/images/decor/statues-flanking-arch.png" alt="Two classical statues flanking a stone archway" />
-      </Reveal>
+    <div className="page-surface">
+      <PageHeader
+        label="NO PRIOR KNOWLEDGE REQUIRED"
+        title="New Here? Start With This."
+        intro={introText}
+        image={THEME.heroBg}
+      />
 
-      <Reveal style={{ marginBottom: '32px' }}>
-        <ColumnFrame color="var(--accent-gold)">
-        <div style={{ padding: '4px 20px 16px 20px' }}>
-        <div
-          style={{
-            fontSize: '0.72rem',
-            letterSpacing: '3px',
-            color: 'var(--accent-gold)',
-            textTransform: 'uppercase',
-            marginBottom: '10px',
-          }}
-        >
-          No Prior Knowledge Required
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '10px' }}>
-          <SectionIcon name="laurel" size={34} />
-          <h1 style={{ fontSize: '2rem', margin: 0 }}>New Here? Start With This.</h1>
-        </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', lineHeight: 1.7, maxWidth: '720px' }}>
-          Greek mythology can look like a wall of unfamiliar names and family trees. It isn&apos;t.
-          It&apos;s a set of stories people told each other around 3,000 years ago to make sense of love,
-          death, pride, and power — and most of them still make perfect sense today. This page gives you
-          everything you need in five minutes. Anywhere you see a <Term word="hubris">dotted underline</Term>{' '}
-          like that one, hover or tap it for a quick definition.
-        </p>
-        </div>
-        </ColumnFrame>
-      </Reveal>
+      <div className="section-parchment">
+        <div className="primer-content">
+          <ThreadDivider />
 
-      <GreekKeyDivider />
+        {/* 1. Who's who */}
+        <Reveal as="section" className="primer-section">
+          <div className="primer-section-header">
+            <h2 className="primer-section-heading">
+              <span className="label primer-step-num">01</span>
+              Who&apos;s who
+            </h2>
+            <p className="primer-section-subtitle">
+              Every character in this collection falls into one of four groups.
+            </p>
+          </div>
 
-      {/* Who's who */}
-      <Reveal as="section" style={{ marginBottom: '40px' }}>
-        <h2 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>1. Who&apos;s Who</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '18px', fontSize: '0.95rem' }}>
-          Every character in this collection falls into one of four groups.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
-          {WHO.map((w, i) => (
-            <Reveal key={w.name} delay={i * 80} className="card" style={{ borderTop: `4px solid ${typeColor(w.colorKey)}` }}>
-              <div
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.05rem',
-                  color: typeColor(w.colorKey),
-                  marginBottom: '8px',
-                }}
-              >
-                <Term word={w.glossaryKey}>{w.name}</Term>
-              </div>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: 1.6 }}>{w.blurb}</p>
-            </Reveal>
-          ))}
-        </div>
-      </Reveal>
-
-      <GreekKeyDivider />
-
-      {/* The one plot pattern */}
-      <Reveal as="section" style={{ marginBottom: '40px' }}>
-        <h2 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>2. The Shape of Almost Every Myth</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '18px', fontSize: '0.95rem' }}>
-          Most of the stories in this archive follow a recognizable rhythm. Once you see it, every myth gets easier to read.
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '10px',
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border-subtle)',
-            padding: '20px',
-          }}
-        >
-          {['A character wants something', 'They cross a line a god or fate has drawn', 'There are consequences — often severe', 'Something about the world is permanently explained'].map(
-            (step, i, arr) => (
-              <React.Fragment key={step}>
-                <div
-                  style={{
-                    flex: '1 1 180px',
-                    background: 'var(--bg-surface-elevated)',
-                    border: '1px solid var(--border-subtle)',
-                    padding: '12px 14px',
-                    fontSize: '0.85rem',
-                    color: 'var(--text-primary)',
-                  }}
+          <div className="primer-who-grid">
+            {WHO.map((w, i) => {
+              const borderTopColor = typeColor(w.colorKey);
+              return (
+                <Reveal
+                  key={w.name}
+                  delay={i * 80}
+                  className="card primer-card"
+                  style={{ borderTopColor, borderTopWidth: '3px', borderTopStyle: 'solid' }}
                 >
-                  <span style={{ color: 'var(--accent-gold)', fontFamily: 'var(--font-heading)', marginRight: '6px' }}>
-                    {i + 1}.
-                  </span>
-                  {step}
+                  <h3
+                    className="primer-card-title"
+                    style={{ color: borderTopColor }}
+                  >
+                    <Term word={w.glossaryKey}>{w.name}</Term>
+                  </h3>
+                  <p className="primer-card-body">{w.blurb}</p>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Reveal>
+
+        <ThreadDivider />
+
+        {/* 2. The Shape of Almost Every Myth */}
+        <Reveal as="section" className="primer-section">
+          <div className="primer-section-header">
+            <h2 className="primer-section-heading">
+              <span className="label primer-step-num">02</span>
+              The shape of almost every myth
+            </h2>
+            <p className="primer-section-subtitle">
+              Most of the stories in this archive follow a recognizable rhythm. Once you see it, every myth gets easier to read.
+            </p>
+          </div>
+
+          <div className="primer-shape-flow">
+            {SHAPE_STEPS.map((step, i) => (
+              <div key={step} className="primer-shape-step-wrapper">
+                <div className="card primer-shape-card">
+                  <div className="primer-shape-num">Step 0{i + 1}</div>
+                  <p className="primer-shape-text">{step}</p>
                 </div>
-                {i < arr.length - 1 && (
-                  <span style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>&rarr;</span>
+                {i < SHAPE_STEPS.length - 1 && (
+                  <span className="primer-shape-connector" aria-hidden="true">
+                    →
+                  </span>
                 )}
-              </React.Fragment>
-            )
-          )}
-        </div>
-        <p style={{ color: 'var(--text-secondary)', marginTop: '14px', fontSize: '0.9rem', lineHeight: 1.6 }}>
-          That last step is the point: Greek myths are origin stories. They explain why the echo repeats
-          your voice, why spiders spin webs, why laurel trees exist, why people fear the sea. Keep an eye
-          out for it as you read.
-        </p>
-      </Reveal>
-
-      <GreekKeyDivider />
-
-      {/* Themes */}
-      <Reveal as="section" style={{ marginBottom: '40px' }}>
-        <h2 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>3. The Threads Running Through This Collection</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '18px', fontSize: '0.95rem' }}>
-          Chronicle tags every story with a dominant theme (and often a second and third). Here&apos;s what each one means in plain terms.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
-          {Object.entries(THEME_GUIDE).map(([theme, desc], i) => (
-            <Reveal
-              key={theme}
-              delay={i * 70}
-              style={{ borderLeft: '3px solid var(--accent-gold)', background: 'var(--bg-surface)', padding: '12px 16px' }}
-            >
-              <div style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.85rem', color: 'var(--accent-gold)', marginBottom: '4px' }}>
-                {theme}
               </div>
-              <div style={{ fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>{desc}</div>
-            </Reveal>
-          ))}
+            ))}
+          </div>
+
+          <p className="primer-shape-note">
+            That last step is the point: Greek myths are origin stories. They explain why the echo repeats
+            your voice, why spiders spin webs, why laurel trees exist, why people fear the sea. Keep an eye
+            out for it as you read.
+          </p>
+        </Reveal>
+
+        <ThreadDivider />
+
+        {/* 3. Themes */}
+        <Reveal as="section" className="primer-section">
+          <div className="primer-section-header">
+            <h2 className="primer-section-heading">
+              <span className="label primer-step-num">03</span>
+              The threads running through this collection
+            </h2>
+            <p className="primer-section-subtitle">
+              Chronicle tags every story with a dominant theme (and often a second and third). Here&apos;s what each one means in plain terms.
+            </p>
+          </div>
+
+          <div className="primer-themes-grid">
+            {Object.entries(THEME_GUIDE).map(([theme, desc], i) => {
+              const borderTopColor = themeColor(theme);
+              return (
+                <Reveal
+                  key={theme}
+                  delay={i * 60}
+                  className="card primer-card"
+                  style={{ borderTopColor, borderTopWidth: '3px', borderTopStyle: 'solid' }}
+                >
+                  <h3
+                    className="primer-card-title"
+                    style={{ color: borderTopColor }}
+                  >
+                    {theme}
+                  </h3>
+                  <p className="primer-card-body">{desc}</p>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Reveal>
+
+        <ThreadDivider />
+
+        {/* 4. How to Explore Chronicle */}
+        <Reveal as="section" className="primer-section">
+          <div className="primer-section-header">
+            <h2 className="primer-section-heading">
+              <span className="label primer-step-num">04</span>
+              How to explore Chronicle
+            </h2>
+            <p className="primer-section-subtitle">
+              Four ways in — pick whichever matches how you like to learn.
+            </p>
+          </div>
+
+          <div className="primer-explore-grid">
+            {EXPLORE_CARDS.map((c, i) => (
+              <Reveal
+                key={c.tab}
+                delay={i * 80}
+                as="button"
+                type="button"
+                onClick={() => onNavigate && onNavigate(c.tab)}
+                className="card primer-card primer-explore-btn"
+                style={{ borderTopColor: 'var(--gold)', borderTopWidth: '3px', borderTopStyle: 'solid' }}
+              >
+                <h3 className="primer-card-title" style={{ color: 'var(--text-primary)' }}>
+                  {c.title} →
+                </h3>
+                <p className="primer-card-body" style={{ color: 'var(--text-secondary)' }}>
+                  {c.desc}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* Final CTA */}
+        <Reveal className="primer-cta-wrap">
+          <button
+            type="button"
+            onClick={() => onNavigate && onNavigate('storybook')}
+            className="btn-dark primer-cta-btn"
+          >
+            I&apos;M READY — TAKE ME TO THE STORIES
+          </button>
+        </Reveal>
         </div>
-      </Reveal>
-
-      <GreekKeyDivider />
-
-      {/* How to use the site */}
-      <Reveal as="section" style={{ marginBottom: '48px' }}>
-        <h2 style={{ fontSize: '1.3rem', marginBottom: '6px' }}>4. How To Explore Chronicle</h2>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '18px', fontSize: '0.95rem' }}>
-          Four ways in — pick whichever matches how you like to learn.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
-          {[
-            { tab: 'storybook', title: 'Read a Story', desc: 'Full, unabridged myths with every unfamiliar name explained as you go.' },
-            { tab: 'oracle', title: 'Just Ask', desc: 'Type a question in plain English — "who is Medusa?" — and get a direct answer.' },
-            { tab: 'explore', title: 'See the Family Tree', desc: 'A map of how every god, hero, and monster connects to the others — plus real photos of the sculptures, temples, and tombs behind these stories.' },
-          ].map((c, i) => (
-            <Reveal key={c.tab} delay={i * 80} as="button"
-              onClick={() => onNavigate && onNavigate(c.tab)}
-              className="card"
-              style={{ textAlign: 'left', cursor: 'pointer', border: '1px solid var(--border-subtle)' }}
-            >
-              <div style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', fontSize: '1rem', marginBottom: '6px' }}>
-                {c.title} &rarr;
-              </div>
-              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{c.desc}</div>
-            </Reveal>
-          ))}
-        </div>
-      </Reveal>
-
-      <Reveal style={{ textAlign: 'center', paddingBottom: '24px' }}>
-        <button onClick={() => onNavigate && onNavigate('storybook')} className="btn-primary">
-          I&apos;m Ready — Take Me To The Stories
-        </button>
-      </Reveal>
+      </div>
     </div>
   );
 }

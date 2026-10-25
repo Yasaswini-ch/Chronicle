@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
-import SectionIcon from '../components/SectionIcon';
 import { themeColor } from '../utils/colors';
+import { THEME } from '../data/theme';
+import './MotifsView.css';
 
-export default function MotifsView({ onSelectMyth }) {
+function toSentenceCase(str) {
+  if (!str) return '';
+  const trimmed = str.trim();
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
+
+export default function MotifsView({ onSelectMyth, subTabs }) {
   const [motifs, setMotifs] = useState([]);
   const [error, setError] = useState(false);
   const [active, setActive] = useState(null);
@@ -29,53 +37,97 @@ export default function MotifsView({ onSelectMyth }) {
   }, [active]);
 
   const current = motifs.find(m => m.id === active);
+  const totalCount = current ? (current.count || rows.length) : rows.length;
 
   return (
-    <div>
-      <Reveal style={{ marginBottom: '24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
-          <SectionIcon name="scroll" />
-          <h2 style={{ fontSize: '1.6rem', margin: 0 }}>Story Patterns</h2>
+    <div className="page-surface">
+      <PageHeader
+        label="STORY PATTERNS"
+        title="Story Patterns"
+        intro="Greek myths reuse the same few plots: someone is turned into a tree, a mortal defies a god, a hero goes down to the underworld. Pick a pattern to see every story that uses it, with the passage that shows it."
+        image={THEME.placesIsland}
+      >
+        {subTabs}
+      </PageHeader>
+
+      <div className="section-parchment">
+        <div className="motifs-container">
+          {error && (
+            <p role="alert" className="motifs-alert">
+              The pattern index could not be loaded.
+            </p>
+          )}
+
+          {/* Horizontally scrollable row of pills with story count, active pill filled dark */}
+          <div className="motifs-pills-row" role="tablist" aria-label="Story patterns">
+            {motifs.map(m => {
+              const isActive = m.id === active;
+              return (
+                <button
+                  key={m.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`motif-pill ${isActive ? 'active' : ''}`}
+                  onClick={() => setActive(m.id)}
+                >
+                  <span className="motif-pill-name">{m.label}</span>
+                  <span className="motif-pill-count">{m.count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {current && (
+            <div className="motif-detail-section" aria-live="polite">
+              {/* Pattern description in large Cormorant */}
+              <p className="motif-large-desc">
+                {current.description}
+              </p>
+
+              {loadingRows && <p className="motif-loading">Loading stories…</p>}
+
+              {/* Two-column grid of cards */}
+              <div className="motifs-cards-grid">
+                {rows.slice(0, 12).map((r, i) => {
+                  const color = themeColor(r.theme);
+                  return (
+                    <Reveal key={r.id} delay={(i % 2) * 60} className="card motif-story-card">
+                      <div className="motif-card-header">
+                        <button
+                          type="button"
+                          className="motif-card-title-btn"
+                          onClick={() => onSelectMyth && onSelectMyth(r.id)}
+                        >
+                          {r.title}
+                        </button>
+                        <span
+                          className="motif-theme-chip"
+                          style={{ borderColor: color, color: color }}
+                        >
+                          {r.theme}
+                        </span>
+                      </div>
+                      {r.snippet && (
+                        <blockquote className="motif-passage-quote">
+                          “{toSentenceCase(r.snippet)}”
+                        </blockquote>
+                      )}
+                    </Reveal>
+                  );
+                })}
+              </div>
+
+              {/* Showing the 12 strongest of N stories */}
+              {(totalCount > 12 || rows.length > 12) && (
+                <p className="motifs-footnote">
+                  Showing the 12 strongest of {totalCount} stories.
+                </p>
+              )}
+            </div>
+          )}
         </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-          Greek myths reuse the same few plots: someone is turned into a tree, a mortal defies a god, a hero
-          goes down to the underworld. Pick a pattern to see every story that uses it, with the passage that shows it.
-        </p>
-      </Reveal>
-
-      {error && <p role="alert" style={{ color: 'var(--accent-garnet)' }}>The pattern index could not be loaded.</p>}
-
-      <div className="motif-grid" role="tablist" aria-label="Story patterns">
-        {motifs.map(m => (
-          <button key={m.id} type="button" role="tab" aria-selected={m.id === active}
-            className={`motif-card ${m.id === active ? 'active' : ''}`} onClick={() => setActive(m.id)}>
-            <span className="motif-label">{m.label}</span>
-            <span className="motif-count">{m.count} {m.count === 1 ? 'story' : 'stories'}</span>
-          </button>
-        ))}
       </div>
-
-      {current && (
-        <div className="panel" style={{ padding: '22px 26px', marginTop: '20px' }} aria-live="polite">
-          <h3 style={{ margin: '0 0 4px', fontSize: '1.4rem' }}>{current.label}</h3>
-          <p style={{ color: 'var(--text-secondary)', marginTop: 0 }}>{current.description}</p>
-          {loadingRows && <p style={{ color: 'var(--text-muted)' }}>Loading…</p>}
-          <ol className="motif-list">
-            {rows.slice(0, 12).map(r => (
-              <li key={r.id}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
-                  <button type="button" className="fig-link" style={{ fontSize: '1.05rem' }} onClick={() => onSelectMyth && onSelectMyth(r.id)}>
-                    {r.title}
-                  </button>
-                  <span className="badge-theme" style={{ borderColor: themeColor(r.theme), color: themeColor(r.theme) }}>{r.theme}</span>
-                </div>
-                {r.snippet && <blockquote className="motif-quote">{r.snippet}</blockquote>}
-              </li>
-            ))}
-          </ol>
-          {rows.length > 12 && <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Showing the 12 strongest of {rows.length} stories.</p>}
-        </div>
-      )}
     </div>
   );
 }

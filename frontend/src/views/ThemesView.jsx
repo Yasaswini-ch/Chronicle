@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
-import SectionIcon from '../components/SectionIcon';
+import { themeColor } from '../utils/colors';
+import { THEME } from '../data/theme';
+import './ThemesView.css';
 
-export default function ThemesView() {
+export default function ThemesView({ subTabs }) {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +23,21 @@ export default function ThemesView() {
   }, []);
 
   if (loading) {
-    return <div style={{ color: 'var(--text-muted)', padding: '40px', textAlign: 'center' }}>Loading corpus analytics...</div>;
+    return (
+      <div className="page-surface">
+        <PageHeader
+          label="BY THE NUMBERS"
+          title="What Shows Up Most"
+          intro="Who gets talked about most, which themes dominate, and how dense the whole collection really is — at a glance."
+          image={THEME.treeBg}
+        />
+        <div className="section-dark">
+          <div className="tv-container">
+            <div className="tv-loading">Loading corpus analytics…</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const leaderboard = analytics?.leaderboard || {};
@@ -34,131 +51,131 @@ export default function ThemesView() {
   const sortedThemes = Object.entries(themeCounts).sort((a, b) => b[1] - a[1]);
 
   return (
-    <div>
-      <Reveal style={{ marginBottom: '24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
-          <SectionIcon name="bars" />
-          <h2 style={{ fontSize: '1.6rem', margin: 0 }}>What Shows Up Most</h2>
+    <div className="page-surface">
+      <PageHeader
+        label="BY THE NUMBERS"
+        title="What Shows Up Most"
+        intro="Who gets talked about most, which themes dominate, and how dense the whole collection really is — at a glance."
+        image={THEME.treeBg}
+      >
+        {subTabs}
+      </PageHeader>
+
+      <div className="section-dark">
+        <div className="tv-container">
+
+          {/* Four stat tiles */}
+          <div className="tv-stats-grid">
+            <Reveal className="tv-stat-tile">
+              <div className="tv-stat-number">{mostMentioned.count}</div>
+              <div className="tv-stat-label">Most frequent figure</div>
+              <div className="tv-stat-name">{mostMentioned.character}</div>
+              <div className="tv-stat-detail">
+                Appears across {mostMentioned.count} classical narratives
+              </div>
+            </Reveal>
+
+            <Reveal delay={60} className="tv-stat-tile">
+              <div className="tv-stat-number">{mostConnected.connections}</div>
+              <div className="tv-stat-label">Most connected figure</div>
+              <div className="tv-stat-name">{mostConnected.character}</div>
+              <div className="tv-stat-detail">
+                Family, rivalry &amp; alliance ties across the myths
+              </div>
+            </Reveal>
+
+            <Reveal delay={120} className="tv-stat-tile">
+              <div className="tv-stat-number">{mostDiverse.num_themes}</div>
+              <div className="tv-stat-label">Most thematically versatile</div>
+              <div className="tv-stat-name">{mostDiverse.character}</div>
+              <div className="tv-stat-detail">
+                Shows up across {(mostDiverse.themes || []).join(', ')}
+              </div>
+            </Reveal>
+
+            <Reveal delay={180} className="tv-stat-tile">
+              <div className="tv-stat-number">
+                {analytics?.total_words ? analytics.total_words.toLocaleString() : '12,000+'}
+              </div>
+              <div className="tv-stat-label">Total corpus words</div>
+              <div className="tv-stat-name">Unabridged corpus</div>
+              <div className="tv-stat-detail">
+                About {Math.round((analytics?.total_words || 0) / totalMyths)} words per myth
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Two-column analytical section */}
+          <div className="tv-columns-grid">
+
+            {/* Which themes dominate — horizontal bars */}
+            <Reveal className="tv-panel">
+              <h3 className="tv-panel-title">Which themes dominate</h3>
+              <div className="tv-bars-list">
+                {sortedThemes.map(([theme, count]) => {
+                  const pct = Math.round((count / totalMyths) * 100);
+                  const color = themeColor(theme);
+                  return (
+                    <div key={theme} className="tv-bar-row">
+                      <div className="tv-bar-meta">
+                        <span className="tv-bar-name">
+                          {theme.charAt(0).toUpperCase() + theme.slice(1).toLowerCase()}
+                        </span>
+                        <span className="tv-bar-count">{count}</span>
+                      </div>
+                      <div className="tv-bar-track">
+                        <div
+                          className="tv-bar-fill"
+                          style={{ width: `${pct}%`, backgroundColor: color }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Reveal>
+
+            {/* Who shows up most — table with chips */}
+            <Reveal delay={120} className="tv-panel">
+              <h3 className="tv-panel-title">Who shows up most</h3>
+              <div className="tv-table-scroll">
+                <table className="tv-table">
+                  <thead>
+                    <tr className="tv-thead-row">
+                      <th className="tv-th">Figure</th>
+                      <th className="tv-th">Mentions</th>
+                      <th className="tv-th">Connections</th>
+                      <th className="tv-th">Themes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topCharacters.slice(0, 10).map((c, i) => (
+                      <tr key={i} className="tv-tr">
+                        <td className="tv-td tv-td--name">{c.character}</td>
+                        <td className="tv-td tv-td--num">{c.mentions}</td>
+                        <td className="tv-td tv-td--num">{c.connections}</td>
+                        <td className="tv-td tv-td--themes">
+                          <div className="tv-chip-row">
+                            {(c.themes || []).map(t => (
+                              <span
+                                key={t}
+                                className="tv-theme-chip"
+                                style={{ borderColor: themeColor(t), color: themeColor(t) }}
+                              >
+                                {t.charAt(0).toUpperCase() + t.slice(1).toLowerCase()}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Reveal>
+
+          </div>
         </div>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-          Who gets talked about most, which themes dominate, and how dense the whole collection really is —
-          at a glance.
-        </p>
-      </Reveal>
-
-      {/* Prominence Cards (2x2 layout, no three in a row) */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px', marginBottom: '32px' }}>
-        <Reveal className="card">
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--accent-gold)' }}>
-            Most Frequent Figure
-          </div>
-          <div style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginTop: '4px', fontWeight: 600 }}>
-            {mostMentioned.character}
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-            Appears across {mostMentioned.count} classical narratives
-          </div>
-        </Reveal>
-
-        <Reveal delay={60} className="card">
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--accent-gold)' }}>
-            Most Connected Figure
-          </div>
-          <div style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginTop: '4px', fontWeight: 600 }}>
-            {mostConnected.character}
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-            {mostConnected.connections} family, rivalry & alliance ties
-          </div>
-        </Reveal>
-
-        <Reveal delay={120} className="card">
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--accent-gold)' }}>
-            Most Thematically Versatile
-          </div>
-          <div style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginTop: '4px', fontWeight: 600 }}>
-            {mostDiverse.character}
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-            Shows up across {mostDiverse.num_themes} themes: {(mostDiverse.themes || []).join(', ')}
-          </div>
-        </Reveal>
-
-        <Reveal delay={180} className="card">
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--accent-gold)' }}>
-            Total Length
-          </div>
-          <div style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginTop: '4px', fontWeight: 600 }}>
-            {analytics?.total_words ? analytics.total_words.toLocaleString() : '12,000+'} Words
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-            About {Math.round((analytics?.total_words || 0) / totalMyths)} words per myth, unabridged
-          </div>
-        </Reveal>
-      </div>
-
-      {/* Thematic Frequency Bars */}
-      <div className="grid-2" style={{ gap: '32px' }}>
-        <Reveal className="card" style={{ padding: '24px' }}>
-          <h3 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>Which Themes Dominate</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {sortedThemes.map(([theme, count]) => {
-              const pct = Math.round((count / totalMyths) * 100);
-              return (
-                <div key={theme}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '4px' }}>
-                    <span style={{ textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-primary)' }}>
-                      {theme}
-                    </span>
-                    <span style={{ color: 'var(--accent-gold)' }}>
-                      {count} myths ({pct}%)
-                    </span>
-                  </div>
-                  <div style={{ height: '8px', background: 'var(--bg-surface-elevated)', width: '100%' }}>
-                    <div
-                      className="theme-bar-fill"
-                      style={{
-                        height: '100%',
-                        width: `${pct}%`,
-                        background: 'var(--accent-slate)',
-                        borderRight: '2px solid var(--accent-gold)',
-                      }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Reveal>
-
-        {/* Character Prominence Table */}
-        <Reveal delay={120} className="card" style={{ padding: '24px' }}>
-          <h3 style={{ fontSize: '1.2rem', marginBottom: '16px' }}>Who Shows Up Most</h3>
-          <div style={{ maxHeight: '380px', overflowY: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)', textAlign: 'left', color: 'var(--text-muted)' }}>
-                  <th style={{ padding: '8px 4px', fontSize: '0.75rem', textTransform: 'uppercase' }}>Figure</th>
-                  <th style={{ padding: '8px 4px', fontSize: '0.75rem', textTransform: 'uppercase' }}>Mentions</th>
-                  <th style={{ padding: '8px 4px', fontSize: '0.75rem', textTransform: 'uppercase' }}>Connections</th>
-                  <th style={{ padding: '8px 4px', fontSize: '0.75rem', textTransform: 'uppercase' }}>Themes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topCharacters.slice(0, 10).map((c, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                    <td style={{ padding: '8px 4px', fontWeight: 600, color: 'var(--text-primary)' }}>{c.character}</td>
-                    <td style={{ padding: '8px 4px', color: 'var(--text-secondary)' }}>{c.mentions}</td>
-                    <td style={{ padding: '8px 4px', color: 'var(--text-secondary)' }}>{c.connections}</td>
-                    <td style={{ padding: '8px 4px', color: 'var(--accent-gold)', fontSize: '0.8rem' }}>
-                      {(c.themes || []).join(', ')}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
       </div>
     </div>
   );
